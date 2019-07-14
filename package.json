@@ -6,7 +6,7 @@
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
-    "server": "nodemon server.js",
+    "server": "env-cmd -f ./config/dev.env nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
@@ -18,7 +18,7 @@
   "keywords": [],
   "author": "Miguel Garcia",
   "license": "ISC",
-  "engines" : {
+  "engines": {
     "node": "10.15.3"
   },
   "bugs": {
@@ -33,6 +33,7 @@
     "mongoose": "^5.6.4"
   },
   "devDependencies": {
+    "env-cmd": "^9.0.3",
     "nodemon": "^1.19.1"
   }
 }
