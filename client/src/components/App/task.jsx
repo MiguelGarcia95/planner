@@ -22,7 +22,7 @@ const Container = styled.div`
 class Task extends React.Component {
   render() {
     return (
-      <Draggable draggableId={this.props.task.id} index={this.props.index}>
+      <Draggable draggableId={this.props.task.id} index={this.props.index} >
         {(provided, snapshot) => (
           <Container
             {...provided.draggableProps}
