@@ -9,17 +9,24 @@ import styled from 'styled-components';
 */ 
 
 const Container = styled.section`
-  width: 250px;
+  flex-basis: 30%;
   height: 100px;
-  background-color: ${props => (props.bgColor ? props.bgColor : 'white')};
+  background: ${props => props.bgColor ? props.bgColor : 'green'};
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  text-align: center;
+  h1 {
+    line-height: 100px;
+    font-size: 1.7em;
+  }
 `;
+
 
 class Board extends React.Component {
   render() {
     return (
-      <section className="app">
-
-      </section>
+      <Container bgColor='#f0f0f0'>
+        <h1>Board 1</h1>
+      </Container>
     )
   }
 }

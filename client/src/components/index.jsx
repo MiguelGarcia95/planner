@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import Board from './layout/Board';
+import Board from './layout/Board';
 
 /* 
   Location: Index/home page
@@ -24,32 +24,18 @@ const Container = styled.section`
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
 `;
 
-const Board = styled.section`
-  flex: 1;
-  background: green;
-`;
 
 class App extends React.Component {
   render() {
     return (
       <Page>
         <Container>
-          <Board>
-            <h1>Board 1</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur</p>
-            <p>Lorem ipsum dolor sit amet, consectetur</p>
-          </Board>
-          <Board>
-            <h1>Board 1</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur</p>
-          </Board>
-          <Board>
-            <h1>Board 1</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur</p>
-          </Board>
-          
+          <Board />
         </Container>
       </Page>
     )
