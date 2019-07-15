@@ -5,6 +5,7 @@ import React from 'react';
   Purpose: Show current boards
   Access: Need to be Authenticated *Ignore for now*
   Features: Create new boards,
+  From Here: Board link, signout/signin page, settings 
 */ 
 
 class App extends React.Component {
