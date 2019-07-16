@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Board from './layout/Board';
+import Navbar from './layout/Navbar';
 
 /* 
   Location: Index/home page
@@ -37,13 +38,10 @@ class App extends React.Component {
   render() {
     return (
       <Page>
+        <Navbar />
         <Container>
           <Boards>
-            <Board />
-            <Board />
-            <Board />
-            <Board />
-            <Board />
+            <Board board={{title: 'board', bgColor: '#f0f0f0'}} />
           </Boards>
         </Container>
       </Page>

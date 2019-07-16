@@ -32,8 +32,8 @@ const Container = styled.section`
 class Board extends React.Component {
   render() {
     return (
-      <Container bgColor='#f0f0f0'>
-        <h1>Board 1</h1>
+      <Container bgColor={this.props.board.bgColor}>
+        <h1>{this.props.board.title}</h1>
       </Container>
     )
   }
