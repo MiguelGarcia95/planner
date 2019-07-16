@@ -5,7 +5,6 @@ const Container = styled.section`
   width: 100vw;
   height: 0px;
   overflow: hidden;
-  background: rgba(0,0,0,0.5);
   position: fixed;
   display: flex;
   justify-content: center;
@@ -29,14 +28,20 @@ const ModalBackground = styled.section`
   height: 100%;
   background: rgba(0,0,0,0.5);
   position: absolute;
+  cursor: pointer;
 `;
 
 
-function SettingsModal({isOpen, toggle}) {
+function SettingsModal({isOpen, toggle, onFormChange, onSubmit}) {
   return (
     <Container isOpened={isOpen} >
       <ModalBackground  onClick={() => toggle()} />
-      <Modal></Modal>
+      <Modal>
+        <input type='text' name='nav_color' onChange={onFormChange} />
+        <input type='text' name='nav_text_color' onChange={onFormChange} />
+        <input type='text' name='background_color' onChange={onFormChange} />
+        <button onClick={onSubmit}>Submit</button>
+      </Modal>
     </Container>
   )
 }
