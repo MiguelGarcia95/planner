@@ -38,11 +38,21 @@ const Form = styled.form`
   box-sizing: border-box;
   padding: 50px;
   background-color: rgba(50,50,200,0.5);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
   text-align: center;
   input, button {
     width: 100%;
     border: none;
   }
+
+  h1 {
+    height: 100px;
+    line-height: 100px;
+    font-size: 2em;
+    color: white;
+    font-weight: 300;
+  }
+
   input {
     height: 50px;
     margin: 25px 0;
@@ -58,6 +68,8 @@ const Form = styled.form`
 
   button {
     height: 100px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
   }
 `;
 
@@ -69,6 +81,7 @@ function BoardModal({isOpen, toggle, onFormChange, onSubmit}) {
       <ModalBackground  onClick={() => toggle()} />
       <Modal>
         <Form onSubmit={onSubmit} >
+          <h1>Create New Board</h1>
           <input type='text' name='board_name' onChange={onFormChange} placeholder='Board Name' />
           <input type='text' name='board_color' onChange={onFormChange} placeholder='Background Color' />
           <button >Submit</button>
