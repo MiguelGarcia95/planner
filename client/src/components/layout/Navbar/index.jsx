@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createBoard} from '../../../store/actions/board';
-
 import SettingsModal from '../SettingsModal';
 import BoardModal from '../BoardModal';
 
@@ -12,8 +11,10 @@ const Container = styled.section`
   display: flex;
   width: 100%;
   flex: 1;
-  background: green;
   position: fixed;
+  background: #11998e;  
+  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
+  background: linear-gradient(to right, #38ef7d, #11998e);
 `;
 
 const Logo = styled.section`
@@ -64,7 +65,8 @@ class Navbar extends React.Component {
   onBoardSubmit = e => {
     e.preventDefault();
     const board = {
-      name: this.state.board_name,
+      id: '_323adf',
+      title: this.state.board_name,
       bgColor: this.state.board_color,
       // userId: this.props.user.id,
       // userName: this.props.user.name,

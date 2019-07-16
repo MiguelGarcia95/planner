@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
 import Board from './layout/Board';
 import Navbar from './layout/Navbar';
 
@@ -33,15 +34,19 @@ const Boards = styled.section`
   flex-wrap: wrap;
 `;
 
-
 class App extends React.Component {
+  displayBoards = () => {
+    return this.props.boards.map(board => <Board key={board.id} board={board} />)
+  }
+
   render() {
     return (
       <Page>
         <Navbar />
         <Container>
           <Boards>
-            <Board board={{title: 'board', bgColor: '#f0f0f0'}} />
+            {/* <Board board={{title: 'board', bgColor: '#f0f0f0'}} /> */}
+            {this.displayBoards()}
           </Boards>
         </Container>
       </Page>
@@ -49,4 +54,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    boards: state.board.boards,
+  }
+}
+
+export default connect(mapStateToProps)(App);

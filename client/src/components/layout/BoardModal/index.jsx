@@ -86,8 +86,6 @@ const Form = styled.form`
   }
 `;
 
-
-
 function BoardModal({isOpen, toggle, onFormChange, onSubmit}) {
   return (
     <Container isOpened={isOpen} >
