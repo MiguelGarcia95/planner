@@ -57,12 +57,10 @@ class Navbar extends React.Component {
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
   toggleSettingsModal = () => this.setState({settingsModal: !this.state.settingsModal})
-
   onChange = e => this.setState({[e.target.name]: e.target.value});
 
   onBoardSubmit = e => {
     e.preventDefault();
-    console.log('runs')
   };
 
   onSettingsSubmit = e => {
@@ -72,9 +70,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <Container>
-        <Logo>
-          <section className="logo">P</section>
-        </Logo>
+        <Logo><section className="logo">P</section></Logo>
         <Nav>
           <section className="nav">
             <Link className='link' to='/'>Boards</Link>
@@ -83,12 +79,14 @@ class Navbar extends React.Component {
             <section className='btn' onClick={this.toggleBoardModal} >+</section>
           </section>
         </Nav>
+
         <BoardModal 
           isOpen={this.state.boardModal} 
           toggle={this.toggleBoardModal}
           onFormChange={this.onChange}
           onSubmit={this.onBoardSubmit}
         />
+        
         <SettingsModal 
           isOpen={this.state.settingsModal} 
           toggle={this.toggleSettingsModal} 
