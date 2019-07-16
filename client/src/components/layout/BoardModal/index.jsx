@@ -37,7 +37,10 @@ const Form = styled.form`
   height: 100%;
   box-sizing: border-box;
   padding: 50px;
-  background-color: rgba(50,50,200,0.5);
+  background: #5C258D; 
+  background: -webkit-linear-gradient(to top, #4389A2, #5C258D); 
+  background: linear-gradient(to top, #4389A2, #5C258D);
+
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
   text-align: center;
   input, button {
@@ -70,6 +73,16 @@ const Form = styled.form`
     height: 100px;
     cursor: pointer;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    transition: box-shadow transform 0.5s; 
+    color: white;
+    font-size: 1.5em;
+    // background-color: #232323;
+    background: transparent;
+  }
+
+  button:active {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+    transform: scale(0.95);
   }
 `;
 

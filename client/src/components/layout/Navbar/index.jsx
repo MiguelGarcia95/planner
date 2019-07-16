@@ -53,6 +53,8 @@ class Navbar extends React.Component {
   state = {
     settingsModal: false,
     boardModal: false,
+    board_name: '',
+    board_color: ''
   }
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
@@ -61,6 +63,17 @@ class Navbar extends React.Component {
 
   onBoardSubmit = e => {
     e.preventDefault();
+    const board = {
+      name: this.state.board_name,
+      bgColor: this.state.board_color,
+      // userId: this.props.user.id,
+      // userName: this.props.user.name,
+      userId: '_5181858',
+      userName: 'Miguel',
+    }
+
+    this.props.createBoard(board);
+    this.setState({boardModal: false, board_name: '', board_color: ''});
   };
 
   onSettingsSubmit = e => {
