@@ -17,16 +17,19 @@ const Page = styled.section`
 `;
 
 const Container = styled.section`
-  width: 800px; 
+  width: 70%;
   min-height: 100vh;
-  // background: red;
   margin: auto;
+`;
+
+const Boards = styled.section`
+  width: 100%;
+  padding-top: 100px;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
   flex-wrap: wrap;
-
 `;
 
 
@@ -35,7 +38,13 @@ class App extends React.Component {
     return (
       <Page>
         <Container>
-          <Board />
+          <Boards>
+            <Board />
+            <Board />
+            <Board />
+            <Board />
+            <Board />
+          </Boards>
         </Container>
       </Page>
     )
