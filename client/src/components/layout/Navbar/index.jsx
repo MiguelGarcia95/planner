@@ -67,12 +67,13 @@ class Navbar extends React.Component {
         <Nav>
           <section className="nav">
             <Link className='link' to='/'>Boards</Link>
-            <section className='btn'>Settings</section>
+            <section className='btn' onClick={this.toggleSettingsModal} >Settings</section>
             <section className='btn'>Logout</section>
-            <section className='btn'>+</section>
+            <section className='btn' onClick={this.toggleBoardModal} >+</section>
           </section>
         </Nav>
-        <BoardModal open={this.state.boardModal} />
+        <BoardModal isOpen={this.state.boardModal} toggle={this.toggleBoardModal} />
+        <SettingsModal isOpen={this.state.settingsModal} toggle={this.toggleSettingsModal} />
       </Container>
     )
   }
