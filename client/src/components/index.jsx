@@ -45,7 +45,6 @@ class App extends React.Component {
         <Navbar />
         <Container>
           <Boards>
-            {/* <Board board={{title: 'board', bgColor: '#f0f0f0'}} /> */}
             {this.displayBoards()}
           </Boards>
         </Container>

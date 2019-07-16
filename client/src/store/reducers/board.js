@@ -1,7 +1,16 @@
-import {CREATE_BOARD} from '../actions/types';
+import {CREATE_BOARD, GET_BOARDS, GET_BOARD} from '../actions/types';
 
 const initialState = {
-  boards: [],
+  currentBoard: null,
+  boards: [
+    {
+      id: '_935dsfg4',
+      title: 'Shit that needs to get done!',
+      userId: '342455123414',
+      username: 'migg',
+      bgColor: 'white'
+    }
+  ],
 };
 
 const board = (state = initialState, action) => {
@@ -10,6 +19,16 @@ const board = (state = initialState, action) => {
       return {
         ...state,
         boards: [...state.boards, action.payload.board]
+      }
+    case GET_BOARDS:
+      return {
+        ...state,
+        boards: action.payload.boards
+      }
+    case GET_BOARD:
+      return {
+        ...state,
+        currentBoard: action.payload.currentBoard
       }
     default:
       return state;

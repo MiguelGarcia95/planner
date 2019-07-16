@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom';
 const Container = styled.section`
   flex-basis: 30%;
   height: 100px;
-  background: ${props => props.bgColor ? props.bgColor : 'green'};
+  background: ${props => props.bgColor ? props.bgColor : 'rgba(0,0,0,0.5)'};
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
   text-align: center;
   margin-top: 50px;
