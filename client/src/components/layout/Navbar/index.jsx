@@ -52,7 +52,7 @@ const Nav = styled.section`
 class Navbar extends React.Component {
   state = {
     settingsModal: false,
-    boardModal: true,
+    boardModal: false,
   }
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
@@ -72,7 +72,7 @@ class Navbar extends React.Component {
             <section className='btn'>+</section>
           </section>
         </Nav>
-        {this.state.boardModal && <BoardModal />}
+        <BoardModal open={this.state.boardModal} />
       </Container>
     )
   }
