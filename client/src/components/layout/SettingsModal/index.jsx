@@ -31,16 +31,20 @@ const ModalBackground = styled.section`
   cursor: pointer;
 `;
 
+const Form = styled.form`
+
+`;
 
 function SettingsModal({isOpen, toggle, onFormChange, onSubmit}) {
   return (
     <Container isOpened={isOpen} >
       <ModalBackground  onClick={() => toggle()} />
       <Modal>
-        <input type='text' name='nav_color' onChange={onFormChange} />
-        <input type='text' name='nav_text_color' onChange={onFormChange} />
-        <input type='text' name='background_color' onChange={onFormChange} />
-        <button onClick={onSubmit}>Submit</button>
+        <Form onSubmit={onSubmit} >
+          <input type='text' name='board_name' onChange={onFormChange} />
+          <input type='text' name='board_color' onChange={onFormChange} />
+          <button >Submit</button>
+        </Form>
       </Modal>
     </Container>
   )

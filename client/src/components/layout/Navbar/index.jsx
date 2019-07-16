@@ -60,12 +60,13 @@ class Navbar extends React.Component {
 
   onChange = e => this.setState({[e.target.name]: e.target.value});
 
-  onBoardSubmit = () => {
-
+  onBoardSubmit = e => {
+    e.preventDefault();
+    console.log('runs')
   };
 
-  onSettingsSubmit = () => {
-
+  onSettingsSubmit = e => {
+    e.preventDefault();
   };
 
   render() {
