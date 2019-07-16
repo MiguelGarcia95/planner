@@ -23,7 +23,7 @@ export const createBoard = boardData => {
 
 export const getBoard = boardId => {
   return dispatch => {
-    // search DB for board with ID,
+    // search DB for board with ID, && make sure user id matches
     const results = dbBoards.filter(board => board.id === boardId);
 
     dispatch({
