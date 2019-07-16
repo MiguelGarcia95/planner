@@ -1,5 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {createBoard} from '../../../store/actions/board';
+
+import SettingsModal from '../SettingsModal';
+import BoardModal from '../BoardModal';
 
 const Container = styled.section`
   height: 50px;
@@ -32,16 +38,26 @@ const Nav = styled.section`
     width: 300px;
     display: flex;
     align-items: center;
-    a {
-      width: 100px;
+    justify-content: space-around;
+    .link, .btn {
+      flex-basis: 20%;
       text-align: center;
       text-decoration: none;
       color: inherit;
+      cursor: pointer;
     }
   }
 `;
 
 class Navbar extends React.Component {
+  state = {
+    settingsModal: false,
+    boardModal: true,
+  }
+
+  toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
+  toggleSettingsModal = () => this.setState({settingsModal: !this.state.settingsModal})
+
   render() {
     return (
       <Container>
@@ -50,14 +66,22 @@ class Navbar extends React.Component {
         </Logo>
         <Nav>
           <section className="nav">
-            <a>Boards</a>
-            <a>Settings</a>
-            <a>Logout</a>
+            <Link className='link' to='/'>Boards</Link>
+            <section className='btn'>Settings</section>
+            <section className='btn'>Logout</section>
+            <section className='btn'>+</section>
           </section>
         </Nav>
+        {this.state.boardModal && <BoardModal />}
       </Container>
     )
   }
 }
 
-export default Navbar;
+const mapDispatchToProps = dispatch => {
+  return {
+    createBoard: boardData => dispatch(createBoard(boardData))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Navbar);
