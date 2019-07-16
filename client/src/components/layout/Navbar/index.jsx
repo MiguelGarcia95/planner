@@ -6,6 +6,7 @@ const Container = styled.section`
   display: flex;
   width: 100%;
   flex: 1;
+  background: green;
   position: fixed;
 `;
 
@@ -19,7 +20,6 @@ const Logo = styled.section`
     width: 50px;
     text-align: center;
     font-size: 2em;
-    background: green;
   }
 `;
 
@@ -29,8 +29,15 @@ const Nav = styled.section`
   justify-content: flex-end;
   .nav {
     height: 50px;
-    width: 250px;
-    background: green;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    a {
+      width: 100px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+    }
   }
 `;
 
@@ -39,11 +46,13 @@ class Navbar extends React.Component {
     return (
       <Container>
         <Logo>
-          <section className="logo">L</section>
+          <section className="logo">P</section>
         </Logo>
         <Nav>
           <section className="nav">
-            
+            <a>Boards</a>
+            <a>Settings</a>
+            <a>Logout</a>
           </section>
         </Nav>
       </Container>
