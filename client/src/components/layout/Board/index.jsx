@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 /* 
   Location: home/index page
@@ -16,12 +17,16 @@ const Container = styled.section`
   text-align: center;
   margin-top: 50px;
   overflow: hidden;
-  h1 {
-    line-height: 100px;
-    font-size: 1.7em;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  a {
+    text-decoration: none;
+    h1 {
+      line-height: 100px;
+      font-size: 1.7em;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      color: white;
+    }
   }
 
   @media(max-width: 900px) {flex-basis: 45%;}
@@ -33,7 +38,9 @@ class Board extends React.Component {
   render() {
     return (
       <Container bgColor={this.props.board.bgColor}>
-        <h1>{this.props.board.title}</h1>
+        <Link to={`/${this.props.board.id}/${this.props.board.title}`}>
+          <h1>{this.props.board.title}</h1>
+        </Link>
       </Container>
     )
   }

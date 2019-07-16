@@ -6,6 +6,9 @@ import '@atlaskit/css-reset';
 import './index.css';
 // import App from './components/App';
 import App from './components';
+import Board from './components/Board';
+import Signin from './components/Signin';
+import Signup from './components/Signup';
 import store from './store';
 
 const Root = () => {
@@ -13,6 +16,9 @@ const Root = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={App} />
+        <Route path='/:boardId/:boardName' component={Board} />
+        <Route exact path='/signup' component={Signin} />
+        <Route exact path='/signin' component={Signup} />
       </Switch>
     </BrowserRouter>
   )
