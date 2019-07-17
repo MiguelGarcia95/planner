@@ -64,7 +64,32 @@ class Board extends React.Component {
 
   onDragEnd = result => {
     const {destination, source, draggableId, type} = result;
-    console.log(result)
+    // End function if no destination
+    if (!destination) return;
+    // End function if destination is the same as origin
+    if (destination.droppableId === source.droppableId && destination.index === source.index) return;
+
+    if (type === 'column') {
+      const newColumnOrder = Array.from(this.state.columnOrder);
+      // Remove source column from column list
+      newColumnOrder.splice(source.index, 1);
+      // Add column into proper column list order
+      newColumnOrder.splice(destination.index, 0, draggableId);
+
+      const newState = {
+        ...this.state,
+        columnOrder: newColumnOrder
+      }
+
+      this.setState(newState);
+      // console.log(result)
+      return;
+    }
+
+    // const start = this.state.columns[source.droppableId];
+    // const finish = this.state.columns[destination.droppableId];
+
+
   }
 
   render() {
