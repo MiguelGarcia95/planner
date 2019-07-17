@@ -1,4 +1,4 @@
-import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS} from './types';
+import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
 
 export const createColumn = columnData => {
   console.log(columnData);
@@ -16,6 +16,12 @@ export const deleteAllBoardColumns = boardId => {
 }
 
 export const getColumns = boardId => {
+  return dispatch => {
+
+  }
+}
+
+export const getColumnsOrder = boardId => {
   return dispatch => {
 
   }

@@ -5,6 +5,7 @@ export const DELETE_BOARD = 'DELETE_BOARD';
 
 export const CREATE_COLUMN = 'CREATE_COLUMN';
 export const GET_COLUMNS = 'GET_COLUMNS';
+export const GET_COLUMNS_ORDER = 'GET_COLUMNS_ORDER';
 export const REARRANGE_COLUMNS = 'REARRANGE_COLUMNS';
 export const DELETE_COLUMN = 'DELETE_COLUMN';
 export const DELETE_ALL_BOARD_COLUMNS = 'DELETE_ALL_BOARD_COLUMNS';
@@ -14,6 +15,7 @@ export const GET_TASKS = 'GET_TASKS';
 export const REARRANGE_TASKS = 'REARRANGE_TASKS';
 export const DELETE_TASK = 'DELETE_TASK';
 export const DELETE_ALL_COLUMN_TASKS = 'DELETE_ALL_COLUMN_TASKS';
+
 
 export const SIGNIN = 'SIGNIN';
 export const SIGNUP = 'SIGNUP';
