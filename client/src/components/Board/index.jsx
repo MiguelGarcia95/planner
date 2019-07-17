@@ -63,7 +63,8 @@ class Board extends React.Component {
   }
 
   onDragEnd = result => {
-
+    const {destination, source, draggableId, type} = result;
+    console.log(result)
   }
 
   render() {
@@ -85,9 +86,11 @@ class Board extends React.Component {
                   index={index} 
                   column={column} 
                   taskMap={this.state.tasks} 
+                  
                 />
               );
             })}
+            {provided.placeholder}
           </Container>
         )}
         </Droppable>

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Droppable, Draggable} from 'react-beautiful-dnd';
+
 /* 
   Location: /boardID/boardName page
   Purpose: Show tasks
@@ -23,13 +25,21 @@ const Container = styled.section`
 class Column extends React.Component {
   render() {
     return (
-      <Container>
-        {this.props.tasks.map(task => {
-          return (
-            <h1 key={task.id} >{task.content}</h1>
-          )
-        })}
-      </Container>
+      <Draggable draggableId={this.props.column.id} index={this.props.index}>
+        {(provided) => (
+          <Container
+            {...provided.draggableProps}
+            ref={provided.innerRef}
+            {...provided.dragHandleProps} 
+          >
+            {this.props.tasks.map(task => {
+              return (
+                <h1 key={task.id}  >{task.content}</h1>
+              )
+            })}
+          </Container>
+        )}
+      </Draggable>
     )
   }
 }
