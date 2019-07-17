@@ -89,9 +89,9 @@ const FormBody = styled.section`
 const BottomLink = styled.section`
   position: absolute;
   bottom: 0px;
-  height: 80px;
+  height: 50px;
   p {
-    line-height: 80px;
+    line-height: 50px;
     a {
       color: black;
       font-weight: 500;
