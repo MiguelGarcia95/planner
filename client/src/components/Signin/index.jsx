@@ -26,10 +26,17 @@ const Form = styled.form`
   width: 350px;
   height: 390px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
-
   background: #11998e;  
   background: -webkit-linear-gradient(to bottom, #38ef7d, #11998e);
   background: linear-gradient(to bottom, #38ef7d, #11998e);
+
+  @media(max-width: 500px) {
+    width: 350px;
+    width: 100%;
+    height: 450px;
+    box-sizing: border-box; 
+    margin: 0 25px;
+  }
 `;
 
 const FormHeader = styled.section`
