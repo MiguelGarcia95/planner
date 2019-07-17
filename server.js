@@ -27,7 +27,6 @@ require('./db/mongoose');
  * BoardModel - id, title, description, userId, bgColor, tasks, columns, columnOrder users?
  * ColumnModel - id, name, taskIds, status, dateStarted, dateCompleted
  * TaskModel - id, name, description, status, dateStarted, dateCompleted,
- * 
  */
 
 app.listen(port, () => {
