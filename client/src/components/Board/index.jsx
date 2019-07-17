@@ -11,7 +11,7 @@ import {getBoard} from '../../store/actions/board';
   Features: Create new columns, re order them,
 */ 
   
-  const Container = styled.section`
+const Container = styled.section`
   background-color: ${props => (props.bgColor ? props.bgColor : '#f9f9f9')};
   min-width: 100vw;
   height: 100vh;
