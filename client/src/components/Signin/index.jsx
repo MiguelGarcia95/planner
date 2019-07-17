@@ -24,7 +24,7 @@ const Form = styled.form`
   flex-direction: column;
   text-align: center;
   width: 350px;
-  height: 450px;
+  height: 390px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
 
   background: #11998e;  
@@ -35,6 +35,7 @@ const Form = styled.form`
 const FormHeader = styled.section`
   width: 100%;
   height: 80px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
   h1 {
     font-size: 2em;
     color: black;
@@ -45,7 +46,48 @@ const FormHeader = styled.section`
 
 const FormBody = styled.section`
   width: 100%;
+  height: 310px;
+  box-sizing: border-box;
+  padding: 25px;
   flex: 4;
+  input {
+    width: 100%;
+    border: none;
+    height: 40px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    font-size: 1.2em;
+  }
+  input::placeholder {color: black; opacity: 1;}
+  input:-ms-input-placeholder {color: black;}
+  input::-ms-input-placeholder {color: black;}
+  button {
+    width: 100%;
+    border: none;
+    height: 50px;
+    margin-top: 30px;
+    cursor: pointer;
+    color: white;
+    font-size: 1.4em;
+    background: linear-gradient(to bottom, #FF4B2B, #FF416C);    
+    border-radius: 25px;
+  }
+`;
+
+const BottomLink = styled.section`
+  position: absolute;
+  bottom: 0px;
+  height: 80px;
+  p {
+    line-height: 80px;
+    a {
+      color: black;
+      font-weight: 500;
+    }
+  }
 `;
 
 class Signin extends React.Component {
@@ -54,15 +96,19 @@ class Signin extends React.Component {
       <Container>
         <Form>
           <FormHeader>
-            <h1>Sign In</h1>
+            <h1>Login</h1>
           </FormHeader>
           <FormBody>
             <input type='text' placeholder='Username' />
             <input type='email' placeholder='Email' />
             <input type='password' placeholder='Enter Password' />
-            <input type='password' placeholder='Confirm Password' />
+            <button>Login</button>
           </FormBody>
         </Form>
+        
+        <BottomLink>
+          <p>Don't have an account? <Link to='/signup'>Sign Up</Link> </p>
+        </BottomLink>
       </Container>
     )
   }
