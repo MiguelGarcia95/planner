@@ -7,7 +7,6 @@ import initialData from '../sampleData';
 
 const Container = styled.div`
   display: flex;
-  
 `;
 
 class InnerList extends React.PureComponent {
