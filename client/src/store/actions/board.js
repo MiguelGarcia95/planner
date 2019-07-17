@@ -1,4 +1,4 @@
-import {CREATE_BOARD, GET_BOARDS, GET_BOARD } from './types';
+import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD } from './types';
 
 const dbBoards = [
   {
@@ -32,5 +32,17 @@ export const getBoard = boardId => {
         currentBoard: results[0]
       }
     })
+  }
+}
+
+export const getBoards = userId => {
+  return dispatch => {
+
+  }
+}
+
+export const deleteBoard = boardId => {
+  return dispatch => {
+    
   }
 }
