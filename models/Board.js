@@ -1,25 +1,28 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const BoardSchema = new Schema({
-
+const boardSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: String,
+    required: true,
+  },
+  tasks: {
+    type: Array,
+    required: false,
+  },
+  columns: {
+    type: Array,
+    required: false,
+  },
+  columnOrder: {
+    type: Array,
+    required: false,
+  }
 });
 
-/**
-boardID: {
-  boardId,
-  boardName,
-  userId,
-  tasks: [
-    {id: taskId, name: 'taskName' ... }
-  ]
-  columns: [
-    {id: columnId, name: 'columnName' ... }
-  ],
-  columnOrder: ['boardId, boardId2 ...']
-}
- */
+const Board = mongoose.model('Board', boardSchema);
 
-const Item = mongoose.model('board', BoardSchema);
-
-module.exports = Item;
+module.exports = Board;
