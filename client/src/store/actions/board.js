@@ -1,4 +1,5 @@
 import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD } from './types';
+import axios from 'axios';
 
 const dbBoards = [
   {
@@ -10,8 +11,10 @@ const dbBoards = [
   }
 ];
 
-export const createBoard = boardData => {
-  return dispatch => {
+export const createBoard =  boardData => {
+  return async dispatch => {
+    const results = await axios.post('/boards', {boardData});
+    console.log(results);
     dispatch({
       type: CREATE_BOARD,
       payload: {
@@ -43,6 +46,6 @@ export const getBoards = userId => {
 
 export const deleteBoard = boardId => {
   return dispatch => {
-    
+
   }
 }

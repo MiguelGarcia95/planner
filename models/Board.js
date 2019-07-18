@@ -9,6 +9,10 @@ const boardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  bgColor: {
+    type: String,
+    required: true,
+  },
   tasks: {
     type: Array,
     required: false,

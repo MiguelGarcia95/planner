@@ -2,17 +2,17 @@ const express = require('express');
 const app = express();
 
 const board = require('./routes/board');
-const column = require('./routes/column');
-const task = require('./routes/task');
-const user = require('./routes/user');
+// const column = require('./routes/column');
+// const task = require('./routes/task');
+// const user = require('./routes/user');
 
 const port = process.env.PORT || 5000;
 require('./db/mongoose');
 
 app.use('/board', board);
-app.use('/column', column);
-app.use('/task', task);
-app.use('/user', user);
+// app.use('/column', column);
+// app.use('/task', task);
+// app.use('/user', user);
 
 /*
   userID: {

@@ -65,13 +65,12 @@ class Navbar extends React.Component {
   onBoardSubmit = e => {
     e.preventDefault();
     const board = {
-      id: '_323adf',
-      title: this.state.board_name,
+      name: this.state.board_name,
       bgColor: this.state.board_color,
       // userId: this.props.user.id,
       // userName: this.props.user.name,
       userId: '_5181858',
-      userName: 'Miguel',
+      // userName: 'Miguel',
     }
 
     this.props.createBoard(board);

@@ -1,6 +1,6 @@
 const Board = require('../models/Board');
 
-exports.index = async (req, res) => {
+exports.create = async (req, res) => {
   const board = new Board(req.body);
   try {
     await board.save();
