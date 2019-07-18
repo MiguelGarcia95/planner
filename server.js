@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 const board = require('./routes/board');
@@ -9,7 +10,9 @@ const board = require('./routes/board');
 const port = process.env.PORT || 5000;
 require('./db/mongoose');
 
-app.use('/board', board);
+app.use(cors());
+
+app.use('/boards', board);
 // app.use('/column', column);
 // app.use('/task', task);
 // app.use('/user', user);

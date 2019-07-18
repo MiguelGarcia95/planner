@@ -13,14 +13,19 @@ const dbBoards = [
 
 export const createBoard =  boardData => {
   return async dispatch => {
-    const results = await axios.post('/boards', {boardData});
-    console.log(results);
-    dispatch({
-      type: CREATE_BOARD,
-      payload: {
-        board: boardData
-      }
-    })
+    try {
+      console.log(boardData)
+      const results = await axios.post('/boards', {boardData});
+      console.log(results);
+      dispatch({
+        type: CREATE_BOARD,
+        payload: {
+          board: boardData
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
