@@ -60,10 +60,20 @@ const ColumnForm = styled.section`
     border: none;
   }
   p {
-
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    background: green;
+    float: left;
+    cursor: pointer;
   }
   button {
-    
+    width: 80px;
+    height: 30px;
+    background: red;
+    float: right;
+    border: none;
   }
   ${props => props.open && `
     height: 80px; 
@@ -151,10 +161,12 @@ class Board extends React.Component {
     return (
       <CreateColumn  open={this.state.columnForm}>
         <h3 onClick={() => this.columnFormToggle()} >Add Another List</h3>
-        <ColumnForm open={this.state.columnForm} >
-          <input name='column_name' />
-          <p onClick={() => this.columnFormToggle()}>Cancel</p>
-          <button>Add</button>
+        <ColumnForm open={this.state.columnForm}>
+          <form>
+            <input name='column_name' />
+            <p onClick={() => this.columnFormToggle()}>Cancel</p>
+            <button>Add</button>
+          </form>
         </ColumnForm>
       </CreateColumn>
     )
