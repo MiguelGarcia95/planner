@@ -27,3 +27,14 @@ exports.show = async (req, res) => {
     res.status(400).send({error});
   }
 }
+
+exports.delete = async (req, res) => {
+  try {
+    // await Board.findByIdAndDelete(req.query.id);
+    const board = await Board.findById(req.query.id);
+    await board.delete();
+    res.status(200).send(board);
+  } catch (error) {
+    res.status(400).send({error});    
+  }
+}
