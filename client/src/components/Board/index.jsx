@@ -70,9 +70,7 @@ class Board extends React.Component {
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
   }
-
-  columnFormToggle = () => this.setState({columnForm: !this.state.columnForm});
-
+  
   onDragEnd = result => {
     const {destination, source, draggableId, type} = result;
     // End function if no destination

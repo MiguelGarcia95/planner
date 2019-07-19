@@ -64,6 +64,8 @@ class ColumnForm extends React.Component {
     columnForm: false,
   }
 
+  columnFormToggle = () => this.setState({columnForm: !this.state.columnForm});
+
   render() {
     return (
       <Container  open={this.state.columnForm}>
@@ -80,4 +82,4 @@ class ColumnForm extends React.Component {
   }
 }
 
-export default Form;
+export default ColumnForm;
