@@ -22,6 +22,54 @@ const Container = styled.section`
   margin: auto;
 `;
 
+const CreateColumn = styled.section`
+  width: 250px;
+  height: 40px;
+  background-color: rgba(0,0,0,0.5);
+  margin-top: 75px;
+  margin-left: 25px;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  h3 {
+    line-height: 40px;
+    color: white;
+    font-weight: 400;
+    overflow: hidden;
+  }
+  ${props => props.open && `
+    height: 80px;
+    h3 {
+      height: 0px;
+    }
+  `}
+`;
+
+const ColumnForm = styled.section`
+  width: 250px;
+  height: 0px;
+  background-color: red;
+  overflow: hidden;
+  input {
+    width: 230px;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 2px;
+    margin: 10px 0;
+    margin-top: 10px;
+    border: none;
+  }
+  p {
+
+  }
+  button {
+    
+  }
+  ${props => props.open && `
+    height: 80px; 
+  `}
+`;
+
 class InnerList extends React.PureComponent {
   render() {
     const {column, taskMap, index} = this.props;
@@ -31,13 +79,10 @@ class InnerList extends React.PureComponent {
 }
 
 class Board extends React.Component {
-  componentWillMount() {
-    this.props.getBoard(this.props.match.params.boardId, '_5181858');
-  }
-
   state = {
     // state.task.tasks
     // getTasks(columnId)
+    columnForm: false,
     tasks: {
       'task-1': {id: 'task-1', content: 'Take out the trash'},
       'task-2': {id: 'task-2', content: 'Watch the new episode'},
@@ -68,6 +113,12 @@ class Board extends React.Component {
     columnOrder: ['column-1', 'column-2', 'column-3'],
   };
 
+  componentWillMount() {
+    this.props.getBoard(this.props.match.params.boardId, '_5181858');
+  }
+
+  columnFormToggle = () => this.setState({columnForm: !this.state.columnForm});
+
   onDragEnd = result => {
     const {destination, source, draggableId, type} = result;
     // End function if no destination
@@ -94,14 +145,26 @@ class Board extends React.Component {
 
     // const start = this.state.columns[source.droppableId];
     // const finish = this.state.columns[destination.droppableId];
+  }
 
-
+  taskCreator = () => {
+    return (
+      <CreateColumn  open={this.state.columnForm}>
+        <h3 onClick={() => this.columnFormToggle()} >Add Another List</h3>
+        <ColumnForm open={this.state.columnForm} >
+          <input name='column_name' />
+          <p onClick={() => this.columnFormToggle()}>Cancel</p>
+          <button>Add</button>
+        </ColumnForm>
+      </CreateColumn>
+    )
   }
 
   displayContent = provided => {
     return (
       <Container {...provided.droppableProps} ref={provided.innerRef} >
         <Navbar />
+        {this.taskCreator()}
         {/* {this.state.columnOrder.map((columnId, index) => {
           const column = this.state.columns[columnId];
           return (

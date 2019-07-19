@@ -37,12 +37,11 @@ export const getBoards = userId => {
 
 export const getBoard = (boardId, userId) => {
   return async dispatch => {
-    // search DB for board with ID, && make sure user id matches
     const results = await axios.get(`/boards/board?userId=${userId}&id=${boardId}`);
     dispatch({
       type: GET_BOARD,
       payload: {
-        currentBoard: results[0]
+        currentBoard: results.data
       }
     })
   }
