@@ -21,6 +21,7 @@ exports.create = async (req, res) => {
 
 exports.show = async (req, res) => {
   try {
+    console.log(req.query.userId);
     const board = await Board.find({'userId': req.query.userId, "boardId": req.query.boardId});
     res.status(201).send(board);
   } catch (error) {

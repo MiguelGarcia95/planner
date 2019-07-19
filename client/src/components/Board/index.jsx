@@ -33,6 +33,7 @@ class Board extends React.Component {
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
   }
+  
   state = {
     // state.task.tasks
     // getTasks(columnId)
@@ -66,11 +67,6 @@ class Board extends React.Component {
     columnOrder: ['column-1', 'column-2', 'column-3'],
   };
 
-  componentDidMount() {
-    const {boardId} = this.props.match.params;
-    this.props.getBoard(boardId)
-  }
-
   onDragEnd = result => {
     const {destination, source, draggableId, type} = result;
     // End function if no destination
@@ -102,7 +98,7 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log(this.props.board)
+    // console.log(this.props.board)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-columns" direction='horizontal' type='column'>

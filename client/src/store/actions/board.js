@@ -55,8 +55,9 @@ export const getBoards = userId => {
 export const getBoard = (boardId, userId) => {
   return async dispatch => {
     // search DB for board with ID, && make sure user id matches
-    const results = await axios.get(`/boards/board?userId=${userId}&boardId=${boardId}`);
-
+    console.log(userId, boardId)
+    const results = await axios.get(`/boards/board?userId=${userId}&id=${boardId}`);
+    console.log(results);
     // const results = dbBoards.filter(board => board.id === boardId);
 
 
