@@ -3,7 +3,7 @@ const Board = require('../models/Board');
 exports.index = async (req, res) => {
   try {
     const boards = await Board.find({'userId': req.query.userId});
-    res.status(201).send({boards});
+    res.status(201).send(boards);
   } catch (error) {
     res.status(400).send({error});
   }

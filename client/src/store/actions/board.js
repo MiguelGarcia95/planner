@@ -41,7 +41,12 @@ export const getBoards = userId => {
     const manualId = '_5181858';
     try {
       const results = await axios.get(`/boards?userId=${manualId}`);
-      console.log(results);
+      dispatch({
+        type: GET_BOARDS,
+        payload: {
+          boards: results.data
+        }
+      })
     } catch (error) {
       console.log(error)
     }
