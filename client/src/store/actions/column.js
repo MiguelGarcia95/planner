@@ -1,7 +1,9 @@
 import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
 
 export const createColumn = columnData => {
-  console.log(columnData);
+  return async dispatch => {
+    console.log(columnData);
+  }
 }
 
 export const deleteColumn = columnId => {

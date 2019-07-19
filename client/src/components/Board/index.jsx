@@ -5,6 +5,7 @@ import Column from '../layout/Column';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 import {getBoard} from '../../store/actions/board';
+import {createColumn} from '../../store/actions/column';
 
 /* 
   Location: /boardID/boardName page
@@ -33,7 +34,7 @@ class Board extends React.Component {
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
   }
-  
+
   state = {
     // state.task.tasks
     // getTasks(columnId)
@@ -97,32 +98,33 @@ class Board extends React.Component {
 
   }
 
+  displayContent = provided => {
+    return (
+      <Container {...provided.droppableProps} ref={provided.innerRef} >
+        <Navbar />
+        {/* {this.state.columnOrder.map((columnId, index) => {
+          const column = this.state.columns[columnId];
+          return (
+            <InnerList 
+              key={column.id} 
+              index={index} 
+              column={column} 
+              taskMap={this.state.tasks} 
+              
+            />
+          );
+        })} */}
+        {/* {provided.placeholder} */}
+      </Container>
+    )
+  }
+
   render() {
     // console.log(this.props.board)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-columns" direction='horizontal' type='column'>
-        {provided => (
-          <Container
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            <Navbar />
-            {this.state.columnOrder.map((columnId, index) => {
-              const column = this.state.columns[columnId];
-              return (
-                <InnerList 
-                  key={column.id} 
-                  index={index} 
-                  column={column} 
-                  taskMap={this.state.tasks} 
-                  
-                />
-              );
-            })}
-            {provided.placeholder}
-          </Container>
-        )}
+          {provided => this.displayContent(provided)}
         </Droppable>
       </DragDropContext>
     )
@@ -137,7 +139,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId))
+    getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId)),
+    createColumn: columnData => dispatch(createColumn(columnData))
   }
 }
 
