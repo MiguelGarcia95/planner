@@ -36,16 +36,11 @@ export const createBoard =  boardData => {
   }
 }
 
-export const getBoards = async userId => {
+export const getBoards = userId => {
   return async dispatch => {
     const manualId = '_5181858';
     try {
-      const results = await fetch(`/boards?userId:${manualId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      const results = await axios.get(`/boards?userId=${manualId}`);
       console.log(results);
     } catch (error) {
       console.log(error)
