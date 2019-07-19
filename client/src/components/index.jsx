@@ -37,7 +37,7 @@ const Boards = styled.section`
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getBoards('3444');
+    this.props.getBoards('_5181858');
   }
 
   displayBoards = () => {

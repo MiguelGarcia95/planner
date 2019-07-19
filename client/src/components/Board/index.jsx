@@ -30,6 +30,9 @@ class InnerList extends React.PureComponent {
 }
 
 class Board extends React.Component {
+  componentWillMount() {
+    console.log(this.props.match.params);
+  }
   state = {
     // state.task.tasks
     // getTasks(columnId)

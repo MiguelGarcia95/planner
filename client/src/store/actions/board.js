@@ -38,9 +38,8 @@ export const createBoard =  boardData => {
 
 export const getBoards = userId => {
   return async dispatch => {
-    const manualId = '_5181858';
     try {
-      const results = await axios.get(`/boards?userId=${manualId}`);
+      const results = await axios.get(`/boards?userId=${userId}`);
       dispatch({
         type: GET_BOARDS,
         payload: {
