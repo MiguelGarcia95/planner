@@ -29,48 +29,6 @@ class InnerList extends React.PureComponent {
   }
 }
 
-/*
-  userID: {
-    userId,
-    userName,
-    backgroundColor,
-    navColor,
-    boards: [
-      {id: 'boardId', title: 'titleName },
-      {id: 'boardId2', title: 'titleName2 },
-    ]
-  }
-
-  boardID: {
-    boardId,
-    boardName,
-    userId,
-    tasks: [
-      {id: taskId, name: 'taskName' ... }
-    ]
-    columns: [
-      {id: columnId, name: 'columnName' ... }
-    ],
-    columnOrder: ['boardId, boardId2 ...']
-  }
-
-  columnID: {
-    columnId,
-    columnName,
-    boardId,
-    taskOrder: ['taskId, taskId2 ...']
-  }
-
-  taskId: {
-    taskId,
-    columnId,
-    boardId,
-    taskName,
-    taskDescription,
-    ...
-  }
-*/
-
 class Board extends React.Component {
   state = {
     // state.task.tasks
