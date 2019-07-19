@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/boards', board);
-app.use('/column', column);
+app.use('/columns', column);
 // app.use('/task', task);
 // app.use('/user', user);
 

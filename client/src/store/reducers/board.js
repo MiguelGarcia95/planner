@@ -9,8 +9,7 @@ const board = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_BOARD:
       return {
-        ...state,
-        boards: [...state.boards, action.payload.board]
+        ...state
       }
     case GET_BOARDS:
       return {

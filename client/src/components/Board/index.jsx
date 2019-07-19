@@ -134,6 +134,7 @@ class Board extends React.Component {
 const mapStateToProps = state => {
   return {
     board: state.board.currentBoard,
+    columns: state.column.columns,
   }
 };
 
