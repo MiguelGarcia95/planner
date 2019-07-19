@@ -99,6 +99,8 @@ class Navbar extends React.Component {
           toggle={this.toggleBoardModal}
           onFormChange={this.onChange}
           onSubmit={this.onBoardSubmit}
+          name={this.state.board_name}
+          color={this.state.board_color}
         />
         
         <SettingsModal 

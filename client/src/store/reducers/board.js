@@ -3,13 +3,13 @@ import {CREATE_BOARD, GET_BOARDS, GET_BOARD} from '../actions/types';
 const initialState = {
   currentBoard: null,
   boards: [
-    {
-      id: '_935dsfg4',
-      title: 'Shit that needs to get done!',
-      userId: '342455123414',
-      username: 'migg',
-      bgColor: 'white'
-    }
+    // {
+    //   id: '_935dsfg4',
+    //   title: 'Shit that needs to get done!',
+    //   userId: '342455123414',
+    //   username: 'migg',
+    //   bgColor: 'white'
+    // }
   ],
 };
 

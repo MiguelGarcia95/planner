@@ -1,13 +1,19 @@
 const Board = require('../models/Board');
 
-exports.create = async (req, res) => {
-  const board = new Board(req.body);
-  console.log('------------');
-  console.log(req.body);
-  console.log('------------');
+exports.index = async (req, res) => {
   try {
     await board.save();
     res.status(201).send({board});
+  } catch (error) {
+    res.status(400).send({error});
+  }
+}
+
+exports.create = async (req, res) => {
+  try {
+    const boards = await Board.find({'userId': req.query.userId});
+    // await board.save();
+    res.status(201).send({boards});
   } catch (error) {
     res.status(400).send({error});
   }

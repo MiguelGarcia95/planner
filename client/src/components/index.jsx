@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
+import {getBoards} from '../store/actions/board';
 import Board from './layout/Board';
 import Navbar from './layout/Navbar';
 
@@ -35,6 +36,10 @@ const Boards = styled.section`
 `;
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.getBoards('3444');
+  }
+
   displayBoards = () => {
     return this.props.boards.map(board => <Board key={board.id} board={board} />)
   }
@@ -59,4 +64,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    getBoards: userId => dispatch(getBoards(userId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

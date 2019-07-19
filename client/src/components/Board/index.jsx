@@ -180,7 +180,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBoard: boardId => dispatch(getBoard(boardId)),
+    getBoard: boardId => dispatch(getBoard(boardId))
   }
 }
 

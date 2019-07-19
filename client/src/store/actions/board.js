@@ -14,8 +14,15 @@ const dbBoards = [
 export const createBoard =  boardData => {
   return async dispatch => {
     try {
-      console.log(boardData)
-      const results = await axios.post('/boards', {boardData});
+      const results = await fetch('/boards', {
+        method: 'POST',
+        body: JSON.stringify(boardData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      // console.log(boardData);
+      // const results = await axios.post('/boards', boardData);
       console.log(results);
       dispatch({
         type: CREATE_BOARD,
@@ -23,6 +30,23 @@ export const createBoard =  boardData => {
           board: boardData
         }
       })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const getBoards = async userId => {
+  return async dispatch => {
+    const manualId = '_5181858';
+    try {
+      const results = await fetch(`/boards?userId:${manualId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log(results);
     } catch (error) {
       console.log(error)
     }
@@ -40,12 +64,6 @@ export const getBoard = boardId => {
         currentBoard: results[0]
       }
     })
-  }
-}
-
-export const getBoards = userId => {
-  return dispatch => {
-
   }
 }
 

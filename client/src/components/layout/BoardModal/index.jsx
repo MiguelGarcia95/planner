@@ -86,15 +86,15 @@ const Form = styled.form`
   }
 `;
 
-function BoardModal({isOpen, toggle, onFormChange, onSubmit}) {
+function BoardModal({isOpen, toggle, onFormChange, onSubmit, name, color}) {
   return (
     <Container isOpened={isOpen} >
       <ModalBackground  onClick={() => toggle()} />
       <Modal>
         <Form onSubmit={onSubmit} >
           <h1>Create New Board</h1>
-          <input type='text' name='board_name' onChange={onFormChange} placeholder='Board Name' />
-          <input type='text' name='board_color' onChange={onFormChange} placeholder='Background Color' />
+          <input type='text' name='board_name' onChange={onFormChange} placeholder='Board Name' value={name} />
+          <input type='text' name='board_color' onChange={onFormChange} placeholder='Background Color'value={color} />
           <button >Submit</button>
         </Form>
       </Modal>
