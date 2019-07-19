@@ -31,7 +31,7 @@ class InnerList extends React.PureComponent {
 
 class Board extends React.Component {
   componentWillMount() {
-    console.log(this.props.match.params);
+    this.props.getBoard(this.props.match.params.boardId, '_5181858');
   }
   state = {
     // state.task.tasks
@@ -141,7 +141,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBoard: boardId => dispatch(getBoard(boardId))
+    getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId))
   }
 }
 

@@ -52,10 +52,13 @@ export const getBoards = userId => {
   }
 }
 
-export const getBoard = boardId => {
-  return dispatch => {
+export const getBoard = (boardId, userId) => {
+  return async dispatch => {
     // search DB for board with ID, && make sure user id matches
-    const results = dbBoards.filter(board => board.id === boardId);
+    const results = await axios.get(`/boards/board?userId=${userId}&boardId=${boardId}`);
+
+    // const results = dbBoards.filter(board => board.id === boardId);
+
 
     dispatch({
       type: GET_BOARD,
