@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Navbar from '../layout/Navbar';
-import Column from '../layout/Column';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
+
+import Navbar from '../layout/Navbar';
+import Column from '../layout/Column';
+import ColumnForm from '../layout/ColumnForm';
+
 import {getBoard} from '../../store/actions/board';
 import {createColumn} from '../../store/actions/column';
 
@@ -22,64 +25,6 @@ const Container = styled.section`
   margin: auto;
 `;
 
-const CreateColumn = styled.section`
-  width: 250px;
-  height: 40px;
-  background-color: rgba(0,0,0,0.5);
-  margin-top: 75px;
-  margin-left: 25px;
-  text-align: center;
-  cursor: pointer;
-  overflow: hidden;
-  h3 {
-    line-height: 40px;
-    color: white;
-    font-weight: 400;
-    overflow: hidden;
-  }
-  ${props => props.open && `
-    height: 80px;
-    h3 {
-      height: 0px;
-    }
-  `}
-`;
-
-const ColumnForm = styled.section`
-  width: 250px;
-  height: 0px;
-  background-color: red;
-  overflow: hidden;
-  input {
-    width: 230px;
-    height: 30px;
-    box-sizing: border-box;
-    padding: 2px;
-    margin: 10px 0;
-    margin-top: 10px;
-    border: none;
-  }
-  p {
-    width: 120px;
-    height: 30px;
-    line-height: 30px;
-    margin: 0;
-    background: green;
-    float: left;
-    cursor: pointer;
-  }
-  button {
-    width: 80px;
-    height: 30px;
-    background: red;
-    float: right;
-    border: none;
-  }
-  ${props => props.open && `
-    height: 80px; 
-  `}
-`;
-
 class InnerList extends React.PureComponent {
   render() {
     const {column, taskMap, index} = this.props;
@@ -92,7 +37,6 @@ class Board extends React.Component {
   state = {
     // state.task.tasks
     // getTasks(columnId)
-    columnForm: false,
     tasks: {
       'task-1': {id: 'task-1', content: 'Take out the trash'},
       'task-2': {id: 'task-2', content: 'Watch the new episode'},
@@ -159,16 +103,7 @@ class Board extends React.Component {
 
   taskCreator = () => {
     return (
-      <CreateColumn  open={this.state.columnForm}>
-        <h3 onClick={() => this.columnFormToggle()} >Add Another List</h3>
-        <ColumnForm open={this.state.columnForm}>
-          <form>
-            <input name='column_name' />
-            <p onClick={() => this.columnFormToggle()}>Cancel</p>
-            <button>Add</button>
-          </form>
-        </ColumnForm>
-      </CreateColumn>
+      <ColumnForm  />
     )
   }
 
