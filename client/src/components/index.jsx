@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   displayBoards = () => {
-    return this.props.boards.map(board => <Board key={board.id} board={board} />)
+    return this.props.boards.map(board => <Board key={board._id} board={board} />)
   }
 
   render() {

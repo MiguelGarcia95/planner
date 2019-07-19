@@ -39,8 +39,8 @@ class Board extends React.Component {
   render() {
     return (
       <Container bgColor={this.props.board.bgColor}>
-        <Link to={`/${this.props.board.id}/${this.props.board.title}`}>
-          <h1>{this.props.board.title}</h1>
+        <Link to={`/${this.props.board.id}/${this.props.board.name}`}>
+          <h1>{this.props.board.name}</h1>
         </Link>
       </Container>
     )
