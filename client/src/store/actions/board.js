@@ -49,6 +49,8 @@ export const getBoard = (boardId, userId) => {
 
 export const deleteBoard = boardId => {
   return dispatch => {
-
+    dispatch({
+      type: DELETE_BOARD
+    })
   }
 }
