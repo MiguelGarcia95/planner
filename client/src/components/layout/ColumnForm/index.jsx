@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 const Container = styled.section`
   width: 250px;
+  // For Column
+  flex: 0 0 auto;
   height: 40px;
   background-color: rgba(0,0,0,0.5);
   margin-top: 75px;

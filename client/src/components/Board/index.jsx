@@ -23,6 +23,10 @@ const Container = styled.section`
   display: flex;
   height: 100vh;
   margin: auto;
+  overflow: auto;
+  flex-wrap: nowrap
+  -webkit-overflow-scrolling: touch; /* [4] */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
 `;
 
 class InnerList extends React.PureComponent {
@@ -70,7 +74,7 @@ class Board extends React.Component {
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
   }
-  
+
   onDragEnd = result => {
     const {destination, source, draggableId, type} = result;
     // End function if no destination
@@ -101,7 +105,10 @@ class Board extends React.Component {
 
   taskCreator = () => {
     return (
-      <ColumnForm  />
+      <React.Fragment>
+        <ColumnForm  />
+
+      </React.Fragment>
     )
   }
 
@@ -109,7 +116,6 @@ class Board extends React.Component {
     return (
       <Container {...provided.droppableProps} ref={provided.innerRef} >
         <Navbar />
-        {this.taskCreator()}
         {/* {this.state.columnOrder.map((columnId, index) => {
           const column = this.state.columns[columnId];
           return (
@@ -123,6 +129,7 @@ class Board extends React.Component {
           );
         })} */}
         {/* {provided.placeholder} */}
+        {this.taskCreator()}
       </Container>
     )
   }

@@ -12,6 +12,8 @@ import {Droppable, Draggable} from 'react-beautiful-dnd';
 const Container = styled.section`
   width: 250px;
   height: 200px;
+  // For Column
+  flex: 0 0 auto;
   margin: 0 20px;
   background: red;
   margin-top:50px;
