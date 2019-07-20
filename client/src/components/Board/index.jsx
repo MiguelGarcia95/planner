@@ -156,7 +156,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId)),
-    createColumn: columnData => dispatch(createColumn(columnData))
+    createColumn: (columnData, board) => dispatch(createColumn(columnData, board))
   }
 }
 

@@ -79,7 +79,7 @@ class ColumnForm extends React.Component {
       boardId: this.props.board._id,
     }
 
-    this.props.createColumn(column);
+    this.props.createColumn(column, this.props.board);
     this.resetState();
   }
 

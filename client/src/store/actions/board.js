@@ -4,12 +4,7 @@ import axios from 'axios';
 export const createBoard =  boardData => {
   return async dispatch => {
     try {
-      await fetch('/boards', {
-        method: 'POST',
-        body: JSON.stringify(boardData),
-        headers: {'Content-Type': 'application/json'}
-      })
-      // await axios.post('/boards', boardData);
+      await axios.post('/boards', boardData);
       dispatch({
         type: CREATE_BOARD
       })
@@ -47,11 +42,18 @@ export const getBoard = (boardId, userId) => {
   }
 }
 
-export const rearrangeBoardColumns = newColumn => {
+export const rearrangeBoardColumns = (newColumn, board) => {
   return async dispatch => {
-    //Fetch board, add new Column id to column order and update
+    //add new Column id to column order and update
     // console.log(newColumn);
-    
+    console.log(board);
+
+    const updatedBoard = {
+      ...board,
+      columnOrder: [...board.columnOrder, newColumn._id]
+    }
+    console.log(updatedBoard);
+
     dispatch({
       type: REARRANGE_BOARD_COLUMNS,
       payload: {

@@ -4,11 +4,11 @@ import {rearrangeBoardColumns} from './board';
 
 import axios from 'axios';
 
-export const createColumn = columnData => {
+export const createColumn = (columnData, board) => {
   return async dispatch => {
     try {
       const results = await axios.post('/columns', columnData);
-      dispatch(rearrangeBoardColumns(results.data));
+      dispatch(rearrangeBoardColumns(results.data, board));
       dispatch({
         type: CREATE_COLUMN
       })
