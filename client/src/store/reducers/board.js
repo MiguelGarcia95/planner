@@ -14,7 +14,7 @@ const board = (state = initialState, action) => {
     case REARRANGE_BOARD_COLUMNS:
       return {
         ...state,
-        currentBoard: action.payload.currentBoard
+        // currentBoard: action.payload.currentBoard
       }
     case GET_BOARDS:
       return {

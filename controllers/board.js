@@ -28,6 +28,15 @@ exports.show = async (req, res) => {
   }
 }
 
+exports.columnOrder = async (req, res) => {
+  try {
+    const board = new Board(req.body);
+    console.log(board);  
+  } catch (error) {
+    res.status(400).send({error});    
+  }
+}
+
 exports.delete = async (req, res) => {
   try {
     // await Board.findByIdAndDelete(req.query.id);

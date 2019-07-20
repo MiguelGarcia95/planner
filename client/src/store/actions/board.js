@@ -46,20 +46,28 @@ export const rearrangeBoardColumns = (newColumn, board) => {
   return async dispatch => {
     //add new Column id to column order and update
     // console.log(newColumn);
-    console.log(board);
+    // console.log(board);/
 
-    const updatedBoard = {
-      ...board,
-      columnOrder: [...board.columnOrder, newColumn._id]
-    }
-    console.log(updatedBoard);
-
-    dispatch({
-      type: REARRANGE_BOARD_COLUMNS,
-      payload: {
-        // currentBoard: results.data
+    try {
+      const updatedBoard = {
+        ...board,
+        columns: [...board.columns, {id: newColumn._id, name: newColumn.name}],
+        columnOrder: [...board.columnOrder, newColumn._id]
       }
-    })
+
+      // console.log(updatedBoard);
+      const results = await axios.patch('/boards/columnOrder', updatedBoard);
+      console.log(results);
+      dispatch({
+        type: REARRANGE_BOARD_COLUMNS,
+        payload: {
+          // currentBoard: results.data
+        }
+      })
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
