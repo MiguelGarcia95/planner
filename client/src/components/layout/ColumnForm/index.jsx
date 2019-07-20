@@ -74,12 +74,12 @@ class ColumnForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const task = {
+    const column = {
       name: this.state.columnName,
-      boardId: this.props.boardId,
+      boardId: this.props.board._id,
     }
 
-    this.props.createColumn(task);
+    this.props.createColumn(column);
     this.resetState();
   }
 

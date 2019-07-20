@@ -1,15 +1,15 @@
-import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
+// import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
+import {CREATE_COLUMN} from './types';
+import {rearrangeBoardColumns} from './board';
+
 import axios from 'axios';
 
 export const createColumn = columnData => {
   return async dispatch => {
     try {
-      await fetch('/columns', {
-        method: 'POST',
-        body: JSON.stringify(columnData),
-        headers: {'Content-Type': 'application/json'}
-      })
-      console.log(columnData);
+      const results = await axios.post('/columns', columnData);
+      console.log(results);
+      
       dispatch({
         type: CREATE_COLUMN
       })

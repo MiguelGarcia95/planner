@@ -11,10 +11,9 @@ exports.index = async (req, res) => {
 
 exports.create = async (req, res) => {
   const column = new Column(req.body);
-  console.log(req.body);
   try {
     await column.save();
-    res.status(201).send({column});
+    res.status(201).send(column);
   } catch (error) {
     res.status(400).send({error});
   }

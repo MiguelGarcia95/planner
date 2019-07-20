@@ -106,7 +106,7 @@ class Board extends React.Component {
   taskCreator = () => {
     return (
       <React.Fragment>
-        <ColumnForm createColumn={this.props.createColumn} boardId={this.props.match.params.boardId} />
+        <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
 
       </React.Fragment>
     )

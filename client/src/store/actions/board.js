@@ -1,4 +1,4 @@
-import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD } from './types';
+import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUMNS} from './types';
 import axios from 'axios';
 
 export const createBoard =  boardData => {
@@ -42,6 +42,18 @@ export const getBoard = (boardId, userId) => {
       type: GET_BOARD,
       payload: {
         currentBoard: results.data
+      }
+    })
+  }
+}
+
+export const rearrangeBoardColumns = board => {
+  return async dispatch => {
+    
+    dispatch({
+      type: REARRANGE_BOARD_COLUMNS,
+      payload: {
+        // currentBoard: results.data
       }
     })
   }
