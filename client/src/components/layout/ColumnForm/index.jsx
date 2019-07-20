@@ -68,13 +68,19 @@ class ColumnForm extends React.Component {
   }
 
   columnFormToggle = () => this.setState({columnForm: !this.state.columnForm});
-
   setColumnName = e => this.setState({columnName: e.target.value});
+  resetState = () => this.setState({columnForm: false, columnName: ''});
 
   onSubmit = e => {
     e.preventDefault();
 
-    console.log(this.state.columnName);
+    const task = {
+      name: this.state.columnName,
+      boardId: this.props.boardId,
+    }
+
+    this.props.createColumn(task);
+    this.resetState();
   }
 
   render() {
