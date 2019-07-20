@@ -44,10 +44,6 @@ export const getBoard = (boardId, userId) => {
 
 export const rearrangeBoardColumns = (newColumn, board) => {
   return async dispatch => {
-    //add new Column id to column order and update
-    // console.log(newColumn);
-    // console.log(board);/
-
     try {
       const updatedBoard = {
         ...board,
@@ -55,7 +51,7 @@ export const rearrangeBoardColumns = (newColumn, board) => {
         columnOrder: [...board.columnOrder, newColumn._id]
       }
 
-      // console.log(updatedBoard);
+      console.log(updatedBoard);
       const results = await axios.patch('/boards/columnOrder', updatedBoard);
       console.log(results);
       dispatch({
