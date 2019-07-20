@@ -77,11 +77,31 @@ class Board extends React.Component {
   }
 
   // shouldComponentUpdate(nextProps) {
-    // if (nextProps.board.columns.length === this.props.board.columns.length) {
-    //   return false;
-    // }
-    // return true;
+  //   if (nextProps.board.columns.length === this.props.board.columns.length) {
+  //     return false;
+  //   }
+  //   return true;
   // }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.board && nextProps.board.columns.length !== 0) {
+      this.props.getColumns(nextProps.board._id);
+      console.log('ran')
+    }
+
+
+    // if (this.props.board) {
+    //   if (this.props.board.columns.length !== nextProps.board.columns.length) {
+    //     console.log('gained new columns');
+    //   }
+    // }
+
+  }
+
+  // componentDidUpdate(prevProps) {
+
+  // }
+
 
   onDragEnd = result => {
     const {destination, source, draggableId, type} = result;
@@ -188,7 +208,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId)),
-    createColumn: (columnData, board) => dispatch(createColumn(columnData, board))
+    createColumn: (columnData, board) => dispatch(createColumn(columnData, board)),
+    getColumns: boardId => dispatch(getColumns(boardId))
   }
 }
 

@@ -2,8 +2,8 @@ const Column = require('../models/Column');
 
 exports.index = async (req, res) => {
   try {
-    // const boards = await Board.find({'userId': req.query.userId});
-    // res.status(201).send(boards);
+    const columns = await Column.find({'id': req.query.boardId});
+    res.status(201).send(columns);
   } catch (error) {
     res.status(400).send({error});
   }

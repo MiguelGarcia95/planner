@@ -51,11 +51,12 @@ export const rearrangeBoardColumns = (newColumn, board) => {
         columnOrder: [...board.columnOrder, newColumn._id]
       }
 
-      const results = await axios.patch('/boards/columnOrder', updatedBoard);
+      await axios.patch('/boards/columnOrder', updatedBoard);
+      
       dispatch({
         type: REARRANGE_BOARD_COLUMNS,
         payload: {
-          currentBoard: results.data
+          currentBoard: updatedBoard
         }
       })
 

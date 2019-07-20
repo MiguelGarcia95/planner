@@ -10,7 +10,10 @@ export const createColumn = (columnData, board) => {
       const results = await axios.post('/columns', columnData);
       dispatch(rearrangeBoardColumns(results.data, board));
       dispatch({
-        type: CREATE_COLUMN
+        type: CREATE_COLUMN,
+        payload: {
+          column: results.data
+        }
       })
     } catch (error) {
       console.log(error)
@@ -30,8 +33,9 @@ export const deleteAllBoardColumns = boardId => {
 }
 
 export const getColumns = boardId => {
-  return dispatch => {
-
+  return async dispatch => {
+    const results = await axios.get(`/columns?boardId=${boardId}`);
+    console.log(results);
   }
 }
 
