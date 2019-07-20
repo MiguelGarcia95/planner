@@ -47,8 +47,10 @@ export const getBoard = (boardId, userId) => {
   }
 }
 
-export const rearrangeBoardColumns = board => {
+export const rearrangeBoardColumns = newColumn => {
   return async dispatch => {
+    //Fetch board, add new Column id to column order and update
+    // console.log(newColumn);
     
     dispatch({
       type: REARRANGE_BOARD_COLUMNS,

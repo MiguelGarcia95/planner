@@ -8,8 +8,7 @@ export const createColumn = columnData => {
   return async dispatch => {
     try {
       const results = await axios.post('/columns', columnData);
-      console.log(results);
-      
+      dispatch(rearrangeBoardColumns(results.data));
       dispatch({
         type: CREATE_COLUMN
       })
