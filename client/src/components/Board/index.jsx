@@ -8,7 +8,7 @@ import Column from '../layout/Column';
 import ColumnForm from '../layout/ColumnForm';
 
 import {getBoard} from '../../store/actions/board';
-import {createColumn} from '../../store/actions/column';
+import {createColumn, getColumns} from '../../store/actions/column';
 
 /* 
   Location: /boardID/boardName page
@@ -73,7 +73,15 @@ class Board extends React.Component {
 
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
+    // this.props.getColumns(this.props.match.params.boardId);
   }
+
+  // shouldComponentUpdate(nextProps) {
+    // if (nextProps.board.columns.length === this.props.board.columns.length) {
+    //   return false;
+    // }
+    // return true;
+  // }
 
   onDragEnd = result => {
     const {destination, source, draggableId, type} = result;
@@ -107,39 +115,63 @@ class Board extends React.Component {
     return (
       <React.Fragment>
         <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
-
       </React.Fragment>
     )
   }
 
   displayContent = provided => {
+    if (!this.props.board) return;
+
     return (
-      <Container {...provided.droppableProps} ref={provided.innerRef} >
-        <Navbar />
-        {/* {this.state.columnOrder.map((columnId, index) => {
-          const column = this.state.columns[columnId];
-          return (
-            <InnerList 
-              key={column.id} 
-              index={index} 
-              column={column} 
-              taskMap={this.state.tasks} 
-              
-            />
-          );
-        })} */}
-        {/* {provided.placeholder} */}
-        {this.taskCreator()}
-      </Container>
+      <React.Fragment>
+        {this.props.board.columnOrder.map((columnId, index) => {
+          const column = this.props.board.columns.filter(column => column.id === columnId);
+          console.log(column[0])
+          // return (
+          //   <InnerList 
+          //     key={column.id} 
+          //     index={index} 
+          //     column={column} 
+          //     taskMap={this.state.tasks} 
+          //   />
+          // );
+        })}
+      {provided.placeholder}
+      </React.Fragment>
     )
+     
+      // <Container {...provided.droppableProps} ref={provided.innerRef} >
+      //   <Navbar />
+      //   {this.props.board.columnOrder.map((columnId, index) => {
+      //     const column = this.state.columns[columnId];
+      //     return (
+      //       <InnerList 
+      //         key={column.id} 
+      //         index={index} 
+      //         column={column} 
+      //         taskMap={this.state.tasks} 
+              
+      //       />
+      //     );
+      //   })}
+      //   {provided.placeholder}
+      //   {this.taskCreator()}
+      // </Container>
+    
   }
 
   render() {
-    // console.log(this.props.board)
+    console.log(this.props.board)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-columns" direction='horizontal' type='column'>
-          {provided => this.displayContent(provided)}
+          {provided => (
+            <Container {...provided.droppableProps} ref={provided.innerRef} >
+              <Navbar />
+              {this.displayContent(provided)}
+              {this.taskCreator()}
+            </Container>
+          )}
         </Droppable>
       </DragDropContext>
     )
