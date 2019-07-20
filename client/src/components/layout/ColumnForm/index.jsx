@@ -64,17 +64,26 @@ const Form = styled.section`
 class ColumnForm extends React.Component {
   state = {
     columnForm: false,
+    columnName: ''
   }
 
   columnFormToggle = () => this.setState({columnForm: !this.state.columnForm});
+
+  setColumnName = e => this.setState({columnName: e.target.value});
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    console.log(this.state.columnName);
+  }
 
   render() {
     return (
       <Container  open={this.state.columnForm}>
         <h3 onClick={() => this.columnFormToggle()} >Add Another List</h3>
         <Form open={this.state.columnForm}>
-          <form>
-            <input name='column_name' />
+          <form onSubmit={this.onSubmit}>
+            <input name='column_name' onChange={this.setColumnName} value={this.state.columnName} />
             <p onClick={() => this.columnFormToggle()}>Cancel</p>
             <button>Add</button>
           </form>
