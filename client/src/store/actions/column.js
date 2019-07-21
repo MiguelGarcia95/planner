@@ -51,8 +51,8 @@ export const updateColumnTasks = (newTask, column) => {
         ...column,
         taskOrder: [...column.taskOrder, newTask._id],
       }
-  
-      await axios.patch('columns/updateColumnTasks', updatedColumn);
+
+      await axios.patch('/columns/updateColumnTasks', updatedColumn);
 
       dispatch({
         type: UPDATE_COLUMN_TASK,

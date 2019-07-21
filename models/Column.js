@@ -11,7 +11,7 @@ const columnSchema = new mongoose.Schema({
   },
   columnId: {
     type: String,
-    required: true,
+    required: false,
   },
   taskOrder: {
     type: Array,

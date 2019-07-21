@@ -5,7 +5,7 @@ import {updateColumnTasks} from './column';
 export const createTask = (taskData, column) => {
   return async dispatch => {
     try {
-
+      console.log(column)
       // Add Task To Database
       const results = await axios.post('/tasks', taskData);
       // Add Task to column order
