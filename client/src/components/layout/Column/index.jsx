@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
 
+import Task from '../Task';
+
 /* 
   Location: /boardID/boardName page
   Purpose: Show tasks
@@ -39,6 +41,8 @@ const Container = styled.section`
     padding: 10px;
     line-height: 20px;
     font-size: 1em;
+    word-wrap: break-word;
+    margin: 10px 0px;
   }
 `;
 
@@ -53,14 +57,25 @@ class Column extends React.Component {
             {...provided.dragHandleProps} 
           >
             <p className='title'>{this.props.column.name}</p>
-            {/* {this.props.tasks.map(task => {
-              return (
-                <h1 key={task.id}  >{task.content}</h1>
-              )
-            })} */}
-            <section className='task'>
-              Lorem Lorem Lorem Lorem LoremLoremLoremLoremLoremLoremLoremLoremLoremLoremLoremLorem
-            </section>
+            <Droppable droppableId={this.props.column.id} type='task' >
+              {(provided, snapshot) => (
+                <section
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  isDraggingOver={snapshot.isDraggingOver}
+                >
+                  {/* <InnerList tasks={this.props.tasks} /> */}
+                  <section className='task'>{'Task Here'}</section>
+                  <section className='task'>{'Task Here'}</section>
+                  <section className='task'>{'Task Here'}</section>
+                  <section className='task'>{'Task Here'}</section>
+                  <section className='task'>{'Task Here'}</section>
+                  <section className='task'>{'Task Here'}</section>
+                  {provided.placeholder}
+                </section>
+              )}
+            </Droppable>
+
           </Container>
         )}
       </Draggable>
