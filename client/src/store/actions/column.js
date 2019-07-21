@@ -1,6 +1,6 @@
 // import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
 import {CREATE_COLUMN, GET_COLUMNS} from './types';
-import {rearrangeBoardColumns} from './board';
+import {updateBoardColumns} from './board';
 
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ export const createColumn = (columnData, board) => {
   return async dispatch => {
     try {
       const results = await axios.post('/columns', columnData);
-      dispatch(rearrangeBoardColumns(results.data, board));
+      dispatch(updateBoardColumns(results.data, board));
       dispatch({
         type: CREATE_COLUMN,
         payload: {

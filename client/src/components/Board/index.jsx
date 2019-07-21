@@ -7,7 +7,7 @@ import Navbar from '../layout/Navbar';
 import Column from '../layout/Column';
 import ColumnForm from '../layout/ColumnForm';
 
-import {getBoard} from '../../store/actions/board';
+import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
 import {createColumn, getColumns} from '../../store/actions/column';
 
 /* 
@@ -111,24 +111,14 @@ class Board extends React.Component {
     if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
     if (type === 'column') {
-      // console.log(this.props.board.columnOrder);
-      console.log(source);
-      console.log(result);
       const newColumnOrder = Array.from(this.props.board.columnOrder);
       // Remove source column from column list
       newColumnOrder.splice(source.index, 1);
       // Add column into proper column list order
       newColumnOrder.splice(destination.index, 0, draggableId);
 
-      const newState = {
-        ...this.state,
-        columnOrder: newColumnOrder
-      }
+      this.props.rearrangeBoardColumns(this.props.board, newColumnOrder);
 
-      console.log(newColumnOrder);
-
-      this.setState(newState);
-      // console.log(result)
       return;
     }
 
@@ -221,7 +211,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId)),
     createColumn: (columnData, board) => dispatch(createColumn(columnData, board)),
-    getColumns: boardId => dispatch(getColumns(boardId))
+    getColumns: boardId => dispatch(getColumns(boardId)),
+    rearrangeBoardColumns: (board, columnOrder) => dispatch(rearrangeBoardColumns(board, columnOrder))
   }
 }
 

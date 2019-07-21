@@ -1,4 +1,4 @@
-import {CREATE_BOARD, GET_BOARDS, GET_BOARD, REARRANGE_BOARD_COLUMNS} from '../actions/types';
+import {CREATE_BOARD, GET_BOARDS, GET_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS} from '../actions/types';
 
 const initialState = {
   currentBoard: null,
@@ -10,6 +10,11 @@ const board = (state = initialState, action) => {
     case CREATE_BOARD:
       return {
         ...state
+      }
+    case UPDATE_BOARD_COLUMNS:
+      return {
+        ...state,
+        currentBoard: action.payload.currentBoard
       }
     case REARRANGE_BOARD_COLUMNS:
       return {

@@ -1,4 +1,4 @@
-import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUMNS} from './types';
+import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS} from './types';
 import axios from 'axios';
 
 export const createBoard =  boardData => {
@@ -41,8 +41,29 @@ export const getBoard = (boardId, userId) => {
     })
   }
 }
+export const rearrangeBoardColumns = (board, columnOrder) => {
+  return async dispatch => {
+    try {
+      const updatedBoard = {
+        ...board,
+        columnOrder: columnOrder
+      };
 
-export const rearrangeBoardColumns = (newColumn, board) => {
+      await axios.patch('/boards/rearrangeBoardColumns', updatedBoard);
+
+      dispatch({
+        type: REARRANGE_BOARD_COLUMNS,
+        payload: {
+          currentBoard: updatedBoard
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export const updateBoardColumns = (newColumn, board) => {
   return async dispatch => {
     try {
       const updatedBoard = {
@@ -51,15 +72,14 @@ export const rearrangeBoardColumns = (newColumn, board) => {
         columnOrder: [...board.columnOrder, newColumn._id]
       }
 
-      await axios.patch('/boards/columnOrder', updatedBoard);
-      
+      await axios.patch('/boards/updateBoardColumns', updatedBoard);
+
       dispatch({
-        type: REARRANGE_BOARD_COLUMNS,
+        type: UPDATE_BOARD_COLUMNS,
         payload: {
           currentBoard: updatedBoard
         }
       })
-
     } catch (error) {
       console.log(error);
     }

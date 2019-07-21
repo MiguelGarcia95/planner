@@ -28,11 +28,18 @@ exports.show = async (req, res) => {
   }
 }
 
-exports.columnOrder = async (req, res) => {
-  // console.log(req.body._id)
+exports.updateBoardColumns = async (req, res) => {
   try {
     const board = await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
-    console.log(board);  
+    res.status(201).send(board);
+  } catch (error) {
+    res.status(400).send({error});    
+  }
+}
+
+exports.rearrangeBoardColumns = async (req, res) => {
+  try {
+    const board = await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
     res.status(201).send(board);
   } catch (error) {
     res.status(400).send({error});    
