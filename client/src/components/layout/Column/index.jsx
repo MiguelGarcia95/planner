@@ -34,11 +34,12 @@ class Column extends React.Component {
             ref={provided.innerRef}
             {...provided.dragHandleProps} 
           >
-            {this.props.tasks.map(task => {
+            {/* {this.props.tasks.map(task => {
               return (
                 <h1 key={task.id}  >{task.content}</h1>
               )
-            })}
+            })} */}
+            return <h2>{this.props.column.id}</h2>
           </Container>
         )}
       </Draggable>
