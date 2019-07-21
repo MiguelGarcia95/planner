@@ -44,6 +44,16 @@ export const getColumns = boardId => {
   }
 }
 
+export const updateColumnTasks = (newTask, column) => {
+  return async dispatch => {
+    const updatedColumn = {
+      ...column,
+      taskOrder: [...column.taskOrder, newTask._id],
+      // columns: [...board.columns, {id: newColumn._id, name: newColumn.name}],
+    }
+  }
+}
+
 export const getColumnsOrder = boardId => {
   return dispatch => {
 

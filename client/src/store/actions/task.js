@@ -1,5 +1,6 @@
 import {CREATE_TASK, DELETE_ALL_COLUMN_TASKS, DELETE_TASK, REARRANGE_TASKS, GET_TASKS} from './types';
 import axios from 'axios';
+import {updateColumnTasks} from './column';
 
 export const createTask = (taskData, column) => {
   return async dispatch => {
@@ -10,7 +11,7 @@ export const createTask = (taskData, column) => {
       // Add Task To Database
       const results = await axios.post('/tasks', taskData);
       // Add Task to column order
-      // dispatch(updateColumnTasks(results.data, board));
+      // dispatch(updateColumnTasks(results.data, column));
 
       // dispatch({
       //   type: CREATE_TASK,

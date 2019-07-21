@@ -19,6 +19,23 @@ exports.create = async (req, res) => {
   }
 }
 
+exports.updateColumnTasks = async (req, res) => {
+  try {
+    const column = await Column.findByIdAndUpdate(req.body._id, {$set:req.body});
+    res.status(201).send(column);
+  } catch (error) {
+    res.status(400).send({error});    
+  }
+}
+
+exports.rearrangeColumnTasks = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    res.status(400).send({error});    
+  }
+}
+
 exports.delete = async (req, res) => {
   try {
     // await Board.findByIdAndDelete(req.query.id);
