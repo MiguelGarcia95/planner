@@ -49,15 +49,7 @@ class Board extends React.Component {
 
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
-    // this.props.getColumns(this.props.match.params.boardId);
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   if (nextProps.board.columns.length === this.props.board.columns.length) {
-  //     return false;
-  //   }
-  //   return true;
-  // }
 
   componentWillUpdate(nextProps) {
     if (nextProps.board && nextProps.board.columns.length !== 0 && nextProps.columns.length === 0) {
@@ -73,11 +65,6 @@ class Board extends React.Component {
     }
 
   }
-
-  // componentDidUpdate(prevProps) {
-
-  // }
-
 
   onDragEnd = result => {
     const {destination, source, draggableId, type} = result;
@@ -137,25 +124,6 @@ class Board extends React.Component {
       {provided.placeholder}
       </React.Fragment>
     )
-     
-      // <Container {...provided.droppableProps} ref={provided.innerRef} >
-      //   <Navbar />
-      //   {this.props.board.columnOrder.map((columnId, index) => {
-      //     const column = this.state.columns[columnId];
-      //     return (
-      //       <InnerList 
-      //         key={column.id} 
-      //         index={index} 
-      //         column={column} 
-      //         taskMap={this.state.tasks} 
-              
-      //       />
-      //     );
-      //   })}
-      //   {provided.placeholder}
-      //   {this.taskCreator()}
-      // </Container>
-    
   }
 
   render() {

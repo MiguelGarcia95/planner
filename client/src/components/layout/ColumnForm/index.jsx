@@ -6,15 +6,16 @@ const Container = styled.section`
   // For Column
   flex: 0 0 auto;
   height: 40px;
-  background-color: rgba(0,0,0,0.5);
   margin-top: 75px;
-  margin-left: 25px;
+  padding: 0 25px;
   text-align: center;
   cursor: pointer;
   overflow: hidden;
   h3 {
     line-height: 40px;
     color: white;
+  background-color: rgba(0,0,0,0.5);
+
     font-weight: 400;
     overflow: hidden;
   }
@@ -86,7 +87,7 @@ class ColumnForm extends React.Component {
   render() {
     return (
       <Container  open={this.state.columnForm}>
-        <h3 onClick={() => this.columnFormToggle()} >Add Another List</h3>
+        <h3 onClick={() => this.columnFormToggle()} >Add List</h3>
         <Form open={this.state.columnForm}>
           <form onSubmit={this.onSubmit}>
             <input name='column_name' onChange={this.setColumnName} value={this.state.columnName} />
