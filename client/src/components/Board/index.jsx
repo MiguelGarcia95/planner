@@ -74,6 +74,8 @@ class Board extends React.Component {
       return;
     }
 
+    console.log(result)
+
     // const start = this.props.columns[source.droppableId];
     // const finish = this.props.columns[destination.droppableId];
 

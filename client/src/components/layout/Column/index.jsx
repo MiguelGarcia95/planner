@@ -60,7 +60,6 @@ class Column extends React.Component {
   }
 
   render() {
-    console.log(this.props.taskOrder)
     return (
       <Draggable draggableId={this.props.column._id} index={this.props.index}>
         {(provided) => (

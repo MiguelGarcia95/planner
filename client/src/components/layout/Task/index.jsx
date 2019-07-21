@@ -24,7 +24,7 @@ const Container = styled.section`
 class Task extends React.Component {
   render() {
     return (
-      <Draggable draggableId={1} index={1} >
+      <Draggable draggableId={this.props.task._id} index={this.props.index}>
         {(provided, snapshot) => (
           <Container
             {...provided.draggableProps}
