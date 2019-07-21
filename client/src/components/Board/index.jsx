@@ -146,7 +146,13 @@ class Board extends React.Component {
       <React.Fragment>
         {this.props.board.columnOrder.map((columnId, index) => {
           const column = this.props.board.columns.filter(column => column.id === columnId);
-          console.log(column[0])
+          return (
+            <Column 
+              column={column[0]} 
+              tasks={[]} 
+              index={index} 
+            />
+          )
           // return (
           //   <InnerList 
           //     key={column.id} 
