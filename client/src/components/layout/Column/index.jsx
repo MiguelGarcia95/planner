@@ -39,7 +39,7 @@ class Column extends React.Component {
                 <h1 key={task.id}  >{task.content}</h1>
               )
             })} */}
-            return <h2>{this.props.column.id}</h2>
+            <h2>{this.props.column.id}</h2>
           </Container>
         )}
       </Draggable>

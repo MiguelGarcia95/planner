@@ -111,7 +111,10 @@ class Board extends React.Component {
     if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
     if (type === 'column') {
-      const newColumnOrder = Array.from(this.state.columnOrder);
+      // console.log(this.props.board.columnOrder);
+      console.log(source);
+      console.log(result);
+      const newColumnOrder = Array.from(this.props.board.columnOrder);
       // Remove source column from column list
       newColumnOrder.splice(source.index, 1);
       // Add column into proper column list order
@@ -121,6 +124,8 @@ class Board extends React.Component {
         ...this.state,
         columnOrder: newColumnOrder
       }
+
+      console.log(newColumnOrder);
 
       this.setState(newState);
       // console.log(result)
@@ -150,6 +155,7 @@ class Board extends React.Component {
             <Column 
               column={column[0]} 
               tasks={[]} 
+              key={column[0].id}
               index={index} 
             />
           )
