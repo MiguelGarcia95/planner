@@ -31,15 +31,6 @@ const Container = styled.section`
 `;
 
 class Board extends React.Component {
-  // state = {
-  //   tasks: {
-  //     'task-1': {id: 'task-1', content: 'Take out the trash'},
-  //     'task-2': {id: 'task-2', content: 'Watch the new episode'},
-  //     'task-3': {id: 'task-3', content: 'Shitpost'},
-  //     'task-4': {id: 'task-4', content: 'Snipe noobs on csgo'},
-  //   },
-  // };
-
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
   }
@@ -48,7 +39,7 @@ class Board extends React.Component {
     if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
       console.log('ran')
       this.props.getColumns(nextProps.board._id);
-      // this.props.getTasks(nextProps.board._id);
+      this.props.getTasks(nextProps.board._id);
     }
 
 
@@ -83,8 +74,59 @@ class Board extends React.Component {
       return;
     }
 
-    // const start = this.state.columns[source.droppableId];
-    // const finish = this.state.columns[destination.droppableId];
+    // const start = this.props.columns[source.droppableId];
+    // const finish = this.props.columns[destination.droppableId];
+
+    // console.log(start);
+    // console.log(finish)
+
+    // if (finish === start) {
+    //   const newTaskIds = Array.from(start.taskIds);
+    //   newTaskIds.splice(source.index, 1);
+    //   newTaskIds.splice(destination.index, 0, draggableId);
+  
+    //   const newColumn = {
+    //     ...start,
+    //     taskIds: newTaskIds,
+    //   };
+  
+    //   const newState = {
+    //     ...this.state,
+    //     columns: {
+    //       ...this.state.columns,
+    //       [newColumn.id]: newColumn,
+    //     },
+    //   };
+  
+    //   this.setState(newState);
+    // } else {
+    //   //  Moving from one list to another
+    //   const startTaskIds = Array.from(start.taskIds);
+    //   startTaskIds.splice(source.index, 1);
+    //   const newStart = {
+    //     ...start,
+    //     taskIds: startTaskIds,
+    //   };
+
+    //   const finishTaskIds = Array.from(finish.taskIds);
+    //   finishTaskIds.splice(destination.index, 0, draggableId);
+    //   const newFinish = {
+    //     ...finish,
+    //     taskIds: finishTaskIds,
+    //   };
+
+    //   const newState = {
+    //     ...this.state,
+    //     columns: {
+    //       ...this.state.columns,
+    //       [newStart.id]: newStart,
+    //       [newFinish.id]: newFinish,
+    //     }
+    //   };
+
+    //   this.setState(newState);
+    // }
+
   }
 
   displayContent = provided => {
@@ -99,7 +141,8 @@ class Board extends React.Component {
           return (
             <Column 
               column={column[0]} 
-              tasks={[]} 
+              tasks={this.props.tasks} 
+              taskOrder={column[0].taskOrder}
               key={column[0]._id}
               index={index} 
             />

@@ -32,8 +32,7 @@ class Task extends React.Component {
             isDragging={snapshot.isDragging}
             {...provided.dragHandleProps}
           >
-            {/* {this.props.task.content} */}
-            'TASK'
+            {this.props.task.name}
           </Container>
         )}
       </Draggable>

@@ -13,7 +13,7 @@ const Container = styled.div`
 class Task extends React.Component {
   render() {
     return (
-      <Draggable draggableId={this.props.task.id} index={this.props.index} >
+      <Draggable draggableId={this.props.task._id} index={this.props.index} >
         {(provided, snapshot) => (
           <Container
             {...provided.draggableProps}
@@ -21,7 +21,7 @@ class Task extends React.Component {
             isDragging={snapshot.isDragging}
             {...provided.dragHandleProps}
           >
-            {this.props.task.content}
+            {this.props.task.name}
           </Container>
         )}
       </Draggable>

@@ -11,7 +11,10 @@ export const createTask = (taskData, column) => {
       dispatch(updateColumnTasks(results.data, column));
 
       dispatch({
-        type: CREATE_TASK
+        type: CREATE_TASK,
+        payload: {
+          task: results.data
+        },
       })
     } catch (error) {
       console.log(error)
@@ -23,7 +26,13 @@ export const getTasks = boardId => {
   return async dispatch => {
     try {
       const results = await axios.get(`/tasks?boardId=${boardId}`);
-      console.log(results);
+      
+      dispatch({
+        type: GET_TASKS,
+        payload: {
+          tasks: results.data
+        },
+      })
     } catch (error) {
       console.log(error)      
     }

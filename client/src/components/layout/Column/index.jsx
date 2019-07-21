@@ -51,7 +51,16 @@ const Container = styled.section`
 `;
 
 class Column extends React.Component {
+  displayTasks = tasks => {
+    return tasks.map((task, index) => {
+      const taskData = this.props.tasks.filter(currentTask => currentTask._id === task);
+      if (!taskData[0]) return;
+      return <Task key={taskData[0]._id} index={index} task={taskData[0]} />
+    })
+  }
+
   render() {
+    console.log(this.props.taskOrder)
     return (
       <Draggable draggableId={this.props.column._id} index={this.props.index}>
         {(provided) => (
@@ -69,13 +78,7 @@ class Column extends React.Component {
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {/* <InnerList tasks={this.props.tasks} /> */}
-                  <section className='task'>{'Task Here'}</section>
-                  <section className='task'>{'Task Here'}</section>
-                  <section className='task'>{'Task Here'}</section>
-                  <section className='task'>{'Task Here'}</section>
-                  <section className='task'>{'Task Here'}</section>
-                  <section className='task'>{'Task Here'}</section>
-
+                  {this.displayTasks(this.props.taskOrder)}
                   <TaskForm createTask={this.props.createTask} column={this.props.column} />
                   {provided.placeholder}
                 </section>
