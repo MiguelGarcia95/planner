@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
 
 import Task from '../Task';
+import TaskForm from '../TaskForm';
 
 /* 
   Location: /boardID/boardName page
@@ -71,6 +72,7 @@ class Column extends React.Component {
                   <section className='task'>{'Task Here'}</section>
                   <section className='task'>{'Task Here'}</section>
                   <section className='task'>{'Task Here'}</section>
+                  <TaskForm />
                   {provided.placeholder}
                 </section>
               )}
