@@ -11,6 +11,7 @@ exports.index = async (req, res) => {
 
 exports.create = async (req, res) => {
   const tasks = new Task(req.body);
+  console.log(tasks);
   try {
     await tasks.save();
     res.status(201).send(tasks);

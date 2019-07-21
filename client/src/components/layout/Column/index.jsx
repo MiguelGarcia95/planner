@@ -53,7 +53,7 @@ const Container = styled.section`
 class Column extends React.Component {
   render() {
     return (
-      <Draggable draggableId={this.props.column.id} index={this.props.index}>
+      <Draggable draggableId={this.props.column._id} index={this.props.index}>
         {(provided) => (
           <Container
             {...provided.draggableProps}
@@ -61,7 +61,7 @@ class Column extends React.Component {
             {...provided.dragHandleProps} 
           >
             <p className='title'>{this.props.column.name}</p>
-            <Droppable droppableId={this.props.column.id} type='task' >
+            <Droppable droppableId={this.props.column._id} type='task' >
               {(provided, snapshot) => (
                 <section
                   ref={provided.innerRef}

@@ -87,12 +87,14 @@ class Board extends React.Component {
     return (
       <React.Fragment>
         {this.props.board.columnOrder.map((columnId, index) => {
-          const column = this.props.board.columns.filter(column => column.id === columnId);
+          const column = this.props.columns.filter(column => column._id === columnId);
+          if (column.length === 0) return;
+
           return (
             <Column 
               column={column[0]} 
               tasks={[]} 
-              key={column[0].id}
+              key={column[0]._id}
               index={index} 
             />
           )

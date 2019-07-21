@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const board = require('./routes/board');
 const column = require('./routes/column');
-// const task = require('./routes/task');
+const task = require('./routes/task');
 // const user = require('./routes/user');
 
 const port = process.env.PORT || 5000;
@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use('/boards', board);
 app.use('/columns', column);
-// app.use('/task', task);
+app.use('/tasks', task);
 // app.use('/user', user);
 
 /*
@@ -32,10 +32,10 @@ app.use('/columns', column);
     boardId,
     boardName,
     userId,
-    tasks: [
+    tasks: [ MAY NOT NEED
       {id: taskId, name: 'taskName' ... }
     ]
-    columns: [
+    columns: [ MAY NOT NEED
       {id: columnId, name: 'columnName' ... }
     ],
     columnOrder: ['boardId, boardId2 ...']
