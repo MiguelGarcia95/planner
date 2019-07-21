@@ -1,11 +1,16 @@
-import {CREATE_TASK} from '../actions/types';
+import {CREATE_TASK, GET_TASKS} from '../actions/types';
 
 const initialState = {
+  tasks: []
 };
 
 const task = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_TASK:
+      return {
+        ...state,
+      }
+    case GET_TASKS:
       return {
         ...state,
       }

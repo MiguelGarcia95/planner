@@ -2,7 +2,7 @@ const Task = require('../models/Task');
 
 exports.index = async (req, res) => {
   try {
-    const tasks = await Task.find({'columnId': req.query.columnId});
+    const tasks = await Task.find({'boardId': req.query.boardId});
     res.status(201).send(tasks);
   } catch (error) {
     res.status(400).send({error});

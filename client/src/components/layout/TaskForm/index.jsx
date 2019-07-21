@@ -20,7 +20,8 @@ class TaskForm extends React.Component {
     const task = {
       name: this.state.taskName,
       columnId: this.props.column._id,
-      boardId: this.props.column.boardId
+      boardId: this.props.column.boardId,
+      taskOrder: []
     }
 
     this.props.createTask(task, this.props.column);

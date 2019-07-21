@@ -68,7 +68,6 @@ export const updateBoardColumns = (newColumn, board) => {
     try {
       const updatedBoard = {
         ...board,
-        columns: [...board.columns, {id: newColumn._id, name: newColumn.name}],
         columnOrder: [...board.columnOrder, newColumn._id]
       }
 

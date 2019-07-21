@@ -20,10 +20,6 @@ const column = (state = initialState, action) => {
       const index = state.columns.findIndex(column => column._id === action.payload.updatedColumn._id);
       let columns = state.columns;
       columns[index] = action.payload.updatedColumn;
-      // const newColumns = state.columns.map(column => {
-      //   return action.payload.updatedColumn.find(c => c._id === column._id) || column
-      // });
-      console.log(columns);
       return {
         ...state,
         columns: columns,

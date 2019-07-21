@@ -9,6 +9,7 @@ import ColumnForm from '../layout/ColumnForm';
 
 import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
 import {createColumn, getColumns} from '../../store/actions/column';
+import {getTasks} from '../../store/actions/task';
 
 /* 
   Location: /boardID/boardName page
@@ -44,15 +45,20 @@ class Board extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.board && nextProps.board.columns.length !== 0 && nextProps.columns.length === 0) {
+    if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
       console.log('ran')
       this.props.getColumns(nextProps.board._id);
+      // this.props.getTasks(nextProps.board._id);
     }
 
 
     if (this.props.board) {
-      if (this.props.board.columns.length !== nextProps.board.columns.length) {
+      if (this.props.board.columnOrder.length !== nextProps.board.columnOrder.length) {
         console.log('gained new columns');
+      }
+
+      if (this.props.tasks.length !== nextProps.tasks.length) {
+        console.log('added a new tasks');
       }
     }
 
@@ -125,6 +131,7 @@ const mapStateToProps = state => {
   return {
     board: state.board.currentBoard,
     columns: state.column.columns,
+    tasks: state.task.tasks
   }
 };
 
@@ -133,7 +140,8 @@ const mapDispatchToProps = dispatch => {
     getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId)),
     createColumn: (columnData, board) => dispatch(createColumn(columnData, board)),
     getColumns: boardId => dispatch(getColumns(boardId)),
-    rearrangeBoardColumns: (board, columnOrder) => dispatch(rearrangeBoardColumns(board, columnOrder))
+    rearrangeBoardColumns: (board, columnOrder) => dispatch(rearrangeBoardColumns(board, columnOrder)),
+    getTasks: boardId => dispatch(getTasks(boardId)),
   }
 }
 
