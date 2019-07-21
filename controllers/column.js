@@ -20,6 +20,7 @@ exports.create = async (req, res) => {
 }
 
 exports.updateColumnTasks = async (req, res) => {
+  console.log(req.body)
   try {
     const column = await Column.findByIdAndUpdate(req.body._id, {$set:req.body});
     res.status(201).send(column);

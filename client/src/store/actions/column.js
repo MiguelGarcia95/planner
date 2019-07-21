@@ -1,5 +1,5 @@
 // import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
-import {CREATE_COLUMN, GET_COLUMNS} from './types';
+import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK} from './types';
 import {updateBoardColumns} from './board';
 
 import axios from 'axios';
@@ -46,11 +46,24 @@ export const getColumns = boardId => {
 
 export const updateColumnTasks = (newTask, column) => {
   return async dispatch => {
-    const updatedColumn = {
-      ...column,
-      taskOrder: [...column.taskOrder, newTask._id],
-      // columns: [...board.columns, {id: newColumn._id, name: newColumn.name}],
+    try {
+      const updatedColumn = {
+        ...column,
+        taskOrder: [...column.taskOrder, newTask._id],
+      }
+  
+      await axios.patch('columns/updateColumnTasks', updatedColumn);
+
+      dispatch({
+        type: UPDATE_COLUMN_TASK,
+        payload: {
+          updatedColumn: updatedColumn
+        }
+      })
+    } catch (error) {
+      console.log(error)
     }
+
   }
 }
 

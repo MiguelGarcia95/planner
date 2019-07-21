@@ -5,20 +5,15 @@ import {updateColumnTasks} from './column';
 export const createTask = (taskData, column) => {
   return async dispatch => {
     try {
-      console.log(taskData);
-      console.log(column);
 
       // Add Task To Database
       const results = await axios.post('/tasks', taskData);
       // Add Task to column order
-      // dispatch(updateColumnTasks(results.data, column));
+      dispatch(updateColumnTasks(results.data, column));
 
-      // dispatch({
-      //   type: CREATE_TASK,
-      //   payload: {
-      //     // column: results.data
-      //   }
-      // })
+      dispatch({
+        type: CREATE_TASK
+      })
     } catch (error) {
       console.log(error)
     }

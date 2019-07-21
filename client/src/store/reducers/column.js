@@ -1,4 +1,4 @@
-import {CREATE_COLUMN, GET_COLUMNS} from '../actions/types';
+import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK} from '../actions/types';
 
 const initialState = {
   columns: [],
@@ -15,6 +15,15 @@ const column = (state = initialState, action) => {
       return {
         ...state,
         columns: action.payload.columns,
+      }
+    case UPDATE_COLUMN_TASK:
+      const newColumns = state.columns.map(column => {
+        return action.payload.updatedColumn.find(c => c._id === column._id) || column
+      });
+      console.elog(newColumns);
+      return {
+        ...state,
+
       }
     default:
       return state;

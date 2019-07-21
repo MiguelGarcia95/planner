@@ -9,6 +9,10 @@ const columnSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  columnId: {
+    type: String,
+    required: true,
+  },
   taskOrder: {
     type: Array,
     required: false,
