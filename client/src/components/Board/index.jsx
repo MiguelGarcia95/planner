@@ -84,17 +84,17 @@ class Board extends React.Component {
   // }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.board && nextProps.board.columns.length !== 0) {
-      this.props.getColumns(nextProps.board._id);
+    if (nextProps.board && nextProps.board.columns.length !== 0 && nextProps.columns.length === 0) {
       console.log('ran')
+      this.props.getColumns(nextProps.board._id);
     }
 
 
-    // if (this.props.board) {
-    //   if (this.props.board.columns.length !== nextProps.board.columns.length) {
-    //     console.log('gained new columns');
-    //   }
-    // }
+    if (this.props.board) {
+      if (this.props.board.columns.length !== nextProps.board.columns.length) {
+        console.log('gained new columns');
+      }
+    }
 
   }
 
@@ -181,7 +181,7 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log(this.props.board)
+    // console.log(this.props.board)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-columns" direction='horizontal' type='column'>

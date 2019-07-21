@@ -1,5 +1,5 @@
 // import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
-import {CREATE_COLUMN} from './types';
+import {CREATE_COLUMN, GET_COLUMNS} from './types';
 import {rearrangeBoardColumns} from './board';
 
 import axios from 'axios';
@@ -35,7 +35,12 @@ export const deleteAllBoardColumns = boardId => {
 export const getColumns = boardId => {
   return async dispatch => {
     const results = await axios.get(`/columns?boardId=${boardId}`);
-    console.log(results);
+    dispatch({
+      type: GET_COLUMNS,
+      payload: {
+        columns: results.data,
+      }
+    })
   }
 }
 
