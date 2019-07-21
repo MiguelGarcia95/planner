@@ -17,12 +17,12 @@ class TaskForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
 
-    // const task = {
-    //   name: this.state.taskName,
-    //   columnId: this.props.column.id,
-    // }
+    const task = {
+      name: this.state.taskName,
+      columnId: this.props.column.id,
+    }
 
-    // this.props.createTask(task, this.props.column);
+    this.props.createTask(task, this.props.column);
     this.resetState();
   }
 

@@ -29,23 +29,15 @@ const Container = styled.section`
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
 `;
 
-class InnerList extends React.PureComponent {
-  render() {
-    const {column, taskMap, index} = this.props;
-    const tasks = column.taskIds.map(taskId => taskMap[taskId]);
-    return <Column column={column} tasks={tasks} index={index} />
-  }
-}
-
 class Board extends React.Component {
-  state = {
-    tasks: {
-      'task-1': {id: 'task-1', content: 'Take out the trash'},
-      'task-2': {id: 'task-2', content: 'Watch the new episode'},
-      'task-3': {id: 'task-3', content: 'Shitpost'},
-      'task-4': {id: 'task-4', content: 'Snipe noobs on csgo'},
-    },
-  };
+  // state = {
+  //   tasks: {
+  //     'task-1': {id: 'task-1', content: 'Take out the trash'},
+  //     'task-2': {id: 'task-2', content: 'Watch the new episode'},
+  //     'task-3': {id: 'task-3', content: 'Shitpost'},
+  //     'task-4': {id: 'task-4', content: 'Snipe noobs on csgo'},
+  //   },
+  // };
 
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
@@ -89,14 +81,6 @@ class Board extends React.Component {
     // const finish = this.state.columns[destination.droppableId];
   }
 
-  taskCreator = () => {
-    return (
-      <React.Fragment>
-        <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
-      </React.Fragment>
-    )
-  }
-
   displayContent = provided => {
     if (!this.props.board) return;
 
@@ -112,14 +96,6 @@ class Board extends React.Component {
               index={index} 
             />
           )
-          // return (
-          //   <InnerList 
-          //     key={column.id} 
-          //     index={index} 
-          //     column={column} 
-          //     taskMap={this.state.tasks} 
-          //   />
-          // );
         })}
       {provided.placeholder}
       </React.Fragment>
@@ -127,7 +103,6 @@ class Board extends React.Component {
   }
 
   render() {
-    // console.log(this.props.board)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-columns" direction='horizontal' type='column'>
@@ -135,7 +110,7 @@ class Board extends React.Component {
             <Container {...provided.droppableProps} ref={provided.innerRef} >
               <Navbar />
               {this.displayContent(provided)}
-              {this.taskCreator()}
+              <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
             </Container>
           )}
         </Droppable>

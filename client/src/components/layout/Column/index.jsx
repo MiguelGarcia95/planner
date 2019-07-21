@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
+import {connect} from 'react-redux';
+
+import {createTask} from '../../../store/actions/task';
 
 import Task from '../Task';
 import TaskForm from '../TaskForm';
@@ -72,7 +75,8 @@ class Column extends React.Component {
                   <section className='task'>{'Task Here'}</section>
                   <section className='task'>{'Task Here'}</section>
                   <section className='task'>{'Task Here'}</section>
-                  <TaskForm />
+
+                  <TaskForm createTask={this.props.createTask} column={this.props.column} />
                   {provided.placeholder}
                 </section>
               )}
@@ -85,4 +89,10 @@ class Column extends React.Component {
   }
 }
 
-export default Column;
+const mapDispatchToProps = dispatch => {
+  return {
+    createTask: (taskData, column) => dispatch(createTask(taskData, column)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Column);
