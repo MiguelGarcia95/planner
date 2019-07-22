@@ -80,7 +80,7 @@ class Board extends React.Component {
     const finish = this.props.columns.filter(column => column._id === destination.droppableId)[0];
 
     console.log(start);
-    console.log(finish)
+    console.log(finish);
 
     if (start._id === finish._id) {
       console.log('columns are the same');
@@ -90,28 +90,18 @@ class Board extends React.Component {
 
       this.props.rearrangeColumnTasks(finish, newTaskOrder);
     } else {
+      // Moving from one list to another
       console.log('columns are not the same');
+      const startTaskOrders = Array.from(start.taskOrder);
+      startTaskOrders.splice(source.index, 1);
+
+      const finishTaskOrders = Array.from(finish.taskOrder);
+      finishTaskOrders.splice(destination.index, 0, draggableId);
+
+      this.props.rearrangeColumnTasks(start, startTaskOrders);
+      this.props.rearrangeColumnTasks(finish, finishTaskOrders);
     }
 
-    // if (finish === start) {
-    //   const newTaskIds = Array.from(start.taskIds);
-    //   newTaskIds.splice(source.index, 1);
-    //   newTaskIds.splice(destination.index, 0, draggableId);
-  
-    //   const newColumn = {
-    //     ...start,
-    //     taskIds: newTaskIds,
-    //   };
-  
-    //   const newState = {
-    //     ...this.state,
-    //     columns: {
-    //       ...this.state.columns,
-    //       [newColumn.id]: newColumn,
-    //     },
-    //   };
-  
-    //   this.setState(newState);
     // } else {
     //   //  Moving from one list to another
     //   const startTaskIds = Array.from(start.taskIds);

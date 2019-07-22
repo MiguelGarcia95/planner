@@ -29,6 +29,7 @@ const column = (state = initialState, action) => {
       const index = state.columns.findIndex(column => column._id === action.payload.updatedColumn._id);
       let columns = state.columns;
       columns[index] = action.payload.updatedColumn;
+      // replaceColumn(state.columns, action.payload.updatedColumn._id);
       return {
         ...state,
         columns: columns,
