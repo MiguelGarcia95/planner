@@ -59,10 +59,14 @@ class Board extends React.Component {
     toggle: false,
   }
   componentWillMount() {
-    this.props.getBoard(this.props.match.params.boardId, '_5181858');
+    // this.props.getBoard(this.props.match.params.boardId, '_5181858');
   }
 
   componentWillUpdate(nextProps) {
+    if (nextProps.user && !this.props.user) {
+      this.props.getBoard(this.props.match.params.boardId, nextProps.user.id);
+    }
+
     if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
       console.log('ran')
       this.props.getColumns(nextProps.board._id);
@@ -150,7 +154,8 @@ const mapStateToProps = state => {
     columns: state.column.columns,
     tasks: state.task.tasks,
     toggled: state.column.toggled,
-    toggledTask: state.task.toggled
+    toggledTask: state.task.toggled,
+    user: state.auth.user
   }
 };
 

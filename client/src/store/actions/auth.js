@@ -14,6 +14,7 @@ export const getUser = () => {
     dispatch({
       type: GET_USER,
       payload: {
+        // user: {id: '_5181858s'}
         user: {id: '_5181858'}
       }
     })

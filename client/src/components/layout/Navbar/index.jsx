@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createBoard} from '../../../store/actions/board';
+import {getUser} from '../../../store/actions/auth';
+
 import SettingsModal from '../SettingsModal';
 import BoardModal from '../BoardModal';
 
@@ -56,6 +58,10 @@ class Navbar extends React.Component {
     boardModal: false,
     board_name: '',
     board_color: ''
+  }
+
+  componentDidMount() {
+    this.props.getUser();
   }
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
@@ -116,7 +122,8 @@ class Navbar extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createBoard: boardData => dispatch(createBoard(boardData))
+    createBoard: boardData => dispatch(createBoard(boardData)),
+    getUser: () => dispatch(getUser()),
   }
 }
 
