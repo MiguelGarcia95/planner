@@ -13,14 +13,6 @@ const boardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tasks: {
-    type: Array,
-    required: false,
-  },
-  columns: {
-    type: Array,
-    required: false,
-  },
   columnOrder: {
     type: Array,
     required: false,
