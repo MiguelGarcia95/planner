@@ -2,6 +2,7 @@ import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS} 
 
 const initialState = {
   columns: [],
+  toggled: false
 };
 
 const replaceColumn = (columns, newColumn) => {
@@ -31,7 +32,8 @@ const column = (state = initialState, action) => {
     case REARRANGE_COLUMN_TASKS:
       return {
         ...state,
-        columns: replaceColumn(state.columns, action.payload.rearrangedColumn)
+        columns: replaceColumn(state.columns, action.payload.rearrangedColumn),
+        toggled: !state.toggled,
       }
     default:
       return state;

@@ -4,13 +4,13 @@ import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
 import Navbar from '../layout/Navbar';
+import Column from '../layout/Column';
 import ColumnForm from '../layout/ColumnForm';
 import BoardContents from '../layout/BoardContent';
 
 import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
-
-import {createColumn, rearrangeColumnTasks} from '../../store/actions/column';
-// import {getTasks} from '../../store/actions/task';
+import {createColumn, getColumns, rearrangeColumnTasks} from '../../store/actions/column';
+import {getTasks} from '../../store/actions/task';
 
 /* 
   Location: /boardID/boardName page
@@ -21,7 +21,38 @@ import {createColumn, rearrangeColumnTasks} from '../../store/actions/column';
   
 const Container = styled.section`
   background-color: ${props => (props.bgColor ? props.bgColor : '#f9f9f9')};
+  min-width: 100vw;
+  display: flex;
+  height: 100vh;
+  margin: auto;
+  overflow: auto;
+  flex-wrap: nowrap
+  -webkit-overflow-scrolling: touch; /* [4] */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
 `;
+
+const BoardContent = ({board, provided, tasks, columns}) => {
+    if (!board) return <br/>;
+    return (
+      <React.Fragment>
+        {board.columnOrder.map((columnId, index) => {
+          const column = columns.filter(column => column._id === columnId);
+          if (column.length === 0) return;
+
+          return (
+            <Column 
+              column={column[0]} 
+              tasks={tasks} 
+              taskOrder={column[0].taskOrder}
+              key={column[0]._id}
+              index={index} 
+            />
+          )
+        })}
+      {provided.placeholder}
+      </React.Fragment>
+    )
+}
 
 class Board extends React.Component {
   state = {
@@ -29,6 +60,25 @@ class Board extends React.Component {
   }
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
+      console.log('ran')
+      this.props.getColumns(nextProps.board._id);
+      this.props.getTasks(nextProps.board._id);
+    }
+
+
+    if (this.props.board) {
+      if (this.props.board.columnOrder.length !== nextProps.board.columnOrder.length) {
+        console.log('gained new columns');
+      }
+
+      if (this.props.tasks.length !== nextProps.tasks.length) {
+        console.log('added a new tasks');
+      }
+    }
   }
 
   onDragEnd = result => {
@@ -80,7 +130,13 @@ class Board extends React.Component {
           {provided => (
             <Container {...provided.droppableProps} ref={provided.innerRef} >
               <Navbar />
-              <BoardContents provided={provided} board={this.props.board} />
+              <BoardContent 
+                tasks={this.props.tasks}
+                board={this.props.board}
+                columns={this.props.columns}
+                provided={provided}
+              />
+              
               <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
             </Container>
           )}
@@ -94,7 +150,8 @@ const mapStateToProps = state => {
   return {
     board: state.board.currentBoard,
     columns: state.column.columns,
-    tasks: state.task.tasks
+    tasks: state.task.tasks,
+    toggled: state.column.toggled
   }
 };
 
@@ -102,7 +159,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId)),
     createColumn: (columnData, board) => dispatch(createColumn(columnData, board)),
+    getColumns: boardId => dispatch(getColumns(boardId)),
     rearrangeBoardColumns: (board, columnOrder) => dispatch(rearrangeBoardColumns(board, columnOrder)),
+    getTasks: boardId => dispatch(getTasks(boardId)),
     rearrangeColumnTasks: (column, taskOrder) => dispatch(rearrangeColumnTasks(column, taskOrder))
   }
 }
