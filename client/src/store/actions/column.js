@@ -67,11 +67,11 @@ export const updateColumnTasks = (newTask, column) => {
   }
 }
 
-export const getColumnsOrder = boardId => {
-  return dispatch => {
+// export const getColumnsOrder = boardId => {
+//   return dispatch => {
 
-  }
-}
+//   }
+// }
 
 export const rearrangeColumnTasks = (column, taskOrder) => {
   return async dispatch => {

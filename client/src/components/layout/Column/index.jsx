@@ -60,6 +60,7 @@ class Column extends React.Component {
   }
 
   render() {
+    console.log('reee column')
     return (
       <Draggable draggableId={this.props.column._id} index={this.props.index}>
         {(provided) => (

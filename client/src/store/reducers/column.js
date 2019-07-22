@@ -5,8 +5,6 @@ const initialState = {
 };
 
 const replaceColumn = (columns, newColumn) => {
-  console.log(columns);
-  console.log(newColumn);
   const index = columns.findIndex(column => column._id === newColumn._id);
   let sortedColumns = columns;
   sortedColumns[index] = newColumn;
@@ -26,13 +24,9 @@ const column = (state = initialState, action) => {
         columns: action.payload.columns,
       }
     case UPDATE_COLUMN_TASK:
-      const index = state.columns.findIndex(column => column._id === action.payload.updatedColumn._id);
-      let columns = state.columns;
-      columns[index] = action.payload.updatedColumn;
-      // replaceColumn(state.columns, action.payload.updatedColumn._id);
       return {
         ...state,
-        columns: columns,
+        columns: replaceColumn(state.columns, action.payload.updatedColumn._id),
       }
     case REARRANGE_COLUMN_TASKS:
       return {

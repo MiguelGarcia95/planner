@@ -30,7 +30,33 @@ const Container = styled.section`
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
 `;
 
+const BoardContent = ({board, provided, tasks, columns}) => {
+    if (!board) return <br/>;
+    return (
+      <React.Fragment>
+        {board.columnOrder.map((columnId, index) => {
+          const column = columns.filter(column => column._id === columnId);
+          if (column.length === 0) return;
+
+          return (
+            <Column 
+              column={column[0]} 
+              tasks={tasks} 
+              taskOrder={column[0].taskOrder}
+              key={column[0]._id}
+              index={index} 
+            />
+          )
+        })}
+      {provided.placeholder}
+      </React.Fragment>
+    )
+}
+
 class Board extends React.Component {
+  state = {
+    toggle: false,
+  }
   componentWillMount() {
     this.props.getBoard(this.props.match.params.boardId, '_5181858');
   }
@@ -52,7 +78,6 @@ class Board extends React.Component {
         console.log('added a new tasks');
       }
     }
-
   }
 
   onDragEnd = result => {
@@ -70,17 +95,11 @@ class Board extends React.Component {
       newColumnOrder.splice(destination.index, 0, draggableId);
 
       this.props.rearrangeBoardColumns(this.props.board, newColumnOrder);
-
       return;
     }
 
-    console.log(result)
-
     const start = this.props.columns.filter(column => column._id === source.droppableId)[0];
     const finish = this.props.columns.filter(column => column._id === destination.droppableId)[0];
-
-    console.log(start);
-    console.log(finish);
 
     if (start._id === finish._id) {
       // Move task within a column
@@ -102,38 +121,20 @@ class Board extends React.Component {
     }
   }
 
-  displayContent = provided => {
-    if (!this.props.board) return;
-
-    return (
-      <React.Fragment>
-        {this.props.board.columnOrder.map((columnId, index) => {
-          const column = this.props.columns.filter(column => column._id === columnId);
-          if (column.length === 0) return;
-
-          return (
-            <Column 
-              column={column[0]} 
-              tasks={this.props.tasks} 
-              taskOrder={column[0].taskOrder}
-              key={column[0]._id}
-              index={index} 
-            />
-          )
-        })}
-      {provided.placeholder}
-      </React.Fragment>
-    )
-  }
-
   render() {
+    console.log('reeee board')
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-columns" direction='horizontal' type='column'>
           {provided => (
             <Container {...provided.droppableProps} ref={provided.innerRef} >
               <Navbar />
-              {this.displayContent(provided)}
+              <BoardContent 
+                tasks={this.props.tasks}
+                board={this.props.board}
+                columns={this.props.columns}
+                provided={provided}
+              />
               <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
             </Container>
           )}
