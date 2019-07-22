@@ -37,6 +37,8 @@ const Boards = styled.section`
 
 class App extends React.Component {
   componentDidMount() {
+    // this.props.getUser();
+    console.log(this.props.user);
     this.props.getBoards('_5181858');
   }
 
@@ -61,6 +63,7 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return {
     boards: state.board.boards,
+    user: state.auth.user
   }
 }
 

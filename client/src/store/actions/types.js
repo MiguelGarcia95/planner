@@ -24,3 +24,4 @@ export const DELETE_ALL_COLUMN_TASKS = 'DELETE_ALL_COLUMN_TASKS';
 export const SIGNIN = 'SIGNIN';
 export const SIGNUP = 'SIGNUP';
 export const LOGOUT = 'LOGOUT';
+export const GET_USER = 'GET_USER';

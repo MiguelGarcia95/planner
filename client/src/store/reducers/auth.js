@@ -1,7 +1,7 @@
-import {SIGNIN, SIGNUP, LOGOUT} from '../actions/types';
+import {SIGNIN, SIGNUP, LOGOUT, GET_USER} from '../actions/types';
 
 const initialState = {
-
+  user: null
 }
 
 const auth = (state = initialState, action) => {
@@ -9,6 +9,11 @@ const auth = (state = initialState, action) => {
     case SIGNIN:
       return {
         ...state
+      }
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload.user
       }
     case SIGNUP:
       return {
