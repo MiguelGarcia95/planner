@@ -4,8 +4,8 @@ import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
 import Navbar from '../layout/Navbar';
-import Column from '../layout/Column';
 import ColumnForm from '../layout/ColumnForm';
+import BoardContents from '../layout/BoardContent';
 
 import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
 import {createColumn, getColumns, rearrangeColumnTasks} from '../../store/actions/column';
@@ -20,38 +20,7 @@ import {getTasks} from '../../store/actions/task';
   
 const Container = styled.section`
   background-color: ${props => (props.bgColor ? props.bgColor : '#f9f9f9')};
-  min-width: 100vw;
-  display: flex;
-  height: 100vh;
-  margin: auto;
-  overflow: auto;
-  flex-wrap: nowrap
-  -webkit-overflow-scrolling: touch; /* [4] */
-  -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
 `;
-
-const BoardContent = ({board, provided, tasks, columns}) => {
-    if (!board) return <br/>;
-    return (
-      <React.Fragment>
-        {board.columnOrder.map((columnId, index) => {
-          const column = columns.filter(column => column._id === columnId);
-          if (column.length === 0) return;
-
-          return (
-            <Column 
-              column={column[0]} 
-              tasks={tasks} 
-              taskOrder={column[0].taskOrder}
-              key={column[0]._id}
-              index={index} 
-            />
-          )
-        })}
-      {provided.placeholder}
-      </React.Fragment>
-    )
-}
 
 class Board extends React.Component {
   state = {
@@ -129,11 +98,9 @@ class Board extends React.Component {
           {provided => (
             <Container {...provided.droppableProps} ref={provided.innerRef} >
               <Navbar />
-              <BoardContent 
-                tasks={this.props.tasks}
-                board={this.props.board}
-                columns={this.props.columns}
+              <BoardContents
                 provided={provided}
+                board={this.props.board}
               />
               <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
             </Container>
