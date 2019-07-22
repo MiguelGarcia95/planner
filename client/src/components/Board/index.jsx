@@ -135,7 +135,6 @@ class Board extends React.Component {
                 columns={this.props.columns}
                 provided={provided}
               />
-              
               <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
             </Container>
           )}

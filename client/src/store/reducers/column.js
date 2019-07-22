@@ -27,7 +27,8 @@ const column = (state = initialState, action) => {
     case UPDATE_COLUMN_TASK:
       return {
         ...state,
-        columns: replaceColumn(state.columns, action.payload.updatedColumn._id),
+        columns: replaceColumn(state.columns, action.payload.updatedColumn),
+        toggled: !state.toggled,
       }
     case REARRANGE_COLUMN_TASKS:
       return {
