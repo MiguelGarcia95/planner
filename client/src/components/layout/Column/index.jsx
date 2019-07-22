@@ -47,10 +47,17 @@ const Container = styled.section`
     font-size: 1em;
     word-wrap: break-word;
     margin: 10px 0px;
+
   }
 `;
 
-class Column extends React.Component {
+const DroppableContainer = styled.section`
+  ${props => props.isDraggingOver && `
+  background: red
+  `}
+`;
+
+class Column extends React.PureComponent {
   displayTasks = tasks => {
     return tasks.map((task, index) => {
       const taskData = this.props.tasks.filter(currentTask => currentTask._id === task);
@@ -72,16 +79,15 @@ class Column extends React.Component {
             <p className='title'>{this.props.column.name}</p>
             <Droppable droppableId={this.props.column._id} type='task' >
               {(provided, snapshot) => (
-                <section
+                <DroppableContainer
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   isDraggingOver={snapshot.isDraggingOver}
                 >
-                  {/* <InnerList tasks={this.props.tasks} /> */}
                   {this.displayTasks(this.props.taskOrder)}
                   <TaskForm createTask={this.props.createTask} column={this.props.column} />
                   {provided.placeholder}
-                </section>
+                </DroppableContainer>
               )}
             </Droppable>
 

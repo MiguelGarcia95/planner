@@ -80,10 +80,7 @@ class Board extends React.Component {
           {provided => (
             <Container {...provided.droppableProps} ref={provided.innerRef} >
               <Navbar />
-              <BoardContents
-                provided={provided}
-                board={this.props.board}
-              />
+              <BoardContents provided={provided} board={this.props.board} />
               <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
             </Container>
           )}

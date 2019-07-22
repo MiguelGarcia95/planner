@@ -26,17 +26,6 @@ class BoardContent extends React.Component {
       this.props.getTasks(nextProps.board._id);
     }
 
-
-    // if (this.props.board) {
-    //   if (this.props.board.columnOrder.length !== nextProps.board.columnOrder.length) {
-    //     console.log('gained new columns');
-    //   }
-
-    //   if (this.props.tasks.length !== nextProps.tasks.length) {
-    //     console.log('added a new tasks');
-    //   }
-    // }
-
     if (this.props.tasks.length !== nextProps.tasks.length) {
       console.log('added a new tasks');
     }
@@ -60,7 +49,6 @@ class BoardContent extends React.Component {
 
   render() {
     const {board, provided} = this.props;
-
     if (!board) return '';
 
     return (
@@ -71,21 +59,6 @@ class BoardContent extends React.Component {
     )
   }
 }
-
-// {board.columnOrder.map((columnId, index) => {
-//   const column = columns.filter(column => column._id === columnId);
-//   if (column.length === 0) return;
-
-//   return (
-//     <Column 
-//       column={column[0]} 
-//       tasks={tasks} 
-//       taskOrder={column[0].taskOrder}
-//       key={column[0]._id}
-//       index={index} 
-//     />
-//   )
-// })}
 
 const mapStateToProps = state => {
   return {
