@@ -127,24 +127,34 @@ class Board extends React.Component {
   }
 
   render() {
-    return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable droppableId="all-columns" direction='horizontal' type='column'>
-          {provided => (
-            <Container {...provided.droppableProps} ref={provided.innerRef} >
-              <Navbar />
-              <BoardContent 
-                tasks={this.props.tasks}
-                board={this.props.board}
-                columns={this.props.columns}
-                provided={provided}
-              />
-              <ColumnForm createColumn={this.props.createColumn} board={this.props.board} />
-            </Container>
-          )}
-        </Droppable>
-      </DragDropContext>
-    )
+    const {board, tasks, columns, createColumn} = this.props;
+
+    if (board !== null && board !== '') {
+      return (
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId="all-columns" direction='horizontal' type='column'>
+            {provided => (
+              <Container {...provided.droppableProps} ref={provided.innerRef} >
+                <Navbar />
+                <BoardContent 
+                  tasks={tasks}
+                  board={board}
+                  columns={columns}
+                  provided={provided}
+                />
+                <ColumnForm createColumn={createColumn} board={board} />
+              </Container>
+            )}
+          </Droppable>
+        </DragDropContext>
+      )
+    } else {
+      return (
+        <Container>
+          <Navbar />     
+        </Container>
+      )
+    }
   }
 }
 
