@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import Navbar from '../layout/Navbar';
 import Column from '../layout/Column';
 import ColumnForm from '../layout/ColumnForm';
+import Redirect from '../layout/Redirect';
 import BoardContents from '../layout/BoardContent';
 
 import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
@@ -55,12 +56,7 @@ const BoardContent = ({board, provided, tasks, columns}) => {
 }
 
 class Board extends React.Component {
-  state = {
-    toggle: false,
-  }
-  componentWillMount() {
-    // this.props.getBoard(this.props.match.params.boardId, '_5181858');
-  }
+  state = {}
 
   componentWillUpdate(nextProps) {
     if (nextProps.user && !this.props.user) {
@@ -74,15 +70,15 @@ class Board extends React.Component {
     }
 
 
-    if (this.props.board) {
-      if (this.props.board.columnOrder.length !== nextProps.board.columnOrder.length) {
-        console.log('gained new columns');
-      }
+    // if (this.props.board) {
+    //   if (this.props.board.columnOrder.length !== nextProps.board.columnOrder.length) {
+    //     console.log('gained new columns');
+    //   }
 
-      if (this.props.tasks.length !== nextProps.tasks.length) {
-        console.log('added a new tasks');
-      }
-    }
+    //   if (this.props.tasks.length !== nextProps.tasks.length) {
+    //     console.log('added a new tasks');
+    //   }
+    // }
   }
 
   onDragEnd = result => {
@@ -152,6 +148,7 @@ class Board extends React.Component {
       return (
         <Container>
           <Navbar />     
+          <Redirect />
         </Container>
       )
     }
