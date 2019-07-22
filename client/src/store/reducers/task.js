@@ -1,7 +1,8 @@
 import {CREATE_TASK, GET_TASKS} from '../actions/types';
 
 const initialState = {
-  tasks: []
+  tasks: [],
+  toggled: false,
 };
 
 const task = (state = initialState, action) => {
@@ -10,6 +11,7 @@ const task = (state = initialState, action) => {
       return {
         ...state,
         tasks: [...state.tasks, action.payload.task],
+        toggled: !state.toggled,
       }
     case GET_TASKS:
       return {

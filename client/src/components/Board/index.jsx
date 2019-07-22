@@ -123,7 +123,6 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log('reeee board')
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="all-columns" direction='horizontal' type='column'>
@@ -151,7 +150,8 @@ const mapStateToProps = state => {
     board: state.board.currentBoard,
     columns: state.column.columns,
     tasks: state.task.tasks,
-    toggled: state.column.toggled
+    toggled: state.column.toggled,
+    toggledTask: state.task.toggled
   }
 };
 

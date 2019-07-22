@@ -17,7 +17,7 @@ const column = (state = initialState, action) => {
     case CREATE_COLUMN:
       return {
         ...state,
-        columns: [...state.columns, action.payload.column]
+        columns: [...state.columns, action.payload.column],
       }
     case GET_COLUMNS:
       return {
