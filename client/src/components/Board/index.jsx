@@ -8,7 +8,7 @@ import Column from '../layout/Column';
 import ColumnForm from '../layout/ColumnForm';
 
 import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
-import {createColumn, getColumns} from '../../store/actions/column';
+import {createColumn, getColumns, rearrangeColumnTasks} from '../../store/actions/column';
 import {getTasks} from '../../store/actions/task';
 
 /* 
@@ -76,11 +76,22 @@ class Board extends React.Component {
 
     console.log(result)
 
-    // const start = this.props.columns[source.droppableId];
-    // const finish = this.props.columns[destination.droppableId];
+    const start = this.props.columns.filter(column => column._id === source.droppableId)[0];
+    const finish = this.props.columns.filter(column => column._id === destination.droppableId)[0];
 
-    // console.log(start);
-    // console.log(finish)
+    console.log(start);
+    console.log(finish)
+
+    if (start._id === finish._id) {
+      console.log('columns are the same');
+      const newTaskOrder = Array.from(start.taskOrder);
+      newTaskOrder.splice(source.index, 1);
+      newTaskOrder.splice(destination.index, 0, draggableId);
+
+      this.props.rearrangeColumnTasks(finish, newTaskOrder);
+    } else {
+      console.log('columns are not the same');
+    }
 
     // if (finish === start) {
     //   const newTaskIds = Array.from(start.taskIds);
@@ -187,6 +198,7 @@ const mapDispatchToProps = dispatch => {
     getColumns: boardId => dispatch(getColumns(boardId)),
     rearrangeBoardColumns: (board, columnOrder) => dispatch(rearrangeBoardColumns(board, columnOrder)),
     getTasks: boardId => dispatch(getTasks(boardId)),
+    rearrangeColumnTasks: (column, taskOrder) => dispatch(rearrangeColumnTasks(column, taskOrder))
   }
 }
 

@@ -1,8 +1,17 @@
-import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK} from '../actions/types';
+import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS} from '../actions/types';
 
 const initialState = {
   columns: [],
 };
+
+const replaceColumn = (columns, newColumn) => {
+  console.log(columns);
+  console.log(newColumn);
+  const index = columns.findIndex(column => column._id === newColumn._id);
+  let sortedColumns = columns;
+  sortedColumns[index] = newColumn;
+  return sortedColumns;
+}
 
 const column = (state = initialState, action) => {
   switch (action.type) {
@@ -23,6 +32,11 @@ const column = (state = initialState, action) => {
       return {
         ...state,
         columns: columns,
+      }
+    case REARRANGE_COLUMN_TASKS:
+      return {
+        ...state,
+        columns: replaceColumn(state.columns, action.payload.rearrangedColumn)
       }
     default:
       return state;

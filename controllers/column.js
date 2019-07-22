@@ -20,7 +20,6 @@ exports.create = async (req, res) => {
 }
 
 exports.updateColumnTasks = async (req, res) => {
-  console.log(req.body)
   try {
     const column = await Column.findByIdAndUpdate(req.body._id, {$set:req.body});
     res.status(201).send(column);
@@ -28,10 +27,10 @@ exports.updateColumnTasks = async (req, res) => {
     res.status(400).send({error});    
   }
 }
-
 exports.rearrangeColumnTasks = async (req, res) => {
   try {
-    
+    const column = await Column.findByIdAndUpdate(req.body._id, {$set:req.body});
+    res.status(201).send(column);
   } catch (error) {
     res.status(400).send({error});    
   }

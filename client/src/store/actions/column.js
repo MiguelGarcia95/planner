@@ -1,5 +1,5 @@
 // import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
-import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK} from './types';
+import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS} from './types';
 import {updateBoardColumns} from './board';
 
 import axios from 'axios';
@@ -73,7 +73,24 @@ export const getColumnsOrder = boardId => {
   }
 }
 
-export const rearrangeColumns = (columns) => {
-  return dispatch => {
+export const rearrangeColumnTasks = (column, taskOrder) => {
+  return async dispatch => {
+    try {
+      const rearrangedColumn = {
+        ...column,
+        taskOrder: taskOrder,
+      };
+
+      await axios.patch('/columns/rearrangeColumnTasks', rearrangedColumn)
+
+      dispatch({
+        type: REARRANGE_COLUMN_TASKS,
+        payload: {
+          rearrangedColumn: rearrangedColumn
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
