@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import {getBoards} from '../store/actions/board';
+import {getUser} from '../store/actions/auth';
 import Board from './layout/Board';
 import Navbar from './layout/Navbar';
 
@@ -37,9 +38,13 @@ const Boards = styled.section`
 
 class App extends React.Component {
   componentDidMount() {
-    // this.props.getUser();
-    console.log(this.props.user);
-    this.props.getBoards('_5181858');
+    this.props.getUser();
+  }
+
+  componentWillUpdate(nextProps) {
+    if (!this.props.user && nextProps.user) {
+      this.props.getBoards(nextProps.user.id);
+    }
   }
 
   displayBoards = () => {
@@ -69,7 +74,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBoards: userId => dispatch(getBoards(userId))
+    getBoards: userId => dispatch(getBoards(userId)),
+    getUser: () => dispatch(getUser()),
   }
 }
 
