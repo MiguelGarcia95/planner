@@ -83,15 +83,14 @@ class Board extends React.Component {
     console.log(finish);
 
     if (start._id === finish._id) {
-      console.log('columns are the same');
+      // Move task within a column
       const newTaskOrder = Array.from(start.taskOrder);
       newTaskOrder.splice(source.index, 1);
       newTaskOrder.splice(destination.index, 0, draggableId);
 
       this.props.rearrangeColumnTasks(finish, newTaskOrder);
     } else {
-      // Moving from one list to another
-      console.log('columns are not the same');
+      // Move task across columns
       const startTaskOrders = Array.from(start.taskOrder);
       startTaskOrders.splice(source.index, 1);
 
@@ -101,35 +100,6 @@ class Board extends React.Component {
       this.props.rearrangeColumnTasks(start, startTaskOrders);
       this.props.rearrangeColumnTasks(finish, finishTaskOrders);
     }
-
-    // } else {
-    //   //  Moving from one list to another
-    //   const startTaskIds = Array.from(start.taskIds);
-    //   startTaskIds.splice(source.index, 1);
-    //   const newStart = {
-    //     ...start,
-    //     taskIds: startTaskIds,
-    //   };
-
-    //   const finishTaskIds = Array.from(finish.taskIds);
-    //   finishTaskIds.splice(destination.index, 0, draggableId);
-    //   const newFinish = {
-    //     ...finish,
-    //     taskIds: finishTaskIds,
-    //   };
-
-    //   const newState = {
-    //     ...this.state,
-    //     columns: {
-    //       ...this.state.columns,
-    //       [newStart.id]: newStart,
-    //       [newFinish.id]: newFinish,
-    //     }
-    //   };
-
-    //   this.setState(newState);
-    // }
-
   }
 
   displayContent = provided => {
