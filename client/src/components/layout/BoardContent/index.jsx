@@ -36,6 +36,10 @@ class BoardContent extends React.Component {
     //     console.log('added a new tasks');
     //   }
     // }
+
+    if (this.props.tasks.length !== nextProps.tasks.length) {
+      console.log('added a new tasks');
+    }
   }
 
   displayColumns = board => {
