@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 
+import {getColumns} from '../../../store/actions/column';
+import {getTasks} from '../../../store/actions/task';
+
 import Column from '../Column';
 
 const Container = styled.section`
@@ -16,6 +19,25 @@ flex-wrap: nowrap
 `;
 
 class BoardContent extends React.Component {
+  componentWillUpdate(nextProps) {
+    if (nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
+      console.log('ran')
+      this.props.getColumns(nextProps.board._id);
+      this.props.getTasks(nextProps.board._id);
+    }
+
+
+    // if (this.props.board) {
+    //   if (this.props.board.columnOrder.length !== nextProps.board.columnOrder.length) {
+    //     console.log('gained new columns');
+    //   }
+
+    //   if (this.props.tasks.length !== nextProps.tasks.length) {
+    //     console.log('added a new tasks');
+    //   }
+    // }
+  }
+
   displayColumns = board => {
     return board.columnOrder.map((columnId, index) => {
       const column = this.props.columns.filter(column => column._id === columnId);
@@ -70,7 +92,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    getColumns: boardId => dispatch(getColumns(boardId)),
+    getTasks: boardId => dispatch(getTasks(boardId)),
   }
 }
 
