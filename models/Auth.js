@@ -3,7 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const userSchema = new mongoose.Schema({
+const authSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -36,6 +36,6 @@ const userSchema = new mongoose.Schema({
   }]
 })
 
-const User = mongoose.model('User', userSchema);
+const Auth = mongoose.model('Auth', authSchema);
 
-module.exports = User;
+module.exports = Auth;
