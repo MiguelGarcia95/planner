@@ -1,4 +1,4 @@
-const Auth = require('../models/Auth');
+const User = require('../models/User');
 
 /**
  * Try this out later
@@ -10,8 +10,11 @@ module.exports = {
  */
 
 exports.register = async (req, res) => {
+  const user = await new User(req.body);
   try {
-    
+    // Hash Here
+    await user.save();
+    req.status(201).send(user);
   } catch (error) {
     res.status(400).send({error});  
   }

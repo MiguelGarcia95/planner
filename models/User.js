@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const authSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -35,6 +35,19 @@ const authSchema = new mongoose.Schema({
   // }
 });
 
-const Auth = mongoose.model('Auth', authSchema);
+// Encrypt password before save
+userSchema.pre('save', async function (next) {
+  const user = this;
 
-module.exports = Auth;
+  if (user.isModified || user.isNew) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+
+  next();
+})
+
+
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
