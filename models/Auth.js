@@ -34,7 +34,26 @@ const authSchema = new mongoose.Schema({
       required: true,
     }
   }]
-})
+});
+
+// Generate Auth Token
+authSchema.methods.generateAuthToken = async () => {
+  // const user = this;
+  // const token = jwt.sign({_id: user._id.toString()}, 'secretstring');
+  // user.tokens = user.tokens.concat({token});
+  // await user.save();
+  // return token;
+}
+
+// Hash password
+authSchema.pre('save', async next => {
+  // const user = this;
+
+  // if (user.isModified('password')) {
+  //   user.password =  await bcrypt.hash(user.password, 8);
+  //   next();
+  // }
+});
 
 const Auth = mongoose.model('Auth', authSchema);
 
