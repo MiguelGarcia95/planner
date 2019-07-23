@@ -1,5 +1,14 @@
 const Auth = require('../models/Auth');
 
+/**
+ * Try this out later
+module.exports = {
+  add: (req, res) => {
+    return;
+  }
+}
+ */
+
 exports.register = async (req, res) => {
   try {
     

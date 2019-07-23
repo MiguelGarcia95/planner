@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
+// const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -7,14 +7,19 @@ const authSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: false,
+    trim: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
+    trim: true,
   },
   password: {
     type: String,
     required: true,
+    trim: true,
   },
   bgColor: {
     type: String,
@@ -24,34 +29,9 @@ const authSchema = new mongoose.Schema({
     type: String,
     default: '#11998e',
   },
-  boards: {
-    type: Array,
-    required: false,
-  },
-  tokens: [{
-    token: {
-      type: String,
-      required: true,
-    }
-  }]
-});
-
-// Generate Auth Token
-authSchema.methods.generateAuthToken = async () => {
-  // const user = this;
-  // const token = jwt.sign({_id: user._id.toString()}, 'secretstring');
-  // user.tokens = user.tokens.concat({token});
-  // await user.save();
-  // return token;
-}
-
-// Hash password
-authSchema.pre('save', async next => {
-  // const user = this;
-
-  // if (user.isModified('password')) {
-  //   user.password =  await bcrypt.hash(user.password, 8);
-  //   next();
+  // boards: {
+  //   type: Array,
+  //   required: false,
   // }
 });
 
