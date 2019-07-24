@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 /**
  * Try this out later
@@ -26,7 +27,14 @@ exports.login = async (req, res) => {
     const user = await User.findOne({email: req.body.email});
     const match = await bcrypt.compare(req.body.password, user.password);
     if (match) {
-      res.status(200).send(user);
+      // Authenticated, create token!
+      console.log(process.env.JWT_SECRET);
+      const payload = {user: user.name};
+      const options = {expiresIn: '2d', issuer: 'Planner app'};
+      const secret = process.env.JWT_SECRET;
+      const token = jwt.sign(payload, secret, options);
+
+      res.status(200).send({user, token});
     } else {
       res.status(401).send('Authentication error');  
     }
