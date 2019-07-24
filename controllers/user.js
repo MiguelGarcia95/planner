@@ -28,7 +28,6 @@ exports.login = async (req, res) => {
     const match = await bcrypt.compare(req.body.password, user.password);
     if (match) {
       // Authenticated, create token!
-      console.log(process.env.JWT_SECRET);
       const payload = {user: user.name};
       const options = {expiresIn: '2d', issuer: 'Planner app'};
       const secret = process.env.JWT_SECRET;
