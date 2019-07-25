@@ -118,6 +118,7 @@ class Signin extends React.Component {
   redirectIfAuth = props => {
     if (props.user) {
       console.log('redirect')
+      props.history.push('/');
     }
   }
 

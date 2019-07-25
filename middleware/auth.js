@@ -11,6 +11,7 @@ module.exports = {
       try {
         result = jwt.verify(token, process.env.JWT_SECRET, options);
         req.decoded = result;
+        console.log(result);
         next();
       } catch (error) {
         throw new Error(error);

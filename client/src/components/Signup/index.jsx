@@ -122,6 +122,7 @@ class Signup extends React.Component {
   redirectIfAuth = props => {
     if (props.user) {
       console.log('redirect')
+      console.log(props);
     }
   }
 
