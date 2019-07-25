@@ -125,10 +125,10 @@ class Signup extends React.Component {
 
     if (this.validateForm(this.state)) {
       console.log('valid')
+       // this.props.signup({});
     } else {
       console.log('Not valid')
     }
-    // this.props.signup({});
   }
 
   validateForm = formData => {
