@@ -2,7 +2,14 @@ import {SIGNIN, SIGNUP, LOGOUT, GET_USER, GET_TOKEN} from './types';
 import axios from 'axios';
 
 export const logout = () => {
-  // remove token cookie
+  return dispatch => {
+    // remove token cookie
+    // 
+    // 
+    dispatch({
+      type: LOGOUT
+    })
+  }
 }
 
 export const signin = userData => {
@@ -12,7 +19,8 @@ export const signin = userData => {
     dispatch({
       type: SIGNIN,
       payload: {
-        user: results.data.user
+        user: results.data.user,
+        token: results.data.token
       }
     });
   }
@@ -25,7 +33,8 @@ export const signup = userData => {
     dispatch({
       type: SIGNUP,
       payload: {
-        user: results.data.user
+        user: results.data.user,
+        token: results.data.token
       }
     });
 
