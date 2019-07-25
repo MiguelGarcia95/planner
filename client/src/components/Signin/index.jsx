@@ -117,7 +117,7 @@ class Signin extends React.Component {
       }
     })
   };
-  
+
   onSubmit = e => {
     e.preventDefault();
     console.log('signin');
@@ -175,6 +175,8 @@ class Signin extends React.Component {
   }
 
   render() {
+    const {username, email, password, errors} = this.state;
+    console.log(errors);
     return (
       <Container>
         <Form onSubmit={this.onSubmit}>
@@ -182,9 +184,9 @@ class Signin extends React.Component {
             <h1>Login</h1>
           </FormHeader>
           <FormBody>
-            <input type='text' placeholder='Username' />
-            <input type='email' placeholder='Email' />
-            <input type='password' placeholder='Enter Password' />
+            <input type='text' name='username' placeholder='Username' value={username} onChange={this.onChange} />
+            <input type='email' name='email' placeholder='Email' value={email} onChange={this.onChange} />
+            <input type='password' name='password' placeholder='Enter Password' value={password} onChange={this.onChange} />
             <button>Login</button>
           </FormBody>
         </Form>
