@@ -22,7 +22,7 @@ export const signup = userData => {
 
     console.log(userData);
 
-    // const results = await axios.post('/auth', userData);
+    const results = await axios.post('/auth', userData);
     // console.log(results.data);
   }
 }
