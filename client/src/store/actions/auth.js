@@ -5,17 +5,26 @@ export const logout = () => {
   // remove token cookie
 }
 
-export const signin = async userData => {
-  // add token from cookie
-  // document.cookie
-  // await axios.post('/auth/signup', boardData);
+export const signin = userData => {
+  return async dispatch => {
+    // add token from cookie
+    // document.cookie
+    // await axios.post('/auth/signup', userData);
+    console.log(userData);
 
+  }
 }
 
-export const signup = async userData => {
-  // add token from cookie
-  const results = await axios.post('/auth', userData);
-  console.log(results.data);
+export const signup = userData => {
+  return async dispatch => {
+    // add token from cookie
+    // document.cookie
+
+    console.log(userData);
+
+    // const results = await axios.post('/auth', userData);
+    // console.log(results.data);
+  }
 }
 
 export const getUser = () => {
