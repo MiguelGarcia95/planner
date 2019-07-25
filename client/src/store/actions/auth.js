@@ -1,4 +1,4 @@
-import {SIGNIN, SIGNUP, LOGOUT, GET_USER} from './types';
+import {SIGNIN, SIGNUP, LOGOUT, GET_USER, GET_TOKEN} from './types';
 import axios from 'axios';
 
 export const logout = () => {
@@ -29,6 +29,19 @@ export const signup = userData => {
       }
     });
 
+  }
+}
+
+export const getToken = () => {
+  return dispatch => {
+    const token = document.cookie.replace('token=', '');
+
+    dispatch({
+      type: GET_TOKEN,
+      payload: {
+        token: token
+      }
+    })
   }
 }
 

@@ -110,6 +110,8 @@ class Signup extends React.Component {
   }
 
   componentDidMount() {
+    const token  = document.cookie.replace('token=', '');
+    console.log(token)
     this.redirectIfAuth(this.props);
   }
 
