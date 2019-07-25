@@ -208,7 +208,7 @@ class Signup extends React.Component {
           </FormBody>
         </Form>
         <BottomLink>
-          <p>Already Signed Up? <Link to='/signin'>Login</Link> </p>
+          <p>Already Signed Up? <Link to='/login'>Login</Link> </p>
         </BottomLink>
       </Container>
     )

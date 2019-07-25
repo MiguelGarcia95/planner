@@ -8,9 +8,7 @@ export const logout = () => {
 export const signin = userData => {
   return async dispatch => {
     const results = await axios.post('/auth/login', userData);
-    // add token from cookie
-    // document.cookie
-    console.log(results.data.token);
+    document.cookie = `token=${results.data.token}`;
     dispatch({
       type: SIGNIN,
       payload: {
@@ -22,14 +20,8 @@ export const signin = userData => {
 
 export const signup = userData => {
   return async dispatch => {
-
-
-    console.log(userData);
-
     const results = await axios.post('/auth', userData);
-    // add token from cookie
-    // document.cookie
-    console.log(results.data.token);
+    document.cookie = `token=${results.data.token}`;
     dispatch({
       type: SIGNUP,
       payload: {
