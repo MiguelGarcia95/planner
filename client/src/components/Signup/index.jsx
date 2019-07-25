@@ -205,10 +205,16 @@ class Signup extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     signup: userData => dispatch(signup(userData)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
