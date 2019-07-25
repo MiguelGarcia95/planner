@@ -14,9 +14,9 @@ module.exports = {
 exports.register = async (req, res) => {
   const user = await new User(req.body);
   try {
-    console.log(user);
-    // await user.save();
-    // res.status(201).send(user);
+    await user.save();
+    const token = await user.createAuthToken();
+    res.status(201).send({user, token});
   } catch (error) {
     console.log(error);
     res.status(400).send({error});  

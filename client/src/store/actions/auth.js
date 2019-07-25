@@ -17,13 +17,21 @@ export const signin = userData => {
 
 export const signup = userData => {
   return async dispatch => {
-    // add token from cookie
-    // document.cookie
+
 
     console.log(userData);
 
     const results = await axios.post('/auth', userData);
-    // console.log(results.data);
+    // add token from cookie
+    // document.cookie
+    console.log(results.data.token);
+    dispatch({
+      type: SIGNUP,
+      payload: {
+        user: results.data.user
+      }
+    });
+
   }
 }
 
