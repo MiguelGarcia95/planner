@@ -101,18 +101,37 @@ const BottomLink = styled.section`
 `;
 
 class Signup extends React.Component {
+  state = {
+    username: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+  }
+
+  onChange = e => this.setState({[e.target.name]: e.target.value});
+
+  onSubmit = e => {
+    e.preventDefault();
+    console.log('signup');
+
+    // Validate data
+
+    // this.props.signup({});
+  }
+
   render() {
+    const {username, email, password, password_confirmation} = this.state;
     return (
       <Container>
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <FormHeader>
             <h1>Sign Up</h1>
           </FormHeader>
           <FormBody>
-            <input type='text' placeholder='Username' />
-            <input type='email' placeholder='Email' />
-            <input type='password' placeholder='Enter Password' />
-            <input type='password' placeholder='Confirm Password' />
+            <input type='text' name='username' placeholder='Username' value={username} />
+            <input type='email' name='email' placeholder='Email' value={email} />
+            <input type='password' name='password' placeholder='Enter Password' value={password} />
+            <input type='password' name='password_confirmation' placeholder='Confirm Password' value={password_confirmation} />
             <button>Sign Up</button>
           </FormBody>
         </Form>

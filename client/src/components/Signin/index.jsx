@@ -101,10 +101,15 @@ const BottomLink = styled.section`
 `;
 
 class Signin extends React.Component {
+  onSubmit = e => {
+    e.preventDefault();
+    console.log('signin');
+  }
+
   render() {
     return (
       <Container>
-        <Form>
+        <Form onSubmit={this.onSubmit}>
           <FormHeader>
             <h1>Login</h1>
           </FormHeader>
