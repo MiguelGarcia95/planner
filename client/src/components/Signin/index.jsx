@@ -102,7 +102,6 @@ const BottomLink = styled.section`
 
 class Signin extends React.Component {
   state = {
-    username: '',
     email: '',
     password: '',
     errors: {}
@@ -134,13 +133,13 @@ class Signin extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log('signin');
 
     if (this.validateForm(this.state)) {
-      console.log('valid')
-       // this.props.signin({});
-    } else {
-      console.log('Not valid')
+       const newUser = {
+        email: this.state.email,
+        password: this.state.password,
+      }
+      this.props.signin(newUser);
     }
   }
 
@@ -148,9 +147,11 @@ class Signin extends React.Component {
     let errors = {};
     let valid = true;
 
-    if (formData.username === '') {
-      errors.username = {error: 'Username can\'t be empty'}
-      valid = false;
+    if (formData.username || formData.username === '') {
+      if (formData.username === '') {
+        errors.username = {error: 'Username can\'t be empty'}
+        valid = false;
+      }
     }
 
     if (formData.email === '') {
@@ -198,7 +199,6 @@ class Signin extends React.Component {
             <h1>Login</h1>
           </FormHeader>
           <FormBody>
-            <input type='text' name='username' placeholder='Username' value={username} onChange={this.onChange} />
             <input type='email' name='email' placeholder='Email' value={email} onChange={this.onChange} />
             <input type='password' name='password' placeholder='Enter Password' value={password} onChange={this.onChange} />
             <button>Login</button>

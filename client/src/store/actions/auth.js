@@ -7,11 +7,16 @@ export const logout = () => {
 
 export const signin = userData => {
   return async dispatch => {
+    const results = await axios.post('/auth/login', userData);
     // add token from cookie
     // document.cookie
-    // await axios.post('/auth/signup', userData);
-    console.log(userData);
-
+    console.log(results.data.token);
+    dispatch({
+      type: SIGNIN,
+      payload: {
+        user: results.data.user
+      }
+    });
   }
 }
 

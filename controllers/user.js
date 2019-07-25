@@ -28,12 +28,7 @@ exports.login = async (req, res) => {
     const user = await User.findOne({email: req.body.email});
     const match = await bcrypt.compare(req.body.password, user.password);
     if (match) {
-      // Authenticated, create token!
-      const payload = {user: user.name};
-      const options = {expiresIn: '2d', issuer: 'Planner app'};
-      const secret = process.env.JWT_SECRET;
-      const token = jwt.sign(payload, secret, options);
-
+      const token = await user.createAuthToken();
       res.status(200).send({user, token});
     } else {
       res.status(401).send('Authentication error');  
