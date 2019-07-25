@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+import {signin} from '../../store/actions/auth';
 
 /* 
   Location: /Signin
@@ -121,4 +124,10 @@ class Signin extends React.Component {
   }
 }
 
-export default Signin;
+const mapDispatchToProps = dispatch => {
+  return {
+    signin: userData => dispatch(signin(userData)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Signin);

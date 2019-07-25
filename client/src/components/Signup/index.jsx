@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+import {signup} from '../../store/actions/auth';
 
 /* 
   Location: /Signup
   Purpose: Signup/Register
   Access: Can't be Authenticated *Ignore for now*
 */ 
-
-
 
 const Container = styled.section`
   width: 100%;
@@ -123,4 +124,10 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+const mapDispatchToProps = dispatch => {
+  return {
+    signup: userData => dispatch(signup(userData)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Signup);
