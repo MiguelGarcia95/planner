@@ -105,22 +105,79 @@ class Signup extends React.Component {
     username: '',
     email: '',
     password: '',
-    password_confirmation: ''
+    password_confirmation: '',
+    errors: {}
   }
 
-  onChange = e => this.setState({[e.target.name]: e.target.value});
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      errors: {
+        ...this.state.errors,
+        [e.target.name]: '',
+      }
+    })
+  };
 
   onSubmit = e => {
     e.preventDefault();
     console.log('signup');
 
-    // Validate data
-
+    if (this.validateForm(this.state)) {
+      console.log('valid')
+    } else {
+      console.log('Not valid')
+    }
     // this.props.signup({});
   }
 
+  validateForm = formData => {
+    let errors = {};
+    let valid = true;
+
+    if (formData.username === '') {
+      errors.username = {error: 'Username can\'t be empty'}
+      valid = false;
+    }
+
+    if (formData.email === '') {
+      errors.email = {error: 'Email can\'t be empty'}
+      valid = false;
+    } else if (!this.validateEmail(formData.email)) {
+      errors.email = {error: 'Your email is invalid.'}
+      valid = false;
+    } 
+
+    if (formData.password === '') {
+      errors.password = {error: 'Password can\'t be empty'}
+      valid = false;
+    } else if (formData.password.length < 5) {
+      errors.password = {error: 'Password can\'t be less than 6 characters.'}
+      valid = false;
+    }
+
+    if (formData.password_confirmation || formData.password_confirmation === '') {
+      if (formData.password_confirmation === '') {
+        errors.password_confirmation = {error: 'Password can\'t be empty'}
+        valid = false;
+      } else if (formData.password !== formData.password_confirmation) {
+        errors.password_confirmation = {error: 'Password is not the same'}
+        valid = false;
+      }
+    }
+
+    this.setState({errors});
+    return valid;
+  }
+  
+  validateEmail(email) {
+    var regexString = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regexString.test(email.toLowerCase());
+  }
+
   render() {
-    const {username, email, password, password_confirmation} = this.state;
+    const {username, email, password, password_confirmation, errors} = this.state;
+    console.log(errors)
     return (
       <Container>
         <Form onSubmit={this.onSubmit}>
@@ -128,10 +185,10 @@ class Signup extends React.Component {
             <h1>Sign Up</h1>
           </FormHeader>
           <FormBody>
-            <input type='text' name='username' placeholder='Username' value={username} />
-            <input type='email' name='email' placeholder='Email' value={email} />
-            <input type='password' name='password' placeholder='Enter Password' value={password} />
-            <input type='password' name='password_confirmation' placeholder='Confirm Password' value={password_confirmation} />
+            <input type='text' name='username' placeholder='Username' value={username} onChange={this.onChange} />
+            <input type='text' name='email' placeholder='Email' value={email} onChange={this.onChange} />
+            <input type='password' name='password' placeholder='Enter Password' value={password} onChange={this.onChange} />
+            <input type='password' name='password_confirmation' placeholder='Confirm Password' value={password_confirmation} onChange={this.onChange} />
             <button>Sign Up</button>
           </FormBody>
         </Form>
