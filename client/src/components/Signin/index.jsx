@@ -108,6 +108,20 @@ class Signin extends React.Component {
     errors: {}
   }
 
+  componentDidMount() {
+    this.redirectIfAuth(this.props);
+  }
+
+  componentDidUpdate(prevProps) {
+    this.redirectIfAuth(this.props);
+  }
+
+  redirectIfAuth = props => {
+    if (props.user) {
+      console.log('redirect')
+    }
+  }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value,

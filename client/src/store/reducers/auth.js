@@ -8,7 +8,8 @@ const auth = (state = initialState, action) => {
   switch (action.type) {
     case SIGNIN:
       return {
-        ...state
+        ...state,
+        user: action.payload.user
       }
     case GET_USER:
       return {
@@ -17,7 +18,8 @@ const auth = (state = initialState, action) => {
       }
     case SIGNUP:
       return {
-        ...state
+        ...state,
+        user: action.payload.user
       }
     case LOGOUT:
       return {
