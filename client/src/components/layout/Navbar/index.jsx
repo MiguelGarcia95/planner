@@ -63,7 +63,6 @@ class Navbar extends React.Component {
   componentDidMount() {
     if (document.cookie.replace('token=', '') !== '' && !this.props.user) {
       this.props.signinWithToken();
-      console.log('have token, get user');
     } else if (document.cookie.replace('token=', '') === '') {
       this.props.history.push('/login');
     }
@@ -84,9 +83,7 @@ class Navbar extends React.Component {
     const board = {
       name: this.state.board_name,
       bgColor: this.state.board_color,
-      // userId: this.props.user.id,
-      // userName: this.props.user.name,
-      userId: '_5181858',
+      userId: this.props.user._id,
     }
 
     this.props.createBoard(board);
@@ -132,7 +129,8 @@ class Navbar extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.auth.token
+    token: state.auth.token,
+    user: state.auth.user
   }
 }
 

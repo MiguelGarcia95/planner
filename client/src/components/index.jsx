@@ -38,7 +38,7 @@ const Boards = styled.section`
 class App extends React.Component {
   componentWillUpdate(nextProps) {
     if (!this.props.user && nextProps.user) {
-      this.props.getBoards(nextProps.user.id);
+      this.props.getBoards(nextProps.user._id);
     }
   }
 

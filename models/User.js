@@ -20,15 +20,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-  },
-  bgColor: {
-    type: String,
-    default: '#f9f9f9',
-  },
-  navColor: {
-    type: String,
-    default: '#11998e',
-  },
+  }
   // boards: {
   //   type: Array,
   //   required: false,

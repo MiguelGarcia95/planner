@@ -50,6 +50,8 @@ export const signinWithToken = () => {
       headers: {'Authorization': "bearer " + token},
     });
 
+    console.log(results.data)
+
     dispatch({
       type: LOGIN_WITH_TOKEN,
       payload: {
