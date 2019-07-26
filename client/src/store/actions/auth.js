@@ -41,9 +41,14 @@ export const signup = userData => {
   }
 }
 
-export const loginWithToken = () => {
+export const signinWithToken = () => {
   return async dispatch => {
+    const token = document.cookie.replace('token=', '');
+    const results = await axios.post('/auth/loginWithToken', null, {
+      headers: {'Authorization': "bearer " + token},
+    });
     
+    console.log(results);
     dispatch({
       type: LOGIN_WITH_TOKEN,
       // payload: {

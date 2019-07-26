@@ -16,11 +16,10 @@ export const createBoard =  boardData => {
 
 export const getBoards = userId => {
   return async dispatch => {
-    console.log(document.cookie)
     try {
-      // get token from cookie
+      const token = document.cookie.replace('token=', '');
       const results = await axios.get(`/boards?userId=${userId}`, {
-        headers: {'Authorization': "bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiTWlndWVsIiwiaWF0IjoxNTYzOTM0MDk4LCJleHAiOjE1NjQxMDY4OTgsImlzcyI6IlBsYW5uZXIgYXBwIn0.UCx5dB673i90EN_tR7Fqnq9yNyRrzJMIeuVaPpPPU2c"},
+        headers: {'Authorization': "bearer " + token},
       });
       dispatch({
         type: GET_BOARDS,
