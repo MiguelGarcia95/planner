@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createBoard} from '../../../store/actions/board';
-import {getUser, signinWithToken} from '../../../store/actions/auth';
+import {signinWithToken} from '../../../store/actions/auth';
 
 import SettingsModal from '../SettingsModal';
 import BoardModal from '../BoardModal';
@@ -62,7 +62,6 @@ class Navbar extends React.Component {
 
   componentDidMount() {
     if (document.cookie.replace('token=', '') !== '' && !this.props.user) {
-      // this.props.getUser();
       this.props.signinWithToken();
       console.log('have token, get user');
     } else if (document.cookie.replace('token=', '') === '') {
@@ -128,7 +127,6 @@ class Navbar extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     createBoard: boardData => dispatch(createBoard(boardData)),
-    getUser: () => dispatch(getUser()),
     signinWithToken: () => dispatch(signinWithToken())
   }
 }

@@ -1,11 +1,10 @@
-import {SIGNIN, SIGNUP, LOGOUT, GET_USER, LOGIN_WITH_TOKEN} from './types';
+import {SIGNIN, SIGNUP, LOGOUT, LOGIN_WITH_TOKEN} from './types';
 import axios from 'axios';
 
 export const logout = () => {
   return dispatch => {
     // remove token cookie
-    // 
-    // 
+    document.cookie = 'token=';
     dispatch({
       type: LOGOUT
     })
@@ -52,18 +51,6 @@ export const signinWithToken = () => {
       type: LOGIN_WITH_TOKEN,
       payload: {
         user: results.data.user
-      }
-    })
-  }
-}
-
-export const getUser = () => {
-  return dispatch => {
-    dispatch({
-      type: GET_USER,
-      payload: {
-        // user: {id: '_5181858s'},
-        user: {id: '_5181858'}
       }
     })
   }

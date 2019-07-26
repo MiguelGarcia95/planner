@@ -1,4 +1,4 @@
-import {SIGNIN, SIGNUP, LOGOUT, GET_USER, LOGIN_WITH_TOKEN} from '../actions/types';
+import {SIGNIN, SIGNUP, LOGOUT, LOGIN_WITH_TOKEN} from '../actions/types';
 
 const initialState = {
   user: null
@@ -7,11 +7,6 @@ const initialState = {
 const auth = (state = initialState, action) => {
   switch (action.type) {
     case SIGNIN:
-      return {
-        ...state,
-        user: action.payload.user
-      }
-    case GET_USER:
       return {
         ...state,
         user: action.payload.user
@@ -28,7 +23,8 @@ const auth = (state = initialState, action) => {
       }
     case LOGOUT:
       return {
-        ...state
+        ...state,
+        user: null
       }
     default:
       return state;
