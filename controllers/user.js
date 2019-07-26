@@ -14,14 +14,17 @@ module.exports = {
       res.status(400).send({error});  
     }
   },
+
   loginWithToken: async (req, res) => {
     try {
-      console.log(req.decoded)
+      const user = await User.findById(req.decoded.id);
+      res.status(201).send({user});
     } catch (error) {
       console.log(error);
       res.status(400).send({error});  
     }
   },
+
   login: async (req, res) => {
     try {
       const user = await User.findOne({email: req.body.email});
@@ -37,6 +40,7 @@ module.exports = {
       res.status(400).send({error});  
     }
   },
+
   logout: async (req, res) => {
     try {
       

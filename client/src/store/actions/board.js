@@ -18,6 +18,7 @@ export const getBoards = userId => {
   return async dispatch => {
     try {
       const token = document.cookie.replace('token=', '');
+      console.log(token)
       const results = await axios.get(`/boards?userId=${userId}`, {
         headers: {'Authorization': "bearer " + token},
       });

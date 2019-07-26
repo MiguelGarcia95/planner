@@ -47,7 +47,7 @@ userSchema.pre('save', async function (next) {
 });
 
 // Create Token
-userSchema.methods.createAuthToken = async () => {
+userSchema.methods.createAuthToken = async function() {
   const user = this;
   const payload = {id: user._id};
   const options = {expiresIn: '2d', issuer: 'Planner app'};

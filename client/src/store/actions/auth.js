@@ -47,13 +47,12 @@ export const signinWithToken = () => {
     const results = await axios.post('/auth/loginWithToken', null, {
       headers: {'Authorization': "bearer " + token},
     });
-    
-    console.log(results);
+
     dispatch({
       type: LOGIN_WITH_TOKEN,
-      // payload: {
-      //   user: 
-      // }
+      payload: {
+        user: results.data.user
+      }
     })
   }
 }
