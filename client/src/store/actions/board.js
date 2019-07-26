@@ -5,10 +5,11 @@ export const createBoard =  boardData => {
   return async dispatch => {
     try {
       const results = await axios.post('/boards', boardData);
-
       dispatch({
         type: CREATE_BOARD,
-        board: results.data.board
+        payload: {
+          board: results.data.board
+        }
       })
     } catch (error) {
       console.log(error)
