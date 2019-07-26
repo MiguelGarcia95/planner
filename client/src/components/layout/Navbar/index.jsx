@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createBoard} from '../../../store/actions/board';
-import {signinWithToken} from '../../../store/actions/auth';
+import {signinWithToken, logout} from '../../../store/actions/auth';
 
 import SettingsModal from '../SettingsModal';
 import BoardModal from '../BoardModal';
@@ -99,7 +99,7 @@ class Navbar extends React.Component {
           <section className="nav">
             <Link className='link' to='/'>Boards</Link>
             <section className='btn' onClick={this.toggleSettingsModal} >Settings</section>
-            <section className='btn'>Logout</section>
+            <section className='btn' onClick={() => this.props.logout()} >Logout</section>
             <section className='btn' onClick={this.toggleBoardModal} >+</section>
           </section>
         </Nav>
@@ -127,7 +127,8 @@ class Navbar extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     createBoard: boardData => dispatch(createBoard(boardData)),
-    signinWithToken: () => dispatch(signinWithToken())
+    signinWithToken: () => dispatch(signinWithToken()),
+    logout: () => dispatch(logout()),
   }
 }
 

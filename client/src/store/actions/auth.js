@@ -3,10 +3,13 @@ import axios from 'axios';
 
 export const logout = () => {
   return dispatch => {
-    // remove token cookie
     document.cookie = 'token=';
+    console.log(document.cookie)
     dispatch({
-      type: LOGOUT
+      type: LOGOUT,
+      payload: {
+        token: null
+      }
     })
   }
 }
@@ -50,7 +53,8 @@ export const signinWithToken = () => {
     dispatch({
       type: LOGIN_WITH_TOKEN,
       payload: {
-        user: results.data.user
+        user: results.data.user,
+        token: results.data.token
       }
     })
   }
