@@ -61,7 +61,12 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getUser();
+    if (document.cookie.replace('token=', '') !== '' && !this.props.user) {
+      this.props.getUser();
+      console.log('have token, get user');
+    } else if (document.cookie.replace('token=', '') === '') {
+      this.props.history.push('/login');
+    }
   }
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
@@ -76,7 +81,6 @@ class Navbar extends React.Component {
       // userId: this.props.user.id,
       // userName: this.props.user.name,
       userId: '_5181858',
-      // userName: 'Miguel',
     }
 
     this.props.createBoard(board);

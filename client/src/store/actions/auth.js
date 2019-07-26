@@ -1,4 +1,4 @@
-import {SIGNIN, SIGNUP, LOGOUT, GET_USER, GET_TOKEN} from './types';
+import {SIGNIN, SIGNUP, LOGOUT, GET_USER, LOGIN_WITH_TOKEN} from './types';
 import axios from 'axios';
 
 export const logout = () => {
@@ -41,15 +41,14 @@ export const signup = userData => {
   }
 }
 
-export const getToken = () => {
-  return dispatch => {
-    const token = document.cookie.replace('token=', '');
-
+export const loginWithToken = () => {
+  return async dispatch => {
+    
     dispatch({
-      type: GET_TOKEN,
-      payload: {
-        token: token
-      }
+      type: LOGIN_WITH_TOKEN,
+      // payload: {
+      //   user: 
+      // }
     })
   }
 }

@@ -49,7 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <Page>
-        <Navbar />
+        <Navbar history={this.props.history} />
         <Container>
           <Boards>
             {this.displayBoards()}

@@ -25,4 +25,4 @@ export const SIGNIN = 'SIGNIN';
 export const SIGNUP = 'SIGNUP';
 export const LOGOUT = 'LOGOUT';
 export const GET_USER = 'GET_USER';
-export const GET_TOKEN = 'GET_TOKEN';
+export const LOGIN_WITH_TOKEN = 'LOGIN_WITH_TOKEN';

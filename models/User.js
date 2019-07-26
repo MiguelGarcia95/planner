@@ -49,7 +49,7 @@ userSchema.pre('save', async function (next) {
 // Create Token
 userSchema.methods.createAuthToken = async () => {
   const user = this;
-  const payload = {user: user.name};
+  const payload = {id: user._id};
   const options = {expiresIn: '2d', issuer: 'Planner app'};
   const secret = process.env.JWT_SECRET;
   const token = jwt.sign(payload, secret, options);
