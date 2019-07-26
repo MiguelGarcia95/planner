@@ -1,13 +1,18 @@
 // import {CREATE_COLUMN, DELETE_COLUMN, DELETE_ALL_BOARD_COLUMNS, GET_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
 import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS} from './types';
 import {updateBoardColumns} from './board';
-
 import axios from 'axios';
+
+// Everything uses document.cookies.token
+const token = document.cookie.replace('token=', '');
+
 
 export const createColumn = (columnData, board) => {
   return async dispatch => {
     try {
-      const results = await axios.post('/columns', columnData);
+      const results = await axios.post('/columns', columnData, {
+        headers: {'Authorization': "bearer " + token},
+      });
       dispatch(updateBoardColumns(results.data, board));
       dispatch({
         type: CREATE_COLUMN,
@@ -34,7 +39,9 @@ export const deleteAllBoardColumns = boardId => {
 
 export const getColumns = boardId => {
   return async dispatch => {
-    const results = await axios.get(`/columns?boardId=${boardId}`);
+    const results = await axios.get(`/columns?boardId=${boardId}`, {
+      headers: {'Authorization': "bearer " + token},
+    });
     dispatch({
       type: GET_COLUMNS,
       payload: {
@@ -52,7 +59,9 @@ export const updateColumnTasks = (newTask, column) => {
         taskOrder: [...column.taskOrder, newTask._id],
       }
 
-      await axios.patch('/columns/updateColumnTasks', updatedColumn);
+      await axios.patch('/columns/updateColumnTasks', updatedColumn, {
+        headers: {'Authorization': "bearer " + token},
+      });
 
       dispatch({
         type: UPDATE_COLUMN_TASK,
@@ -75,7 +84,9 @@ export const rearrangeColumnTasks = (column, taskOrder) => {
         taskOrder: taskOrder,
       };
 
-      await axios.patch('/columns/rearrangeColumnTasks', rearrangedColumn)
+      await axios.patch('/columns/rearrangeColumnTasks', rearrangedColumn, {
+        headers: {'Authorization': "bearer " + token},
+      })
 
       dispatch({
         type: REARRANGE_COLUMN_TASKS,

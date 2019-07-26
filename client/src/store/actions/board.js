@@ -2,11 +2,11 @@ import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUM
 import axios from 'axios';
 
 // Everything uses document.cookies.token
+const token = document.cookie.replace('token=', '');
 
 export const createBoard =  boardData => {
   return async dispatch => {
     try {
-      const token = document.cookie.replace('token=', '');
       const results = await axios.post('/boards', boardData, {
         headers: {'Authorization': "bearer " + token},
       });
@@ -25,7 +25,6 @@ export const createBoard =  boardData => {
 export const getBoards = userId => {
   return async dispatch => {
     try {
-      const token = document.cookie.replace('token=', '');
       const results = await axios.get(`/boards?userId=${userId}`, {
         headers: {'Authorization': "bearer " + token},
       });
@@ -43,7 +42,6 @@ export const getBoards = userId => {
 
 export const getBoard = (boardId, userId) => {
   return async dispatch => {
-    const token = document.cookie.replace('token=', '');
     const results = await axios.get(`/boards/board?userId=${userId}&id=${boardId}`, {
       headers: {'Authorization': "bearer " + token},
     });
@@ -83,7 +81,6 @@ export const rearrangeBoardColumns = (board, columnOrder) => {
 export const updateBoardColumns = (newColumn, board) => {
   return async dispatch => {
     try {
-      const token = document.cookie.replace('token=', '');
       const updatedBoard = {
         ...board,
         columnOrder: [...board.columnOrder, newColumn._id]
@@ -107,7 +104,6 @@ export const updateBoardColumns = (newColumn, board) => {
 
 export const deleteBoard = boardId => {
   return dispatch => {
-    const token = document.cookie.replace('token=', '');
     dispatch({
       type: DELETE_BOARD
     })
