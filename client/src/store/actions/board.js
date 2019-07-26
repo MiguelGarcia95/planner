@@ -58,12 +58,15 @@ export const getBoard = (boardId, userId) => {
 export const rearrangeBoardColumns = (board, columnOrder) => {
   return async dispatch => {
     try {
+      const token = document.cookie.replace('token=', '');
       const updatedBoard = {
         ...board,
         columnOrder: columnOrder
       };
 
-      await axios.patch('/boards/rearrangeBoardColumns', updatedBoard);
+      await axios.patch('/boards/rearrangeBoardColumns', updatedBoard, {
+        headers: {'Authorization': "bearer " + token},
+      });
 
       dispatch({
         type: REARRANGE_BOARD_COLUMNS,
@@ -80,12 +83,15 @@ export const rearrangeBoardColumns = (board, columnOrder) => {
 export const updateBoardColumns = (newColumn, board) => {
   return async dispatch => {
     try {
+      const token = document.cookie.replace('token=', '');
       const updatedBoard = {
         ...board,
         columnOrder: [...board.columnOrder, newColumn._id]
       }
 
-      await axios.patch('/boards/updateBoardColumns', updatedBoard);
+      await axios.patch('/boards/updateBoardColumns', updatedBoard, {
+        headers: {'Authorization': "bearer " + token},
+      });
 
       dispatch({
         type: UPDATE_BOARD_COLUMNS,
@@ -101,6 +107,7 @@ export const updateBoardColumns = (newColumn, board) => {
 
 export const deleteBoard = boardId => {
   return dispatch => {
+    const token = document.cookie.replace('token=', '');
     dispatch({
       type: DELETE_BOARD
     })
