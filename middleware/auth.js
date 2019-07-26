@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-// const User = require('../models/User');
 
 module.exports = {
   validateToken: (req, res, next) => {
@@ -13,7 +12,7 @@ module.exports = {
         req.decoded = result;
         next();
       } catch (error) {
-        throw new Error(error);
+        res.status(401).send({error: 'Authentication error. Token invalid'})
       }
     } else {
       res.status(401).send({error: 'Authentication error. Token required'})

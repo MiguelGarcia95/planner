@@ -1,10 +1,15 @@
 import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS} from './types';
 import axios from 'axios';
 
+// Everything uses document.cookies.token
+
 export const createBoard =  boardData => {
   return async dispatch => {
     try {
-      const results = await axios.post('/boards', boardData);
+      const token = document.cookie.replace('token=', '');
+      const results = await axios.post('/boards', boardData, {
+        headers: {'Authorization': "bearer " + token},
+      });
       dispatch({
         type: CREATE_BOARD,
         payload: {
@@ -21,7 +26,6 @@ export const getBoards = userId => {
   return async dispatch => {
     try {
       const token = document.cookie.replace('token=', '');
-      console.log(token)
       const results = await axios.get(`/boards?userId=${userId}`, {
         headers: {'Authorization': "bearer " + token},
       });
@@ -39,7 +43,10 @@ export const getBoards = userId => {
 
 export const getBoard = (boardId, userId) => {
   return async dispatch => {
-    const results = await axios.get(`/boards/board?userId=${userId}&id=${boardId}`);
+    const token = document.cookie.replace('token=', '');
+    const results = await axios.get(`/boards/board?userId=${userId}&id=${boardId}`, {
+      headers: {'Authorization': "bearer " + token},
+    });
     dispatch({
       type: GET_BOARD,
       payload: {

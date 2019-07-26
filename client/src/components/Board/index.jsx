@@ -60,7 +60,8 @@ class Board extends React.Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.user && !this.props.user) {
-      this.props.getBoard(this.props.match.params.boardId, nextProps.user.id);
+      this.props.getBoard(this.props.match.params.boardId, nextProps.user._id);
+      console.log(nextProps.user)
     }
 
     if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
