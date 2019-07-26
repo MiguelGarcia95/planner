@@ -39,7 +39,6 @@ export const signup = userData => {
         token: results.data.token
       }
     });
-
   }
 }
 
@@ -49,8 +48,6 @@ export const signinWithToken = () => {
     const results = await axios.post('/auth/loginWithToken', null, {
       headers: {'Authorization': "bearer " + token},
     });
-
-    console.log(results.data)
 
     dispatch({
       type: LOGIN_WITH_TOKEN,
