@@ -69,6 +69,12 @@ class Navbar extends React.Component {
     }
   }
 
+  componentWillUpdate(nextProps) {
+    if (!nextProps.token) {
+      this.props.history.push('/login');
+    }
+  }
+
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
   toggleSettingsModal = () => this.setState({settingsModal: !this.state.settingsModal})
   onChange = e => this.setState({[e.target.name]: e.target.value});
@@ -124,6 +130,12 @@ class Navbar extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     createBoard: boardData => dispatch(createBoard(boardData)),
@@ -132,4 +144,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

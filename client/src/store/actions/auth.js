@@ -54,7 +54,7 @@ export const signinWithToken = () => {
       type: LOGIN_WITH_TOKEN,
       payload: {
         user: results.data.user,
-        token: results.data.token
+        token: token
       }
     })
   }
