@@ -12,6 +12,7 @@ import {Draggable} from 'react-beautiful-dnd';
 const Container = styled.section`
   min-height: 40px;
   background: green;
+  background: rgba(250,250,250,1);
   box-sizing: border-box;
   width: 100%;
   padding: 10px;

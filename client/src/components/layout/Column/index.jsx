@@ -38,22 +38,11 @@ const Container = styled.section`
     font-weight: 500;
     padding-left: 10px;
   }
-  .task {
-    min-height: 40px;
-    background: green;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px;
-    line-height: 20px;
-    font-size: 1em;
-    word-wrap: break-word;
-    margin: 10px 0px;
-  }
 `;
 
 const DroppableContainer = styled.section`
   ${props => props.isDraggingOver && `
-    background: red
+    border: 1px solid rgba(10,10,10,0.1);
   `}
 `;
 
