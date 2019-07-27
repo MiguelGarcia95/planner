@@ -36,16 +36,16 @@ const Boards = styled.section`
 `;
 
 class App extends React.Component {
-  // componentDidMount() {
-  //   if (this.props.user) {
-  //     this.props.getBoards(this.props.user._id);
-  //   }
-  // }
+  componentDidMount() {
+    if (this.props.user && !this.props.started) {
+      this.props.getBoards(this.props.user._id);
+    }
+  }
 
   componentWillUpdate(nextProps) {
-    if (!this.props.user && nextProps.user || !nextProps.started) {
+    if (!this.props.user && nextProps.user) {
       this.props.getBoards(nextProps.user._id);
-    } 
+    }
   }
 
   displayBoards = () => {
