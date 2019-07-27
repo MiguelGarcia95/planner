@@ -20,13 +20,34 @@ const Container = styled.section`
     `}
   }
 `;
+
 const Form = styled.section`
   width: 100%; 
   height: 100%;
-  background: red;
 
   textarea {
-
+    width: 100%; 
+    padding: 2px;
+    border: none;
+    resize: none;
+  }
+  p, button {
+    width: 100px;
+    line-height: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+  p {
+    background: green;
+    text-align: center;
+    margin: 0;
+    float: left;
+  }
+  button {
+    background: red;
+    float: right;
+    border: none;
+    padding: 0;
   }
 `;
 

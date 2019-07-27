@@ -4,7 +4,6 @@ import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
 import Navbar from '../layout/Navbar';
-import ColumnForm from '../layout/ColumnForm';
 import Redirect from '../layout/Redirect';
 import BoardContent from '../layout/BoardContent';
 
@@ -113,8 +112,8 @@ class Board extends React.Component {
                   board={board}
                   columns={columns}
                   provided={provided}
+                  createColumn={createColumn}
                 />
-                <ColumnForm createColumn={createColumn} board={board} />
               </Container>
             )}
           </Droppable>

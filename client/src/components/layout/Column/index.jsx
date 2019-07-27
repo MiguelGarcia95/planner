@@ -18,14 +18,13 @@ import TaskForm from '../TaskForm';
 const Container = styled.section`
   width: 250px;
   ${props => `
-    height: ${100 + props.tasks * 80}px;
+    height: ${130 + props.tasks * 50}px;
   `}
-  // For Column
-  // flex: 0 0 auto;
+  max-height: 100%;
   background: rgba(240,240,240,1);
   border-radius: 10px;
   margin: 50px 20px;
-
+  margin-bottom: 0px;
   padding: 10px;
   box-sizing: border-box;
   h1 {

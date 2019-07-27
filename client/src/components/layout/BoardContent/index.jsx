@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Column from '../Column';
+import ColumnForm from '../ColumnForm';
 
 const Container = styled.section`
   min-width: 100vw;
@@ -9,7 +10,7 @@ const Container = styled.section`
   height: 100vh;
   max-height: 100%;
   margin: auto;
-  overflow: auto;
+  overflow: hidden;
   flex-wrap: nowrap
   -webkit-overflow-scrolling: touch; /* [4] */
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
@@ -17,7 +18,7 @@ const Container = styled.section`
 
 class BoardContent extends React.Component {
   render() {
-    const {board, provided, tasks, columns} = this.props;
+    const {board, provided, tasks, columns, createColumn} = this.props;
     if (!board) return <br/>;
     return (
       <Container>
@@ -35,6 +36,7 @@ class BoardContent extends React.Component {
             />
           )
         })}
+        <ColumnForm createColumn={createColumn} board={board} />
       {provided.placeholder}
       </Container>
     )
