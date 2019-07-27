@@ -15,48 +15,26 @@ flex-wrap: nowrap
 `;
 
 class BoardContent extends React.Component {
-  componentWillUpdate(nextProps) {
-    if (nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
-      console.log('ran')
-      this.props.getColumns(nextProps.board._id);
-      this.props.getTasks(nextProps.board._id);
-    }
-
-    if (this.props.tasks.length !== nextProps.tasks.length) {
-      console.log('added a new tasks');
-    }
-
-  }
-  
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log('something happened')
-  }
-
-
-  displayColumns = board => {
-    return board.columnOrder.map((columnId, index) => {
-      const column = this.props.columns.filter(column => column._id === columnId);
-      if (column.length === 0) return;
-       return (
-         <Column 
-            column={column[0]} 
-            tasks={this.props.tasks}
-            taskOrder={column[0].taskOrder}
-            key={column[0]._id}
-            index={index}
-         />
-       )
-    })
-  }
-
   render() {
     const {board, provided, tasks, columns} = this.props;
-    if (!board) return '';
-
+    if (!board) return <br/>;
     return (
       <Container>
-        {this.displayColumns(board)}
-        {provided.placeholder}
+        {board.columnOrder.map((columnId, index) => {
+          const column = columns.filter(column => column._id === columnId);
+          if (column.length === 0) return;
+
+          return (
+            <Column 
+              column={column[0]} 
+              tasks={tasks} 
+              taskOrder={column[0].taskOrder}
+              key={column[0]._id}
+              index={index} 
+            />
+          )
+        })}
+      {provided.placeholder}
       </Container>
     )
   }

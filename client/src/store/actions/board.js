@@ -2,12 +2,10 @@ import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUM
 import axios from 'axios';
 import {getCookie} from '../../utils/cookies';
 
-// Everything uses document.cookies.token
-const token = getCookie('token');
-
 export const createBoard =  boardData => {
   return async dispatch => {
     try {
+      const token = getCookie('token');
       const results = await axios.post('/boards', boardData, {
         headers: {'Authorization': "bearer " + token},
       });
@@ -26,9 +24,11 @@ export const createBoard =  boardData => {
 export const getBoards = userId => {
   return async dispatch => {
     try {
+      const token = getCookie('token');
       const results = await axios.get(`/boards?userId=${userId}`, {
         headers: {'Authorization': "bearer " + token},
       });
+      console.log(results);
       dispatch({
         type: GET_BOARDS,
         payload: {
@@ -43,6 +43,7 @@ export const getBoards = userId => {
 
 export const getBoard = (boardId, userId) => {
   return async dispatch => {
+    const token = getCookie('token');
     const results = await axios.get(`/boards/board?userId=${userId}&id=${boardId}`, {
       headers: {'Authorization': "bearer " + token},
     });
@@ -57,7 +58,7 @@ export const getBoard = (boardId, userId) => {
 export const rearrangeBoardColumns = (board, columnOrder) => {
   return async dispatch => {
     try {
-      const token = document.cookie.replace('token=', '');
+      const token = getCookie('token');
       const updatedBoard = {
         ...board,
         columnOrder: columnOrder
@@ -82,6 +83,7 @@ export const rearrangeBoardColumns = (board, columnOrder) => {
 export const updateBoardColumns = (newColumn, board) => {
   return async dispatch => {
     try {
+      const token = getCookie('token');
       const updatedBoard = {
         ...board,
         columnOrder: [...board.columnOrder, newColumn._id]

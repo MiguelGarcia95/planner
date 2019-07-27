@@ -4,10 +4,9 @@ import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
 import Navbar from '../layout/Navbar';
-import Column from '../layout/Column';
 import ColumnForm from '../layout/ColumnForm';
 import Redirect from '../layout/Redirect';
-import BoardContents from '../layout/BoardContent';
+import BoardContent from '../layout/BoardContent';
 
 import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
 import {createColumn, getColumns, rearrangeColumnTasks} from '../../store/actions/column';
@@ -32,29 +31,6 @@ const Container = styled.section`
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
 `;
 
-const BoardContent = ({board, provided, tasks, columns}) => {
-    if (!board) return <br/>;
-    return (
-      <React.Fragment>
-        {board.columnOrder.map((columnId, index) => {
-          const column = columns.filter(column => column._id === columnId);
-          if (column.length === 0) return;
-
-          return (
-            <Column 
-              column={column[0]} 
-              tasks={tasks} 
-              taskOrder={column[0].taskOrder}
-              key={column[0]._id}
-              index={index} 
-            />
-          )
-        })}
-      {provided.placeholder}
-      </React.Fragment>
-    )
-}
-
 class Board extends React.Component {
   state = {}
 
@@ -64,7 +40,6 @@ class Board extends React.Component {
     }
 
     if (this.props.board && this.props.board.columnOrder.length !== 0 && this.props.columns.length === 0) {
-      console.log('ran')
       this.props.getColumns(this.props.board._id);
       this.props.getTasks(this.props.board._id);
     }
@@ -75,8 +50,8 @@ class Board extends React.Component {
       this.props.getBoard(this.props.match.params.boardId, nextProps.user._id);
     }
 
-    if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
-      console.log('ran')
+    if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0 && nextProps.tasks.length === 0) {
+      console.log('componentWillUpdate ran')
       this.props.getColumns(nextProps.board._id);
       this.props.getTasks(nextProps.board._id);
     }
