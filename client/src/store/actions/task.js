@@ -1,9 +1,10 @@
 import {CREATE_TASK, DELETE_ALL_COLUMN_TASKS, DELETE_TASK, REARRANGE_TASKS, GET_TASKS} from './types';
 import axios from 'axios';
 import {updateColumnTasks} from './column';
+import {getCookie} from '../../utils/cookies';
 
 // Everything uses document.cookies.token
-const token = document.cookie.replace('token=', '');
+const token = getCookie('token');
 
 export const createTask = (taskData, column) => {
   return async dispatch => {

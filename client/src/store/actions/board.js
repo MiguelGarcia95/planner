@@ -1,8 +1,9 @@
 import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS} from './types';
 import axios from 'axios';
+import {getCookie} from '../../utils/cookies';
 
 // Everything uses document.cookies.token
-const token = document.cookie.replace('token=', '');
+const token = getCookie('token');
 
 export const createBoard =  boardData => {
   return async dispatch => {

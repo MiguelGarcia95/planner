@@ -2,9 +2,10 @@
 import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS} from './types';
 import {updateBoardColumns} from './board';
 import axios from 'axios';
+import {getCookie} from '../../utils/cookies';
 
 // Everything uses document.cookies.token
-const token = document.cookie.replace('token=', '');
+const token = getCookie('token');
 
 
 export const createColumn = (columnData, board) => {

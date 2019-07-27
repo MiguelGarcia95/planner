@@ -5,8 +5,6 @@ import {setCookie, deleteCookie, getCookie} from '../../utils/cookies';
 
 export const logout = () => {
   return dispatch => {
-    // document.cookie = 'token=';
-    console.log(document.cookie);
     deleteCookie('token');
     dispatch({
       type: LOGOUT,
@@ -20,7 +18,6 @@ export const logout = () => {
 export const signin = userData => {
   return async dispatch => {
     const results = await axios.post('/auth/login', userData);
-    // document.cookie = `token=${results.data.token}`;
     setCookie('token', results.data.token, 2);
     dispatch({
       type: SIGNIN,
@@ -48,9 +45,7 @@ export const signup = userData => {
 
 export const signinWithToken = () => {
   return async dispatch => {
-    // const token = document.cookie.replace('token=', '');
     const token = getCookie('token');
-    console.log(token)
     const results = await axios.post('/auth/loginWithToken', null, {
       headers: {'Authorization': "bearer " + token},
     });
