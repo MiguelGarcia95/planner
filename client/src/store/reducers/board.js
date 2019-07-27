@@ -3,6 +3,7 @@ import {CREATE_BOARD, GET_BOARDS, GET_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOA
 const initialState = {
   currentBoard: null,
   boards: [],
+  started: false,
 };
 
 const board = (state = initialState, action) => {
@@ -25,7 +26,8 @@ const board = (state = initialState, action) => {
     case GET_BOARDS:
       return {
         ...state,
-        boards: action.payload.boards
+        boards: action.payload.boards,
+        started: true,
       }
     case GET_BOARD:
       return {

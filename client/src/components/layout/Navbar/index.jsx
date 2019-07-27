@@ -7,6 +7,7 @@ import {signinWithToken, logout} from '../../../store/actions/auth';
 
 import SettingsModal from '../SettingsModal';
 import BoardModal from '../BoardModal';
+import {getCookie} from '../../../utils/cookies';
 
 const Container = styled.section`
   height: 50px;
@@ -61,9 +62,9 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
-    if (document.cookie.replace('token=', '') !== '' && !this.props.user) {
+    if (getCookie('token') !== '' && !this.props.user) {
       this.props.signinWithToken();
-    } else if (document.cookie.replace('token=', '') === '') {
+    } else if (getCookie('token') === '') {
       this.props.history.push('/login');
     }
   }

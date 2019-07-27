@@ -36,10 +36,16 @@ const Boards = styled.section`
 `;
 
 class App extends React.Component {
+  // componentDidMount() {
+  //   if (this.props.user) {
+  //     this.props.getBoards(this.props.user._id);
+  //   }
+  // }
+
   componentWillUpdate(nextProps) {
-    if (!this.props.user && nextProps.user) {
+    if (!this.props.user && nextProps.user || !nextProps.started) {
       this.props.getBoards(nextProps.user._id);
-    }
+    } 
   }
 
   displayBoards = () => {
@@ -63,7 +69,8 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return {
     boards: state.board.boards,
-    user: state.auth.user
+    user: state.auth.user,
+    started: state.board.started,
   }
 }
 

@@ -58,10 +58,21 @@ const BoardContent = ({board, provided, tasks, columns}) => {
 class Board extends React.Component {
   state = {}
 
+  componentDidMount() {
+    if (this.props.user) {
+      this.props.getBoard(this.props.match.params.boardId, this.props.user._id);
+    }
+
+    if (this.props.board && this.props.board.columnOrder.length !== 0 && this.props.columns.length === 0) {
+      console.log('ran')
+      this.props.getColumns(this.props.board._id);
+      this.props.getTasks(this.props.board._id);
+    }
+  }
+
   componentWillUpdate(nextProps) {
     if (nextProps.user && !this.props.user) {
       this.props.getBoard(this.props.match.params.boardId, nextProps.user._id);
-      console.log(nextProps.user)
     }
 
     if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
@@ -69,17 +80,6 @@ class Board extends React.Component {
       this.props.getColumns(nextProps.board._id);
       this.props.getTasks(nextProps.board._id);
     }
-
-
-    // if (this.props.board) {
-    //   if (this.props.board.columnOrder.length !== nextProps.board.columnOrder.length) {
-    //     console.log('gained new columns');
-    //   }
-
-    //   if (this.props.tasks.length !== nextProps.tasks.length) {
-    //     console.log('added a new tasks');
-    //   }
-    // }
   }
 
   onDragEnd = result => {
