@@ -17,15 +17,17 @@ import TaskForm from '../TaskForm';
 
 const Container = styled.section`
   width: 250px;
-  height: 200px;
+  ${props => `
+    height: ${100 + props.tasks * 80}px;
+  `}
   // For Column
-  flex: 0 0 auto;
-  margin: 0 20px;
+  // flex: 0 0 auto;
   background: rgba(240,240,240,1);
   border-radius: 10px;
-  margin-top:50px;
+  margin: 50px 20px;
+
   padding: 10px;
-  border-sizing: border-box;
+  box-sizing: border-box;
   h1 {
     font-size: 1em;
     line-height: 40px;
@@ -47,13 +49,12 @@ const Container = styled.section`
     font-size: 1em;
     word-wrap: break-word;
     margin: 10px 0px;
-
   }
 `;
 
 const DroppableContainer = styled.section`
   ${props => props.isDraggingOver && `
-  background: red
+    background: red
   `}
 `;
 
@@ -74,6 +75,7 @@ class Column extends React.PureComponent {
             {...provided.draggableProps}
             ref={provided.innerRef}
             {...provided.dragHandleProps} 
+            tasks={this.props.taskOrder.length}
           >
             <p className='title'>{this.props.column.name}</p>
             <Droppable droppableId={this.props.column._id} type='task' >
