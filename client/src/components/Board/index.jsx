@@ -132,7 +132,7 @@ class Board extends React.Component {
           <Droppable droppableId="all-columns" direction='horizontal' type='column'>
             {provided => (
               <Container {...provided.droppableProps} ref={provided.innerRef} >
-                <Navbar />
+                <Navbar history={this.props.history} />
                 <BoardContent 
                   tasks={tasks}
                   board={board}
