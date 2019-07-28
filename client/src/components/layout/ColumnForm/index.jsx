@@ -14,8 +14,7 @@ const Container = styled.section`
   h3 {
     line-height: 40px;
     color: white;
-  background-color: rgba(0,0,0,0.5);
-
+    background-color: rgba(0,0,0,0.5);
     font-weight: 400;
     overflow: hidden;
   }
@@ -30,7 +29,7 @@ const Container = styled.section`
 const Form = styled.section`
   width: 250px;
   height: 0px;
-  background-color: red;
+  background: rgb(240,240,240);
   overflow: hidden;
   input {
     width: 230px;
@@ -41,19 +40,20 @@ const Form = styled.section`
     margin-top: 10px;
     border: none;
   }
-  p {
+  p, button {
     width: 120px;
     height: 30px;
     line-height: 30px;
-    margin: 0;
-    background: green;
-    float: left;
     cursor: pointer;
+    margin: 0;
+    color: white;
+  }
+  p {
+    background: rgb(213,78,78);
+    float: left;
   }
   button {
-    width: 80px;
-    height: 30px;
-    background: red;
+    background: rgb(100,180,100);
     float: right;
     border: none;
   }

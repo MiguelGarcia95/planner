@@ -21,7 +21,7 @@ const Container = styled.section`
     height: ${130 + props.tasks * 50}px;
   `}
   max-height: 100%;
-  background: rgba(240,240,240,1);
+  background: rgb(240,240,240);
   border-radius: 10px;
   margin: 50px 20px;
   margin-bottom: 0px;

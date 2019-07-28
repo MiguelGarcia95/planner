@@ -30,21 +30,24 @@ const Form = styled.section`
     padding: 2px;
     border: none;
     resize: none;
+    box-sizing: border-box;
+    height: 40px;
   }
   p, button {
     width: 100px;
     line-height: 25px;
     height: 25px;
     cursor: pointer;
+    color: white;
   }
   p {
-    background: green;
+    background: rgb(213,78,78);
     text-align: center;
     margin: 0;
     float: left;
   }
   button {
-    background: red;
+    background: rgb(100,180,100);
     float: right;
     border: none;
     padding: 0;
@@ -81,7 +84,7 @@ class TaskForm extends React.Component {
         <h3 onClick={this.taskFormToggle} >Add Task</h3>
         <Form open={this.state.taskForm}>
           <form onSubmit={this.onSubmit}>
-            <textarea name='column_name' onChange={this.setTaskName} value={this.state.taskName} />
+            <textarea name='column_name' placeholder='task ...' onChange={this.setTaskName} value={this.state.taskName} />
             <p onClick={() => this.taskFormToggle()}>Cancel</p>
             <button>Add</button>
           </form>
