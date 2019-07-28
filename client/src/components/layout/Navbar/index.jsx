@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {createBoard} from '../../../store/actions/board';
 import {signinWithToken, logout} from '../../../store/actions/auth';
 
-import SettingsModal from '../SettingsModal';
 import BoardModal from '../BoardModal';
 import {getCookie} from '../../../utils/cookies';
 
@@ -55,7 +54,6 @@ const Nav = styled.section`
 
 class Navbar extends React.Component {
   state = {
-    settingsModal: false,
     boardModal: false,
     board_name: '',
     board_color: ''
@@ -76,7 +74,6 @@ class Navbar extends React.Component {
   }
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
-  toggleSettingsModal = () => this.setState({settingsModal: !this.state.settingsModal})
   onChange = e => this.setState({[e.target.name]: e.target.value});
 
   onBoardSubmit = e => {
@@ -102,7 +99,6 @@ class Navbar extends React.Component {
         <Nav>
           <section className="nav">
             <Link className='link' to='/'>Boards</Link>
-            <section className='btn' onClick={this.toggleSettingsModal} >Settings</section>
             <section className='btn' onClick={() => this.props.logout()} >Logout</section>
             <section className='btn' onClick={this.toggleBoardModal} >+</section>
           </section>
@@ -115,13 +111,6 @@ class Navbar extends React.Component {
           onSubmit={this.onBoardSubmit}
           name={this.state.board_name}
           color={this.state.board_color}
-        />
-        
-        <SettingsModal 
-          isOpen={this.state.settingsModal} 
-          toggle={this.toggleSettingsModal} 
-          onFormChange={this.onChange}
-          onSubmit={this.onSettingsSubmit}
         />
       </Container>
     )
