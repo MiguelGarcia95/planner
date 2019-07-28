@@ -17,6 +17,7 @@ import TaskForm from '../TaskForm';
 
 const Container = styled.section`
   width: 250px;
+  min-width: 250px;
   ${props => `
     height: ${130 + props.tasks * 50}px;
   `}
