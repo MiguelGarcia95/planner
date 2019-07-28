@@ -17,6 +17,8 @@ const Container = styled.section`
   text-align: center;
   margin-top: 50px;
   overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 5px;
   a {
     text-decoration: none;
     h1 {

@@ -24,7 +24,7 @@ class BoardContent extends React.Component {
       <Container>
         {board.columnOrder.map((columnId, index) => {
           const column = columns.filter(column => column._id === columnId);
-          if (column.length === 0) return;
+          if (column.length === 0) return '';
 
           return (
             <Column 
