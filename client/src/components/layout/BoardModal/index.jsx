@@ -37,10 +37,9 @@ const Form = styled.form`
   height: 100%;
   box-sizing: border-box;
   padding: 50px;
-  background: #5C258D; 
-  background: -webkit-linear-gradient(to top, #4389A2, #5C258D); 
-  background: linear-gradient(to top, #4389A2, #5C258D);
-
+  background: #11998e;  
+  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
+  background: linear-gradient(to right, #38ef7d, #11998e);
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
   text-align: center;
   input, button {
@@ -52,7 +51,7 @@ const Form = styled.form`
     height: 100px;
     line-height: 100px;
     font-size: 2em;
-    color: white;
+    color: black;
     font-weight: 300;
   }
 
@@ -61,22 +60,21 @@ const Form = styled.form`
     margin: 25px 0;
     box-sizing: border-box;
     padding: 10px;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid black;
     background-color: transparent;
   }
 
-  input::placeholder {color: white; opacity: 1;}
-  input:-ms-input-placeholder {color: white;}
-  input::-ms-input-placeholder {color: white;}
+  input::placeholder {color: black; opacity: 1;}
+  input:-ms-input-placeholder {color: black;}
+  input::-ms-input-placeholder {color: black;}
 
   button {
     height: 100px;
     cursor: pointer;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
     transition: box-shadow transform 0.5s; 
-    color: white;
+    color: black;
     font-size: 1.5em;
-    // background-color: #232323;
     background: transparent;
   }
 

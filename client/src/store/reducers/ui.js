@@ -1,4 +1,4 @@
-import {SIGNIN, SIGNUP, LOGOUT} from '../actions/types';
+import {SIGNIN} from '../actions/types';
 
 const initialState = {
 }
