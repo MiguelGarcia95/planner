@@ -53,7 +53,15 @@ export const deleteAllColumnTasks = columnId => {
 }
 
 export const deleteTask = taskId => {
-  return dispatch => {
+  return async dispatch => {
+    try {
+      const results = await axios.delete(`/tasks/delete?taskId=${taskId}`, {
+        headers: {'Authorization': "bearer " + token},
+      });
+      console.log(results);
+    } catch (error) {
+      console.log(error)      
+    }
   }
 }
 
