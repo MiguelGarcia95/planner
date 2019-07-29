@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
-import {createTask, deleteTask} from '../../../store/actions/task';
+import {createTask, deleteTask, updateTask} from '../../../store/actions/task';
 
 import Task from '../Task';
 import TaskForm from '../TaskForm';
@@ -63,11 +63,31 @@ class Column extends React.PureComponent {
     return tasks.map((task, index) => {
       const taskData = this.props.tasks.filter(currentTask => currentTask._id === task);
       if (!taskData[0]) return;
-      return <Task key={taskData[0]._id} index={index} task={taskData[0]} toggleModal={this.toggleModal} value={this.state.newTaskValue} />
+      return (
+        <Task 
+          key={taskData[0]._id} 
+          index={index} 
+          task={taskData[0]} 
+          toggleModal={this.toggleModal} 
+          value={this.state.newTaskValue} 
+        />
+      )
     })
   }
 
   onTaskChange = e => this.setState({newTaskValue: e.target.value});
+
+  onUpdateSubmit = e => {
+    e.preventDefault();
+    if (this.state.newTaskValue) {
+      const updatedTask = {
+        ...this.state.task,
+        name: this.state.newTaskValue
+      }
+      this.props.updateTask(updatedTask);
+    }
+
+  }
 
   toggleModal = task => {
     this.setState({
@@ -105,7 +125,7 @@ class Column extends React.PureComponent {
             </Container>
           )}
         </Draggable>
-        <TaskEditForm open={this.state.modal} task={this.state.task} toggleModal={this.toggleModal} />
+        <TaskEditForm open={this.state.modal} task={this.state.task} toggleModal={this.toggleModal} onSubmit={this.onUpdateSubmit} onTaskChange={this.onTaskChange}/>
       </React.Fragment>
     )
   }
@@ -114,6 +134,8 @@ class Column extends React.PureComponent {
 const mapDispatchToProps = dispatch => {
   return {
     createTask: (taskData, column) => dispatch(createTask(taskData, column)),
+    deleteTask: taskId => dispatch(deleteTask(taskId)),
+    updateTask: updatedTask => dispatch(updateTask(updatedTask)),
   }
 }
 

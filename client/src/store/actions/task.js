@@ -28,6 +28,12 @@ export const createTask = (taskData, column) => {
   }
 }
 
+export const updateTask = updatedTask => {
+  return async dispatch => {
+    console.log(updatedTask)
+  }
+}
+
 export const getTasks = boardId => {
   return async dispatch => {
     try {
