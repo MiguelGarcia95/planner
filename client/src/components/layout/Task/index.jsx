@@ -33,41 +33,22 @@ const Icon = styled.i`
   cursor: pointer;
 `;
 
-const Modal = styled.section`
-  width: 200px;
-  height: 0px;
-  background: red;
-  position: absolute;
-  ${props => props.open && `
-    height: 120px;
-  `}
-`;
-
-class Task extends React.Component {
-  state = {
-    modal: false,
-  }
-  
-  toggleModal = () => this.setState({modal: !this.state.modal});
-  
+class Task extends React.Component {  
   render() {
     return (
-      <React.Fragment>
-        <Draggable draggableId={this.props.task._id} index={this.props.index}>
-          {(provided, snapshot) => (
-            <Container
-              {...provided.draggableProps}
-              ref={provided.innerRef}
-              isDragging={snapshot.isDragging}
-              {...provided.dragHandleProps}
-            >
-              <Icon className='fas fa-edit' onClick={this.toggleModal} />
-              {this.props.task.name}
-            </Container>
-          )}
-        </Draggable>
-        <Modal open={this.state.modal} />
-      </React.Fragment>
+      <Draggable draggableId={this.props.task._id} index={this.props.index}>
+        {(provided, snapshot) => (
+          <Container
+            {...provided.draggableProps}
+            ref={provided.innerRef}
+            isDragging={snapshot.isDragging}
+            {...provided.dragHandleProps}
+          >
+            <Icon className='fas fa-edit' onClick={() => this.props.toggleModal(this.props.task._id)} />
+            {this.props.task.name}
+          </Container>
+        )}
+      </Draggable>
     )
   }
 }

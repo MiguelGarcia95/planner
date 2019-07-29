@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
-import {createTask} from '../../../store/actions/task';
+import {createTask, deleteTask} from '../../../store/actions/task';
 
 import Task from '../Task';
 import TaskForm from '../TaskForm';
@@ -28,6 +28,8 @@ const Container = styled.section`
   margin-bottom: 0px;
   padding: 10px;
   box-sizing: border-box;
+  position: relative;
+
   h1 {
     font-size: 1em;
     line-height: 40px;
@@ -41,6 +43,29 @@ const Container = styled.section`
   }
 `;
 
+const Modal = styled.section`
+  height: 0px;
+  width: 100vw;
+  max-height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 200;
+  ${props => props.open && `
+    height: 100vh;
+  `}
+  .toggleScreen {
+    background: rgba(0,0,0,.2);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+  .taskModal {
+    width: 200px;
+  position: absolute;
+  }
+`;
+
 const DroppableContainer = styled.section`
   ${props => props.isDraggingOver && `
     border: 1px solid rgba(10,10,10,0.1);
@@ -48,42 +73,59 @@ const DroppableContainer = styled.section`
 `;
 
 class Column extends React.PureComponent {
+  state = {
+    modal: false,
+    taskId: null
+  }
+
   displayTasks = tasks => {
     return tasks.map((task, index) => {
       const taskData = this.props.tasks.filter(currentTask => currentTask._id === task);
       if (!taskData[0]) return;
-      return <Task key={taskData[0]._id} index={index} task={taskData[0]} />
+      return <Task key={taskData[0]._id} index={index} task={taskData[0]} toggleModal={this.toggleModal} />
     })
   }
 
+  toggleModal = taskId => {
+    this.setState({
+      modal: !this.state.modal,
+      taskId: taskId
+    })
+  };
+
   render() {
     return (
-      <Draggable draggableId={this.props.column._id} index={this.props.index}>
-        {(provided) => (
-          <Container
-            {...provided.draggableProps}
-            ref={provided.innerRef}
-            {...provided.dragHandleProps} 
-            tasks={this.props.taskOrder.length}
-          >
-            <p className='title'>{this.props.column.name}</p>
-            <Droppable droppableId={this.props.column._id} type='task' >
-              {(provided, snapshot) => (
-                <DroppableContainer
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                  isDraggingOver={snapshot.isDraggingOver}
-                >
-                  {this.displayTasks(this.props.taskOrder)}
-                  <TaskForm createTask={this.props.createTask} column={this.props.column} />
-                  {provided.placeholder}
-                </DroppableContainer>
-              )}
-            </Droppable>
+      <React.Fragment>
+        <Draggable draggableId={this.props.column._id} index={this.props.index}>
+          {(provided) => (
+            <Container
+              {...provided.draggableProps}
+              ref={provided.innerRef}
+              {...provided.dragHandleProps} 
+              tasks={this.props.taskOrder.length}
+            >
+              <p className='title'>{this.props.column.name}</p>
+              <Droppable droppableId={this.props.column._id} type='task' >
+                {(provided, snapshot) => (
+                  <DroppableContainer
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    isDraggingOver={snapshot.isDraggingOver}
+                  >
+                    {this.displayTasks(this.props.taskOrder)}
+                    <TaskForm createTask={this.props.createTask} column={this.props.column} />
+                    {provided.placeholder}
+                  </DroppableContainer>
+                )}
+              </Droppable>
 
-          </Container>
-        )}
-      </Draggable>
+            </Container>
+          )}
+        </Draggable>
+        <Modal open={this.state.modal}>
+          <section className="toggleScreen"></section>
+        </Modal>
+      </React.Fragment>
     )
   }
 }
