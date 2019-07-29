@@ -85,6 +85,7 @@ class Column extends React.PureComponent {
         name: this.state.newTaskValue
       }
       this.props.updateTask(updatedTask);
+      this.setState({modal: false})
     }
 
   }

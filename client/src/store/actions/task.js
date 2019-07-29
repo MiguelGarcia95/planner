@@ -30,7 +30,10 @@ export const createTask = (taskData, column) => {
 
 export const updateTask = updatedTask => {
   return async dispatch => {
-    console.log(updatedTask)
+    const results = await axios.patch('/tasks/updateTask', updatedTask, {
+      headers: {'Authorization': "bearer " + token},
+    });
+    console.log(results)
   }
 }
 
