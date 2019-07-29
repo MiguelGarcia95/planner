@@ -34,8 +34,7 @@ const Form = styled.section`
   color: white;
 `;
 
-function TaskEditForm({task, toggleModal, open}) {
-
+function TaskEditForm({task, toggleModal, open, onTaskChange, value}) {
   return (
     <Modal open={open}>
       <section className="toggleScreen" onClick={toggleModal}></section>
@@ -43,7 +42,7 @@ function TaskEditForm({task, toggleModal, open}) {
         <Form>
           <h1>{task.name}</h1>
           <form>
-            <input name='name' value={task.name}  />
+            <input name='name' value={value} onChange={onTaskChange}  />
             <button>Update</button>
           </form>
           <section className='delete' onClick={() => console.log('Delete')} >

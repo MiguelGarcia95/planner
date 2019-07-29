@@ -55,16 +55,19 @@ const DroppableContainer = styled.section`
 class Column extends React.PureComponent {
   state = {
     modal: false,
-    task: null
+    task: null,
+    newTaskValue: '',
   }
 
   displayTasks = tasks => {
     return tasks.map((task, index) => {
       const taskData = this.props.tasks.filter(currentTask => currentTask._id === task);
       if (!taskData[0]) return;
-      return <Task key={taskData[0]._id} index={index} task={taskData[0]} toggleModal={this.toggleModal} />
+      return <Task key={taskData[0]._id} index={index} task={taskData[0]} toggleModal={this.toggleModal} value={this.state.newTaskValue} />
     })
   }
+
+  onTaskChange = e => this.setState({newTaskValue: e.target.value});
 
   toggleModal = task => {
     this.setState({
