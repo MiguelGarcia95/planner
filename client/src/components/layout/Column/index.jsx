@@ -7,6 +7,7 @@ import {createTask, deleteTask} from '../../../store/actions/task';
 
 import Task from '../Task';
 import TaskForm from '../TaskForm';
+import TaskEditForm from '../TaskEditForm';
 
 /* 
   Location: /boardID/boardName page
@@ -43,28 +44,7 @@ const Container = styled.section`
   }
 `;
 
-const Modal = styled.section`
-  height: 0px;
-  width: 100vw;
-  max-height: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
-  z-index: 200;
-  ${props => props.open && `
-    height: 100vh;
-  `}
-  .toggleScreen {
-    background: rgba(0,0,0,.2);
-    height: 100%;
-    width: 100%;
-    position: absolute;
-  }
-  .taskModal {
-    width: 200px;
-  position: absolute;
-  }
-`;
+
 
 const DroppableContainer = styled.section`
   ${props => props.isDraggingOver && `
@@ -75,7 +55,7 @@ const DroppableContainer = styled.section`
 class Column extends React.PureComponent {
   state = {
     modal: false,
-    taskId: null
+    task: null
   }
 
   displayTasks = tasks => {
@@ -86,10 +66,10 @@ class Column extends React.PureComponent {
     })
   }
 
-  toggleModal = taskId => {
+  toggleModal = task => {
     this.setState({
       modal: !this.state.modal,
-      taskId: taskId
+      task: this.state.modal ? null : task
     })
   };
 
@@ -122,9 +102,7 @@ class Column extends React.PureComponent {
             </Container>
           )}
         </Draggable>
-        <Modal open={this.state.modal}>
-          <section className="toggleScreen"></section>
-        </Modal>
+        <TaskEditForm open={this.state.modal} task={this.state.task} toggleModal={this.toggleModal} />
       </React.Fragment>
     )
   }

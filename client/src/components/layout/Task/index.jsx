@@ -44,7 +44,7 @@ class Task extends React.Component {
             isDragging={snapshot.isDragging}
             {...provided.dragHandleProps}
           >
-            <Icon className='fas fa-edit' onClick={() => this.props.toggleModal(this.props.task._id)} />
+            <Icon className='fas fa-edit' onClick={() => this.props.toggleModal(this.props.task)} />
             {this.props.task.name}
           </Container>
         )}
