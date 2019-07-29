@@ -4,17 +4,17 @@ module.exports = {
   index: async (req, res) => {
     try {
       const tasks = await Task.find({'boardId': req.query.boardId});
-      res.status(201).send(tasks);
+      res.status(201).send({tasks});
     } catch (error) {
       res.status(400).send({error});
     }
   },
 
   create: async (req, res) => {
-    const tasks = new Task(req.body);
+    const task = new Task(req.body);
     try {
-      await tasks.save();
-      res.status(201).send(tasks);
+      await task.save();
+      res.status(201).send({task});
     } catch (error) {
       res.status(400).send({error});
     }
@@ -23,7 +23,7 @@ module.exports = {
   updateTask: async (req, res) => {
     try {
       const task = await Task.findByIdAndUpdate(req.body._id, {$set:req.body});
-      console.log(task);
+      res.status(201).send({task});
     } catch (error) {
       res.status(400).send({error});    
     }

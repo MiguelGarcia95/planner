@@ -19,7 +19,7 @@ export const createTask = (taskData, column) => {
       dispatch({
         type: CREATE_TASK,
         payload: {
-          task: results.data
+          task: results.data.task
         },
       })
     } catch (error) {
@@ -47,7 +47,7 @@ export const getTasks = boardId => {
       dispatch({
         type: GET_TASKS,
         payload: {
-          tasks: results.data
+          tasks: results.data.tasks
         },
       })
     } catch (error) {
