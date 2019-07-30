@@ -8,6 +8,7 @@ import {createTask, deleteTask, updateTask} from '../../../store/actions/task';
 import Task from '../Task';
 import TaskForm from '../TaskForm';
 import TaskEditForm from '../TaskEditForm';
+import ColumnEditForm from '../ColumnEditForm';
 
 /* 
   Location: /boardID/boardName page
@@ -37,9 +38,12 @@ const Container = styled.section`
   }
   .title {
     font-size: 1.1em;
-    line-height: 30px;
+    line-height: 20px;
     font-weight: 500;
-    padding-left: 10px;
+  }
+  .settings {
+    margin: 5px;
+    cursor: pointer;
   }
 `;
 
@@ -56,6 +60,8 @@ class Column extends React.PureComponent {
     modal: false,
     task: null,
     newTaskValue: '',
+    newColumnValue: '',
+    columnModal: false,
   }
 
   displayTasks = tasks => {
@@ -67,7 +73,7 @@ class Column extends React.PureComponent {
           key={taskData[0]._id} 
           index={index} 
           task={taskData[0]} 
-          toggleModal={this.toggleModal} 
+          toggleModal={this.toggleTaskModal} 
           value={this.state.newTaskValue} 
         />
       )
@@ -93,12 +99,14 @@ class Column extends React.PureComponent {
     this.setState({modal: false})
   }
 
-  toggleModal = task => {
+  toggleTaskModal = task => {
     this.setState({
       modal: !this.state.modal,
       task: this.state.modal ? null : task
     })
   };
+
+  toggleColumnModal = () => this.setState({columnModal: !this.state.columnModal})
 
   render() {
     return (
@@ -112,6 +120,7 @@ class Column extends React.PureComponent {
               tasks={this.props.taskOrder.length}
             >
               <p className='title'>{this.props.column.name}</p>
+              <i className="fas fa-ellipsis-h settings" style={{position: 'absolute', right: 0, top: 0,}}></i>
               <Droppable droppableId={this.props.column._id} type='task' >
                 {(provided, snapshot) => (
                   <DroppableContainer
@@ -132,7 +141,7 @@ class Column extends React.PureComponent {
         <TaskEditForm 
           open={this.state.modal} 
           task={this.state.task} 
-          toggleModal={this.toggleModal} 
+          toggleModal={this.toggleTaskModal} 
           onSubmit={this.onUpdateSubmit} 
           onTaskChange={this.onTaskChange}
           onTaskDelete={this.onTaskDelete}

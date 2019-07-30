@@ -70,18 +70,18 @@ const Form = styled.section`
   }
 `;
 
-function TaskEditForm({task, toggleModal, open, onTaskChange, value, onSubmit, onTaskDelete}) {
+function ColumnTaskForm({column, toggleModal, open, onTaskChange, value, onSubmit, onTaskDelete}) {
   return (
     <Modal open={open}>
       <section className="toggleScreen" onClick={toggleModal}></section>
-      {task && 
+      {column && 
         <Form>
-          <h1>Task: {task.name}</h1>
+          <h1>Task: {column.name}</h1>
           <form onSubmit={onSubmit}>
-            <input name='name' value={value} onChange={onTaskChange} placeholder='Edit Task' />
+            <input name='name' value={value} onChange={onTaskChange} placeholder='Edit Column Name' />
             <button>Update</button>
           </form>
-          <section className='delete' onClick={() => onTaskDelete(task._id)} >
+          <section className='delete' onClick={() => onTaskDelete(column._id)} >
             <p>Click To Delete</p>
           </section>
         </Form>
@@ -90,4 +90,4 @@ function TaskEditForm({task, toggleModal, open, onTaskChange, value, onSubmit, o
   )
 }
 
-export default TaskEditForm;
+export default ColumnTaskForm;
