@@ -1,6 +1,6 @@
 import {CREATE_TASK, DELETE_ALL_COLUMN_TASKS, DELETE_TASK, GET_TASKS, UPDATE_TASK} from './types';
 import axios from 'axios';
-import {updateColumnTasks} from './column';
+import {updateColumnTasks, removeTaskFromColumn} from './column';
 import {getCookie} from '../../utils/cookies';
 
 export const createTask = (taskData, column) => {
@@ -71,6 +71,10 @@ export const deleteTask = (taskId, column) => {
       await axios.delete(`/tasks/delete?taskId=${taskId}`, {
         headers: {'Authorization': "bearer " + token},
       });
+
+      // change column taskOrder
+      dispatch(removeTaskFromColumn(column, taskId));
+
       dispatch({
         type: DELETE_TASK,
         payload: {

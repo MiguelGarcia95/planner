@@ -77,11 +77,32 @@ export const updateColumnTasks = (newTask, column) => {
   }
 }
 
-// export const removeTaskFromColumn = (column, taskId) => {
-//   return async dispatch => {
+export const removeTaskFromColumn = (column, taskId) => {
+  return async dispatch => {
+    const token = getCookie('token');
 
-//   }
-// }
+    console.log(column);
+
+    const updatedColumn = {
+      ...column,
+      taskOrder: column.taskOrder.filter(task => task !== taskId),
+    }
+
+    console.log(updatedColumn);
+
+
+    await axios.patch('/columns/updateColumnTasks', updatedColumn, {
+      headers: {'Authorization': "bearer " + token},
+    });
+
+    dispatch({
+      type: UPDATE_COLUMN_TASK,
+      payload: {
+        updatedColumn: updatedColumn
+      }
+    })
+  }
+}
 
 export const rearrangeColumnTasks = (column, taskOrder) => {
   return async dispatch => {
