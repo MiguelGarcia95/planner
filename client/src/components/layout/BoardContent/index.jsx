@@ -10,7 +10,7 @@ const Container = styled.section`
   height: 100vh;
   max-height: 100%;
   margin: auto;
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: none;
   flex-wrap: nowrap
   -webkit-overflow-scrolling: touch; /* [4] */

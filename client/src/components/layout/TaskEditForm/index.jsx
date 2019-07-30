@@ -70,7 +70,7 @@ const Form = styled.section`
   }
 `;
 
-function TaskEditForm({task, toggleModal, open, onTaskChange, value, onSubmit}) {
+function TaskEditForm({task, toggleModal, open, onTaskChange, value, onSubmit, deleteTask}) {
   return (
     <Modal open={open}>
       <section className="toggleScreen" onClick={toggleModal}></section>
@@ -81,7 +81,7 @@ function TaskEditForm({task, toggleModal, open, onTaskChange, value, onSubmit}) 
             <input name='name' value={value} onChange={onTaskChange} placeholder='Edit Task' />
             <button>Update</button>
           </form>
-          <section className='delete' onClick={() => console.log('Delete')} >
+          <section className='delete' onClick={() => deleteTask(task._id)} >
             <p>Click To Delete</p>
           </section>
         </Form>

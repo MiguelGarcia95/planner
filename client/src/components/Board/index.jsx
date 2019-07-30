@@ -52,7 +52,7 @@ class Board extends React.Component {
     }
 
     if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0 && nextProps.tasks.length === 0) {
-      console.log('componentWillUpdate ran')
+      console.log('componentWillUpdate ran');
       this.props.getColumns(nextProps.board._id);
       this.props.getTasks(nextProps.board._id);
     }

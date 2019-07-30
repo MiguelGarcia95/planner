@@ -30,7 +30,6 @@ const Container = styled.section`
   padding: 10px;
   box-sizing: border-box;
   position: relative;
-
   h1 {
     font-size: 1em;
     line-height: 40px;
@@ -126,7 +125,14 @@ class Column extends React.PureComponent {
             </Container>
           )}
         </Draggable>
-        <TaskEditForm open={this.state.modal} task={this.state.task} toggleModal={this.toggleModal} onSubmit={this.onUpdateSubmit} onTaskChange={this.onTaskChange}/>
+        <TaskEditForm 
+          open={this.state.modal} 
+          task={this.state.task} 
+          toggleModal={this.toggleModal} 
+          onSubmit={this.onUpdateSubmit} 
+          onTaskChange={this.onTaskChange}
+          deleteTask={this.deleteTask}
+        />
       </React.Fragment>
     )
   }
