@@ -1,4 +1,4 @@
-import {CREATE_TASK, DELETE_ALL_COLUMN_TASKS, DELETE_TASK, GET_TASKS} from './types';
+import {CREATE_TASK, DELETE_ALL_COLUMN_TASKS, DELETE_TASK, GET_TASKS, UPDATE_TASK} from './types';
 import axios from 'axios';
 import {updateColumnTasks} from './column';
 import {getCookie} from '../../utils/cookies';
@@ -15,7 +15,6 @@ export const createTask = (taskData, column) => {
       });
       // Add Task to column order
       dispatch(updateColumnTasks(results.data, column));
-
       dispatch({
         type: CREATE_TASK,
         payload: {
@@ -33,7 +32,12 @@ export const updateTask = updatedTask => {
     const results = await axios.patch('/tasks/updateTask', updatedTask, {
       headers: {'Authorization': "bearer " + token},
     });
-    console.log(results)
+    dispatch({
+      type: UPDATE_TASK,
+      payload: {
+        updatedTask: results.data.task
+      },
+    })
   }
 }
 
@@ -64,10 +68,15 @@ export const deleteAllColumnTasks = columnId => {
 export const deleteTask = taskId => {
   return async dispatch => {
     try {
-      const results = await axios.delete(`/tasks/delete?taskId=${taskId}`, {
+      await axios.delete(`/tasks/delete?taskId=${taskId}`, {
         headers: {'Authorization': "bearer " + token},
       });
-      console.log(results);
+      dispatch({
+        type: DELETE_TASK,
+        payload: {
+          taskId: taskId
+        }
+      })
     } catch (error) {
       console.log(error)      
     }
