@@ -86,7 +86,11 @@ class Column extends React.PureComponent {
       this.props.updateTask(updatedTask);
       this.setState({modal: false})
     }
+  }
 
+  onTaskDelete = taskId => {
+    this.props.deleteTask(taskId, this.props.column);
+    this.setState({modal: false})
   }
 
   toggleModal = task => {
@@ -131,8 +135,7 @@ class Column extends React.PureComponent {
           toggleModal={this.toggleModal} 
           onSubmit={this.onUpdateSubmit} 
           onTaskChange={this.onTaskChange}
-          deleteTask={this.props.deleteTask}
-          column={this.props.column}
+          onTaskDelete={this.onTaskDelete}
         />
       </React.Fragment>
     )

@@ -81,15 +81,10 @@ export const removeTaskFromColumn = (column, taskId) => {
   return async dispatch => {
     const token = getCookie('token');
 
-    console.log(column);
-
     const updatedColumn = {
       ...column,
       taskOrder: column.taskOrder.filter(task => task !== taskId),
     }
-
-    console.log(updatedColumn);
-
 
     await axios.patch('/columns/updateColumnTasks', updatedColumn, {
       headers: {'Authorization': "bearer " + token},
