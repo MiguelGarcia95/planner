@@ -77,6 +77,12 @@ export const updateColumnTasks = (newTask, column) => {
   }
 }
 
+// export const removeTaskFromColumn = (column, taskId) => {
+//   return async dispatch => {
+
+//   }
+// }
+
 export const rearrangeColumnTasks = (column, taskOrder) => {
   return async dispatch => {
     try {

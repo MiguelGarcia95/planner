@@ -131,7 +131,8 @@ class Column extends React.PureComponent {
           toggleModal={this.toggleModal} 
           onSubmit={this.onUpdateSubmit} 
           onTaskChange={this.onTaskChange}
-          deleteTask={this.deleteTask}
+          deleteTask={this.props.deleteTask}
+          column={this.props.column}
         />
       </React.Fragment>
     )
@@ -141,7 +142,7 @@ class Column extends React.PureComponent {
 const mapDispatchToProps = dispatch => {
   return {
     createTask: (taskData, column) => dispatch(createTask(taskData, column)),
-    deleteTask: taskId => dispatch(deleteTask(taskId)),
+    deleteTask: (taskId, column) => dispatch(deleteTask(taskId, column)),
     updateTask: updatedTask => dispatch(updateTask(updatedTask)),
   }
 }

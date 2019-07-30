@@ -64,7 +64,7 @@ export const deleteAllColumnTasks = columnId => {
   }
 }
 
-export const deleteTask = taskId => {
+export const deleteTask = (taskId, column) => {
   return async dispatch => {
     try {
       const token = getCookie('token');

@@ -31,7 +31,7 @@ module.exports = {
 
   delete: async (req, res) => {
     try {
-      await Task.findByIdAndDelete(req.query.id);
+      await Task.findByIdAndDelete(req.query.taskId);
       res.status(200);
     } catch (error) {
       res.status(400).send({error});    
