@@ -29,6 +29,7 @@ const task = (state = initialState, action) => {
       return {
         ...state,
         tasks: replaceTask(state.tasks, action.payload.updatedTask),
+        toggled: !state.toggled,
       }
     case DELETE_TASK:
       return {

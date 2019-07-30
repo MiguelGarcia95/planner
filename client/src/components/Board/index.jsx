@@ -56,6 +56,10 @@ class Board extends React.Component {
       this.props.getColumns(nextProps.board._id);
       this.props.getTasks(nextProps.board._id);
     }
+
+    if (this.props.toggledTask !== nextProps.toggledTask) {
+      console.log('ress')
+    }
   }
 
   onDragEnd = result => {

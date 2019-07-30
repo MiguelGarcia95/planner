@@ -73,7 +73,6 @@ class TaskForm extends React.Component {
       boardId: this.props.column.boardId,
       taskOrder: []
     }
-
     this.props.createTask(task, this.props.column);
     this.resetState();
   }
