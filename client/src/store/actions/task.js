@@ -14,7 +14,7 @@ export const createTask = (taskData, column) => {
         headers: {'Authorization': "bearer " + token},
       });
       // Add Task to column order
-      dispatch(updateColumnTasks(results.data, column));
+      dispatch(updateColumnTasks(results.data.task, column));
       dispatch({
         type: CREATE_TASK,
         payload: {

@@ -58,7 +58,8 @@ class Board extends React.Component {
     }
 
     if (this.props.toggledTask !== nextProps.toggledTask) {
-      console.log('ress')
+      console.log('ress');
+      this.props.getTasks(nextProps.board._id);
     }
   }
 

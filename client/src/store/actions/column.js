@@ -29,6 +29,7 @@ export const createColumn = (columnData, board) => {
 
 export const deleteColumn = columnId => {
   return dispatch => {
+    
   }
 }
 
