@@ -129,7 +129,7 @@ class Board extends React.Component {
     } else {
       return (
         <Container>
-          <Navbar />     
+          <Navbar history={this.props.history} />
           <Redirect />
         </Container>
       )

@@ -3,13 +3,10 @@ import axios from 'axios';
 import {updateColumnTasks} from './column';
 import {getCookie} from '../../utils/cookies';
 
-// Everything uses document.cookies.token
-const token = getCookie('token');
-
 export const createTask = (taskData, column) => {
   return async dispatch => {
     try {
-      // Add Task To Database
+      const token = getCookie('token');
       const results = await axios.post('/tasks', taskData, {
         headers: {'Authorization': "bearer " + token},
       });
@@ -29,6 +26,7 @@ export const createTask = (taskData, column) => {
 
 export const updateTask = updatedTask => {
   return async dispatch => {
+    const token = getCookie('token');
     const results = await axios.patch('/tasks/updateTask', updatedTask, {
       headers: {'Authorization': "bearer " + token},
     });
@@ -44,6 +42,7 @@ export const updateTask = updatedTask => {
 export const getTasks = boardId => {
   return async dispatch => {
     try {
+      const token = getCookie('token');
       const results = await axios.get(`/tasks?boardId=${boardId}`, {
         headers: {'Authorization': "bearer " + token},
       });
@@ -68,6 +67,7 @@ export const deleteAllColumnTasks = columnId => {
 export const deleteTask = taskId => {
   return async dispatch => {
     try {
+      const token = getCookie('token');
       await axios.delete(`/tasks/delete?taskId=${taskId}`, {
         headers: {'Authorization': "bearer " + token},
       });
