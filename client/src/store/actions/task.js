@@ -60,7 +60,11 @@ export const getTasks = boardId => {
 }
 
 export const deleteAllColumnTasks = columnId => {
-  return dispatch => {
+  return async dispatch => {
+    const token = getCookie('token');
+    await axios.delete(`/tasks/deleteColumnTasks?columnId=${columnId}`, {
+      headers: {'Authorization': "bearer " + token},
+    });
   }
 }
 

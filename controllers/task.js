@@ -36,5 +36,13 @@ module.exports = {
     } catch (error) {
       res.status(400).send({error});    
     }
+  },
+
+  deleteColumnTasks: async (req, res) => {
+    try {
+      
+    } catch (error) {
+      res.status(400).send({error});
+    }
   }
 }
