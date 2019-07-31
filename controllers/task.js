@@ -40,7 +40,7 @@ module.exports = {
 
   deleteColumnTasks: async (req, res) => {
     try {
-      await Task.deleteMany({"column_id": req.query.columnId});
+      await Task.deleteMany({"columnId": req.query.columnId});
       res.status(201).send('ok');
     } catch (error) {
       res.status(400).send({error});
