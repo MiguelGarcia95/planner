@@ -34,6 +34,7 @@ class BoardContent extends React.Component {
               taskOrder={column[0].taskOrder}
               key={column[0]._id}
               index={index} 
+              board={board}
             />
           )
         })}

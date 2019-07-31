@@ -4,6 +4,7 @@ import {Droppable, Draggable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
 import {createTask, deleteTask, updateTask} from '../../../store/actions/task';
+import {deleteColumn, updateColumn} from '../../../store/actions/column';
 
 import Task from '../Task';
 import TaskForm from '../TaskForm';
@@ -81,6 +82,7 @@ class Column extends React.PureComponent {
   }
 
   onTaskChange = e => this.setState({newTaskValue: e.target.value});
+  onColumnChange = e => this.setState({newColumnValue: e.target.value});
 
   onUpdateSubmit = e => {
     e.preventDefault();
@@ -94,9 +96,26 @@ class Column extends React.PureComponent {
     }
   }
 
+  onColumnSubmit = e => {
+    e.preventDefault();
+    if (this.state.newColumnValue) {
+      const updatedColumn = {
+        ...this.props.column,
+        name: this.state.newColumnValue
+      }
+      this.props.updateTask(updatedColumn);
+      this.setState({columnModal: false})
+    }
+  }
+
   onTaskDelete = taskId => {
     this.props.deleteTask(taskId, this.props.column);
     this.setState({modal: false})
+  }
+
+  onColumnDelete = () => {
+    this.props.deleteColumn(this.props.column._id, this.props.board);
+    this.setState({columnModal: false})
   }
 
   toggleTaskModal = task => {
@@ -120,7 +139,7 @@ class Column extends React.PureComponent {
               tasks={this.props.taskOrder.length}
             >
               <p className='title'>{this.props.column.name}</p>
-              <i className="fas fa-ellipsis-h settings" style={{position: 'absolute', right: 0, top: 0,}}></i>
+              <i className="fas fa-ellipsis-h settings" onClick={this.toggleColumnModal} style={{position: 'absolute', right: 0, top: 0,}}></i>
               <Droppable droppableId={this.props.column._id} type='task' >
                 {(provided, snapshot) => (
                   <DroppableContainer
@@ -146,6 +165,14 @@ class Column extends React.PureComponent {
           onTaskChange={this.onTaskChange}
           onTaskDelete={this.onTaskDelete}
         />
+        <ColumnEditForm
+          open={this.state.columnModal}
+          column={this.props.column}
+          toggleModal={this.toggleColumnModal}
+          onSubmit={this.onColumnSubmit}
+          onColumnChange={this.onColumnChange}
+          onColumnDelete={this.onColumnDelete}
+        />
       </React.Fragment>
     )
   }
@@ -155,6 +182,7 @@ const mapDispatchToProps = dispatch => {
   return {
     createTask: (taskData, column) => dispatch(createTask(taskData, column)),
     deleteTask: (taskId, column) => dispatch(deleteTask(taskId, column)),
+    deleteColumn: (columnId, board) => dispatch(deleteColumn(columnId, board)),
     updateTask: updatedTask => dispatch(updateTask(updatedTask)),
   }
 }

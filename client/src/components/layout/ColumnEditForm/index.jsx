@@ -70,18 +70,18 @@ const Form = styled.section`
   }
 `;
 
-function ColumnTaskForm({column, toggleModal, open, onTaskChange, value, onSubmit, onTaskDelete}) {
+function ColumnTaskForm({column, toggleModal, open, onColumnChange, value, onSubmit, onColumnDelete}) {
   return (
     <Modal open={open}>
       <section className="toggleScreen" onClick={toggleModal}></section>
       {column && 
         <Form>
-          <h1>Task: {column.name}</h1>
+          <h1>Column: {column.name}</h1>
           <form onSubmit={onSubmit}>
-            <input name='name' value={value} onChange={onTaskChange} placeholder='Edit Column Name' />
+            <input name='name' value={value} onChange={onColumnChange} placeholder='New Column Name' />
             <button>Update</button>
           </form>
-          <section className='delete' onClick={() => onTaskDelete(column._id)} >
+          <section className='delete' onClick={() => onColumnDelete(column._id)} >
             <p>Click To Delete</p>
           </section>
         </Form>
