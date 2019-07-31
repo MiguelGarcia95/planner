@@ -19,6 +19,16 @@ exports.create = async (req, res) => {
   }
 }
 
+exports.updateColumn = async (req, res) => {
+  try {
+    console.log(req.body);
+    const column = await Column.findByIdAndUpdate(req.body._id, {$set:req.body});
+    res.status(201).send({column});
+  } catch (error) {
+    res.status(400).send({error});
+  }
+}
+
 exports.updateColumnTasks = async (req, res) => {
   try {
     const column = await Column.findByIdAndUpdate(req.body._id, {$set:req.body});

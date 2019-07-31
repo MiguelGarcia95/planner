@@ -1,5 +1,5 @@
 // import {DELETE_ALL_BOARD_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
-import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS, DELETE_COLUMN, } from './types';
+import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS, DELETE_COLUMN, UPDATE_COLUMN} from './types';
 import {updateBoardColumns, removeColumnFromBoard} from './board';
 import {deleteAllColumnTasks} from './task';
 import axios from 'axios';
@@ -46,8 +46,18 @@ export const deleteColumn = (columnId, board) => {
 }
 
 export const updateColumn = updatedColumn => {
-  return dispatch => {
-    console.log(updatedColumn);
+  return async dispatch => {
+    const token = getCookie('token');
+    const results = await axios.patch('/columns/updateColumn', updatedColumn, {
+      headers: {'Authorization': "bearer " + token},
+    });
+
+    dispatch({
+      type: UPDATE_COLUMN,
+      payload: {
+        updatedColumn: results.data.column
+      },
+    })
   }
 }
 
