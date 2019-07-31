@@ -25,13 +25,12 @@ export const createColumn = (columnData, board) => {
 }
 
 export const deleteColumn = (columnId, board) => {
-  return dispatch => {
-    console.log(columnId);
-    console.log(board);
-    // await axios.delete(`/columns/delete?columnId=${columnId}`, {
-    //   headers: {'Authorization': "bearer " + token},
-    // });
-    dispatch(removeColumnFromBoard(columnId, board));
+  return async dispatch => {
+    const token = getCookie('token');
+    await axios.delete(`/columns/delete?columnId=${columnId}`, {
+      headers: {'Authorization': "bearer " + token},
+    });
+    // dispatch(removeColumnFromBoard(columnId, board));
 
   }
 }

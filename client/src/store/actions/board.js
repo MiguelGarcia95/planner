@@ -24,23 +24,21 @@ export const createBoard =  boardData => {
 export const removeColumnFromBoard = (columnId, board) => {
   return async dispatch => {
     const token = getCookie('token');
-    console.log(board);
     const updatedBoard = {
       ...board,
       columnOrder: board.columnOrder.filter(column => column !== columnId)
     }
-    console.log(updatedBoard)
 
-    // await axios.patch('/board/updateBoardColumns', updatedBoard, {
-    //   headers: {'Authorization': "bearer " + token},
-    // });
+    await axios.patch('/board/updateBoardColumns', updatedBoard, {
+      headers: {'Authorization': "bearer " + token},
+    });
 
-    // dispatch({
-    //   type: UPDATE_BOARD_COLUMNS,
-    //   payload: {
-    //     currentBoard: updatedBoard
-    //   }
-    // })
+    dispatch({
+      type: UPDATE_BOARD_COLUMNS,
+      payload: {
+        currentBoard: updatedBoard
+      }
+    })
   }
 }
 

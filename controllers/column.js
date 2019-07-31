@@ -38,6 +38,7 @@ exports.rearrangeColumnTasks = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
+    console.log(req.query.columnId)
     // await Board.findByIdAndDelete(req.query.id);
     // const board = await Board.findById(req.query.id);
     // await board.delete();
