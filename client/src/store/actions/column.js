@@ -1,6 +1,6 @@
 // import {DELETE_ALL_BOARD_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
 import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS, DELETE_COLUMN, } from './types';
-import {updateBoardColumns} from './board';
+import {updateBoardColumns, removeColumnFromBoard} from './board';
 import axios from 'axios';
 import {getCookie} from '../../utils/cookies';
 
@@ -28,7 +28,10 @@ export const deleteColumn = (columnId, board) => {
   return dispatch => {
     console.log(columnId);
     console.log(board);
-    // dispatch(removeColumnFromBoard(columnId, board));
+    // await axios.delete(`/columns/delete?columnId=${columnId}`, {
+    //   headers: {'Authorization': "bearer " + token},
+    // });
+    dispatch(removeColumnFromBoard(columnId, board));
 
   }
 }
