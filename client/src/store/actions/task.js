@@ -73,7 +73,7 @@ export const deleteTask = (taskId, column) => {
       });
 
       // change column taskOrder
-      dispatch(removeTaskFromColumn(column, taskId));
+      dispatch(removeTaskFromColumn(taskId, column));
 
       dispatch({
         type: DELETE_TASK,

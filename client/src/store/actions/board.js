@@ -21,6 +21,22 @@ export const createBoard =  boardData => {
   }
 }
 
+export const removeColumnFromBoard = (columnId, board) => {
+  return async dispatch => {
+    const token = getCookie('token');
+    const updatedBoard = {
+      ...board,
+      columnOrder: board.columnOrder.filter(column => column !== columnId)
+      }
+    // dispatch({
+    //   type: UPDATE_BOARD_COLUMNS,
+    //   payload: {
+    //     currentBoard: updatedBoard
+    //   }
+    // })
+  }
+}
+
 export const getBoards = userId => {
   return async dispatch => {
     try {
@@ -86,6 +102,7 @@ export const updateBoardColumns = (newColumn, board) => {
       const updatedBoard = {
         ...board,
         columnOrder: [...board.columnOrder, newColumn._id]
+        
       }
 
       await axios.patch('/boards/updateBoardColumns', updatedBoard, {

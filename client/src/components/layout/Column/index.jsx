@@ -103,7 +103,7 @@ class Column extends React.PureComponent {
         ...this.props.column,
         name: this.state.newColumnValue
       }
-      this.props.updateTask(updatedColumn);
+      this.props.updateColumn(updatedColumn);
       this.setState({columnModal: false})
     }
   }
@@ -184,6 +184,7 @@ const mapDispatchToProps = dispatch => {
     deleteTask: (taskId, column) => dispatch(deleteTask(taskId, column)),
     deleteColumn: (columnId, board) => dispatch(deleteColumn(columnId, board)),
     updateTask: updatedTask => dispatch(updateTask(updatedTask)),
+    updateColumn: updatedColumn => dispatch(updateColumn(updatedColumn))
   }
 }
 

@@ -28,12 +28,14 @@ export const deleteColumn = (columnId, board) => {
   return dispatch => {
     console.log(columnId);
     console.log(board);
+    // dispatch(removeColumnFromBoard(columnId, board));
+
   }
 }
 
-export const updateColumn = columnId => {
+export const updateColumn = updatedColumn => {
   return dispatch => {
-    
+    console.log(updatedColumn);
   }
 }
 
@@ -84,7 +86,7 @@ export const updateColumnTasks = (newTask, column) => {
   }
 }
 
-export const removeTaskFromColumn = (column, taskId) => {
+export const removeTaskFromColumn = (taskId, column) => {
   return async dispatch => {
     const token = getCookie('token');
 
