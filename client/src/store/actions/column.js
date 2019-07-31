@@ -28,13 +28,20 @@ export const createColumn = (columnData, board) => {
 export const deleteColumn = (columnId, board) => {
   return async dispatch => {
     const token = getCookie('token');
+
     await axios.delete(`/columns/delete?columnId=${columnId}`, {
       headers: {'Authorization': "bearer " + token},
     });
-    // dispatch(removeColumnFromBoard(columnId, board));
+
+    dispatch(removeColumnFromBoard(columnId, board));
     dispatch(deleteAllColumnTasks(columnId));
 
-
+    dispatch({
+      type: DELETE_COLUMN,
+      payload: {
+        columnId: columnId
+      }
+    })
   }
 }
 

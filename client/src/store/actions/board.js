@@ -29,10 +29,10 @@ export const removeColumnFromBoard = (columnId, board) => {
       columnOrder: board.columnOrder.filter(column => column !== columnId)
     }
 
-    await axios.patch('/board/updateBoardColumns', updatedBoard, {
+    await axios.patch('/boards/updateBoardColumns', updatedBoard, {
       headers: {'Authorization': "bearer " + token},
     });
-
+    
     dispatch({
       type: UPDATE_BOARD_COLUMNS,
       payload: {
@@ -107,7 +107,6 @@ export const updateBoardColumns = (newColumn, board) => {
       const updatedBoard = {
         ...board,
         columnOrder: [...board.columnOrder, newColumn._id]
-        
       }
 
       await axios.patch('/boards/updateBoardColumns', updatedBoard, {

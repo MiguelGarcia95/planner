@@ -65,6 +65,13 @@ export const deleteAllColumnTasks = columnId => {
     await axios.delete(`/tasks/deleteColumnTasks?columnId=${columnId}`, {
       headers: {'Authorization': "bearer " + token},
     });
+
+    dispatch({
+      type: DELETE_ALL_COLUMN_TASKS,
+      payload: {
+        columnId: columnId
+      }
+    })
   }
 }
 

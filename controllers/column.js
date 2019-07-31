@@ -38,7 +38,7 @@ exports.rearrangeColumnTasks = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    await Board.findByIdAndRemove(req.query.columnId);
+    await Column.findByIdAndRemove(req.query.columnId);
     res.status(201).send('ok');
   } catch (error) {
     res.status(400).send({error});    
