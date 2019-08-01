@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {getBoards} from '../store/actions/board';
+import {getBoards, deleteBoard} from '../store/actions/board';
 import Board from './layout/Board';
 import Navbar from './layout/Navbar';
 
@@ -49,7 +49,7 @@ class App extends React.Component {
   }
 
   displayBoards = () => {
-    return this.props.boards.map(board => <Board key={board._id} board={board} />)
+    return this.props.boards.map(board => <Board key={board._id} board={board} deleteBoard={this.props.deleteBoard} />)
   }
 
   render() {
@@ -76,7 +76,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBoards: userId => dispatch(getBoards(userId))
+    getBoards: userId => dispatch(getBoards(userId)),
+    deleteBoard: boardId => dispatch(deleteBoard(boardId))
   }
 }
 

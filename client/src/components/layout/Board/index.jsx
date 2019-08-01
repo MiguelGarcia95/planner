@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import BoardEditModal from '../BoardEditModal';
 
 /* 
   Location: home/index page
@@ -19,6 +20,15 @@ const Container = styled.section`
   overflow: hidden;
   box-sizing: border-box;
   padding: 0 5px;
+  position: relative;
+  i {
+    color: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 5px;
+    cursor: pointer;
+  }
   a {
     text-decoration: none;
     h1 {
@@ -38,13 +48,44 @@ const Container = styled.section`
 
 
 class Board extends React.Component {
+  state = {
+    modal: false,
+    newBoardName: ''
+  }
+
+  toggleModal = () => this.setState({modal: !this.state.modal});
+
+  onBoardChange = e => this.setState({newBoardName: e.target.value});
+
+  onBoardDelete = () => {
+
+  }
+
+  onBoardUpdate = e => {
+    e.preventDefault();
+
+  }
+
   render() {
     return (
-      <Container bgColor={this.props.board.bgColor}>
-        <Link to={`/${this.props.board._id}/${this.props.board.name}`}>
-          <h1>{this.props.board.name}</h1>
-        </Link>
-      </Container>
+      <React.Fragment>
+        <Container bgColor={this.props.board.bgColor}>
+          <i className="fas fa-ellipsis-h settings" onClick={this.toggleModal}></i>
+          <Link to={`/${this.props.board._id}/${this.props.board.name}`}>
+            <h1>{this.props.board.name}</h1>
+          </Link>
+          {/* onBoardChange, , onSubmit, onBoardDelete */}
+        </Container>
+        <BoardEditModal 
+          open={this.state.modal} 
+          board={this.props.board}  
+          toggleModal={this.toggleModal}
+          onBoardChange={this.onBoardChange}
+          onBoardDelete={this.onBoardDelete}
+          onSubmit={this.onBoardUpdate}
+          value={this.props.board.name}
+        />
+      </React.Fragment>
     )
   }
 }
