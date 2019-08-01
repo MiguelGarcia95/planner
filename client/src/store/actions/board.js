@@ -1,4 +1,6 @@
 import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS} from './types';
+import {deleteBoardTasks} from './task';
+import {deleteBoardColumns} from './column';
 import axios from 'axios';
 import {getCookie} from '../../utils/cookies';
 
@@ -127,8 +129,18 @@ export const updateBoardColumns = (newColumn, board) => {
 
 export const deleteBoard = boardId => {
   return dispatch => {
-    dispatch({
-      type: DELETE_BOARD
-    })
+    try {
+      const token = getCookie('token');
+      dispatch(deleteBoardTasks(boardId));
+      dispatch(deleteBoardColumns(boardId));
+      dispatch({
+        type: DELETE_BOARD,
+        payload: {
+          boardId: boardId
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

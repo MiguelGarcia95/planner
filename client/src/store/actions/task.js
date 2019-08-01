@@ -1,4 +1,4 @@
-import {CREATE_TASK, DELETE_ALL_COLUMN_TASKS, DELETE_TASK, GET_TASKS, UPDATE_TASK, DELETE_ALL_BOARD_TASKS} from './types';
+import {CREATE_TASK, DELETE_ALL_COLUMN_TASKS, DELETE_TASK, GET_TASKS, UPDATE_TASK, DELETE_BOARD_TASKS} from './types';
 import axios from 'axios';
 import {updateColumnTasks, removeTaskFromColumn} from './column';
 import {getCookie} from '../../utils/cookies';
@@ -59,12 +59,16 @@ export const getTasks = boardId => {
   }
 }
 
-export const deleteAllBoardTasks = boardId => {
+export const deleteBoardTasks = boardId => {
   return dispatch => {
-    dispatch({
-      type: DELETE_ALL_BOARD_TASKS,
-      
-    })
+    try {
+      const token = getCookie('token');
+      dispatch({
+        type: DELETE_BOARD_TASKS,
+      })
+    } catch (error) {
+      console.log(error)      
+    }
   }
 }
 
