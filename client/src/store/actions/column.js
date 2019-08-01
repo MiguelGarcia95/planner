@@ -1,5 +1,4 @@
-// import {DELETE_ALL_BOARD_COLUMNS, REARRANGE_COLUMNS, GET_COLUMNS_ORDER} from './types';
-import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS, DELETE_COLUMN, UPDATE_COLUMN} from './types';
+import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS, DELETE_COLUMN, UPDATE_COLUMN, DELETE_ALL_BOARD_COLUMNS} from './types';
 import {updateBoardColumns, removeColumnFromBoard} from './board';
 import {deleteAllColumnTasks} from './task';
 import axios from 'axios';
@@ -63,7 +62,10 @@ export const updateColumn = updatedColumn => {
 
 export const deleteAllBoardColumns = boardId => {
   return dispatch => {
-
+    dispatch({
+      type: DELETE_ALL_BOARD_COLUMNS,
+      
+    })
   }
 }
 
