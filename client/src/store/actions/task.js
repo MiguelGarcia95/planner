@@ -60,7 +60,7 @@ export const getTasks = boardId => {
 }
 
 export const deleteBoardTasks = boardId => {
-  return dispatch => {
+  return async dispatch => {
     try {
       const token = getCookie('token');
       await axios.delete(`/tasks/deleteBoardTasks?boardId=${boardId}`, {

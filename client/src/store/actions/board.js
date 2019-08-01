@@ -151,7 +151,7 @@ export const deleteBoard = boardId => {
   return async dispatch => {
     try {
       const token = getCookie('token');
-      await axios.delete(`/columns/delete?boardId=${boardId}`, {
+      await axios.delete(`/boards/delete?boardId=${boardId}`, {
         headers: {'Authorization': "bearer " + token},
       });
 
