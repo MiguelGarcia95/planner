@@ -63,6 +63,9 @@ export const deleteBoardTasks = boardId => {
   return dispatch => {
     try {
       const token = getCookie('token');
+      await axios.delete(`/tasks/deleteBoardTasks?boardId=${boardId}`, {
+        headers: {'Authorization': "bearer " + token},
+      });
       dispatch({
         type: DELETE_BOARD_TASKS,
       })

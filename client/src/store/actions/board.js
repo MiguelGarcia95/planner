@@ -148,9 +148,13 @@ export const updateBoardColumns = (newColumn, board) => {
 }
 
 export const deleteBoard = boardId => {
-  return dispatch => {
+  return async dispatch => {
     try {
       const token = getCookie('token');
+      await axios.delete(`/columns/delete?boardId=${boardId}`, {
+        headers: {'Authorization': "bearer " + token},
+      });
+
       dispatch(deleteBoardTasks(boardId));
       dispatch(deleteBoardColumns(boardId));
       dispatch({

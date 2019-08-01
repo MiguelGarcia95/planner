@@ -64,10 +64,12 @@ export const deleteBoardColumns = boardId => {
   return dispatch => {
     try {
       const token = getCookie('token');
-
+      await axios.delete(`/columns/deleteBoardColumns?boardId=${boardId}`, {
+        headers: {'Authorization': "bearer " + token},
+      });
+      
       dispatch({
         type: DELETE_BOARD_COLUMNS,
-  
       })
     } catch (error) {
       console.log(error)
