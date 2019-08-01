@@ -57,13 +57,7 @@ export const updateColumn = updatedColumn => {
       payload: {
         updatedColumn: results.data.column
       },
-    })
-    // dispatch({
-    //   type: UPDATE_COLUMN_TASK,
-    //   payload: {
-    //     updatedColumn: results.data.column
-    //   }
-    // })
+    });
   }
 }
 
