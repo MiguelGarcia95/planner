@@ -45,5 +45,14 @@ module.exports = {
     } catch (error) {
       res.status(400).send({error});
     }
+  }, 
+
+  deleteBoardTasks: async (req, res) => {
+    try {
+      await Task.deleteMany({"boardId": req.query.boardId});
+      res.status(201).send('ok');
+    } catch (error) {
+      res.status(400).send({error})
+    }
   }
 }

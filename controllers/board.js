@@ -50,9 +50,8 @@ module.exports = {
   
   delete: async (req, res) => {
     try {
-      const board = await Board.findById(req.query.id);
-      await board.delete();
-      res.status(200).send(board);
+      const board = await Board.findByIdAndRemove(req.query.id);
+      res.status(200).send({board});
     } catch (error) {
       res.status(400).send({error});    
     }

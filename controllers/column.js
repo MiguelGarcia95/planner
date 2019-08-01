@@ -56,4 +56,13 @@ module.exports = {
       res.status(400).send({error});    
     }
   },
+
+  deleteBoardColumns: async (req, res) => {
+    try {
+      await Column.deleteMany({"boardId": req.query.boardId});
+      res.status(201).send('ok');
+    } catch (error) {
+      res.status(400).send({error});
+    }
+  }
 }
