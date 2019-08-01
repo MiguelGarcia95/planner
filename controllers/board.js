@@ -29,6 +29,15 @@ module.exports = {
       res.status(400).send({error});
     }
   },
+
+  updatedBoard: async (req, res) => {
+    try {
+      const board = await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
+      res.status(201).send({board});
+    } catch (error) {
+      res.status(400).send({error});
+    }
+  },
   
   updateBoardColumns: async (req, res) => {
     try {

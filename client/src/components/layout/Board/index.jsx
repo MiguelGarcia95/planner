@@ -21,6 +21,7 @@ const Container = styled.section`
   box-sizing: border-box;
   padding: 0 5px;
   position: relative;
+  z-index: 1;
   i {
     color: white;
     position: absolute;
@@ -58,12 +59,20 @@ class Board extends React.Component {
   onBoardChange = e => this.setState({newBoardName: e.target.value});
 
   onBoardDelete = () => {
-
+    this.props.deleteBoard(this.props.board._id);
+    this.setState({modal: false})
   }
 
   onBoardUpdate = e => {
     e.preventDefault();
-
+    if (this.state.newColumnValue) {
+      const updatedColumn = {
+        ...this.props.column,
+        name: this.state.newColumnValue
+      }
+      this.props.updateColumn(updatedColumn);
+      this.setState({modal: false})
+    }
   }
 
   render() {
@@ -74,7 +83,6 @@ class Board extends React.Component {
           <Link to={`/${this.props.board._id}/${this.props.board.name}`}>
             <h1>{this.props.board.name}</h1>
           </Link>
-          {/* onBoardChange, , onSubmit, onBoardDelete */}
         </Container>
         <BoardEditModal 
           open={this.state.modal} 
@@ -83,7 +91,6 @@ class Board extends React.Component {
           onBoardChange={this.onBoardChange}
           onBoardDelete={this.onBoardDelete}
           onSubmit={this.onBoardUpdate}
-          value={this.props.board.name}
         />
       </React.Fragment>
     )

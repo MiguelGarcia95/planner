@@ -1,4 +1,4 @@
-import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS} from './types';
+import {CREATE_BOARD, GET_BOARDS, GET_BOARD, DELETE_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS, UPDATE_BOARD} from './types';
 import {deleteBoardTasks} from './task';
 import {deleteBoardColumns} from './column';
 import axios from 'axios';
@@ -41,6 +41,26 @@ export const removeColumnFromBoard = (columnId, board) => {
         currentBoard: updatedBoard
       }
     })
+  }
+}
+
+export const updateBoard = updatedBoard => {
+  return async dispatch => {
+    try {
+      const token = getCookie('token');
+      const results = await axios.patch('/boards/updatedBoard', updatedBoard, {
+        headers: {'Authorization': "bearer " + token},
+      });
+      console.log(results.data.task);
+      dispatch({
+        type: UPDATE_BOARD,
+        payload: {
+          updatedBoard: updatedBoard
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 

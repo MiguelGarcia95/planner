@@ -70,7 +70,7 @@ const Form = styled.section`
   }
 `;
 
-function BoardEditModal({board, toggleModal, open, onBoardChange, value, onSubmit, onBoardDelete}) {
+function BoardEditModal({board, toggleModal, open, onBoardChange, onSubmit, onBoardDelete}) {
   return (
     <Modal open={open}>
       <section className="toggleScreen" onClick={toggleModal}></section>
@@ -78,7 +78,7 @@ function BoardEditModal({board, toggleModal, open, onBoardChange, value, onSubmi
         <Form>
           <h1>Board: {board.name}</h1>
           <form onSubmit={onSubmit}>
-            <input name='name' value={value} onChange={onBoardChange} placeholder='New Board Name' />
+            <input name='name' onChange={onBoardChange} placeholder='New Board Name' />
             <button>Update</button>
           </form>
           <section className='delete' onClick={() => onBoardDelete(board._id)} >

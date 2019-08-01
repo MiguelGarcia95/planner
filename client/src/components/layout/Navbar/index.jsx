@@ -13,6 +13,7 @@ const Container = styled.section`
   display: flex;
   width: 100%;
   flex: 1;
+  z-index: 5;
   position: fixed;
   background: #11998e;  
   background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
