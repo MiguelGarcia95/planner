@@ -1,4 +1,4 @@
-import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS} from '../actions/types';
+import {CREATE_COLUMN, GET_COLUMNS, UPDATE_COLUMN_TASK, REARRANGE_COLUMN_TASKS, UPDATE_COLUMN} from '../actions/types';
 
 const initialState = {
   columns: [],
@@ -24,6 +24,12 @@ const column = (state = initialState, action) => {
         ...state,
         columns: action.payload.columns,
       }
+    case UPDATE_COLUMN:
+        return {
+          ...state,
+          columns: replaceColumn(state.columns, action.payload.updatedColumn),
+          toggled: !state.toggled,
+        }
     case UPDATE_COLUMN_TASK:
       return {
         ...state,
