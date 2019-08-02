@@ -38,9 +38,7 @@ export const deleteColumn = (columnId, board) => {
 
       dispatch({
         type: DELETE_COLUMN,
-        payload: {
-          columnId: columnId
-        }
+        payload: {columnId}
       })
     } catch (error) {
       console.log(error)
@@ -58,9 +56,7 @@ export const updateColumn = updatedColumn => {
   
       dispatch({
         type: UPDATE_COLUMN,
-        payload: {
-          updatedColumn
-        },
+        payload: {updatedColumn},
       });
     } catch (error) {
       console.log(error)
@@ -87,16 +83,20 @@ export const deleteBoardColumns = boardId => {
 
 export const getColumns = boardId => {
   return async dispatch => {
-    const token = getCookie('token');
-    const results = await axios.get(`/columns?boardId=${boardId}`, {
-      headers: {'Authorization': "bearer " + token},
-    });
-    dispatch({
-      type: GET_COLUMNS,
-      payload: {
-        columns: results.data.columns,
-      }
-    })
+    try {
+      const token = getCookie('token');
+      const results = await axios.get(`/columns?boardId=${boardId}`, {
+        headers: {'Authorization': "bearer " + token},
+      });
+      dispatch({
+        type: GET_COLUMNS,
+        payload: {
+          columns: results.data.columns,
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -141,9 +141,7 @@ export const removeTaskFromColumn = (taskId, column) => {
   
       dispatch({
         type: UPDATE_COLUMN_TASK,
-        payload: {
-          updatedColumn: updatedColumn
-        }
+        payload: {updatedColumn}
       })
     } catch (error) {
       console.log(error)
@@ -166,9 +164,7 @@ export const rearrangeColumnTasks = (column, taskOrder) => {
 
       dispatch({
         type: REARRANGE_COLUMN_TASKS,
-        payload: {
-          rearrangedColumn: rearrangedColumn
-        }
+        payload: {rearrangedColumn}
       })
     } catch (error) {
       console.log(error)
