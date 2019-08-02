@@ -32,7 +32,7 @@ module.exports = {
   delete: async (req, res) => {
     try {
       await Task.findByIdAndRemove(req.query.taskId);
-      res.status(201).send('ok');
+      res.status(201).send('success');
     } catch (error) {
       res.status(400).send({error});    
     }
@@ -41,7 +41,7 @@ module.exports = {
   deleteColumnTasks: async (req, res) => {
     try {
       await Task.deleteMany({"columnId": req.query.columnId});
-      res.status(201).send('ok');
+      res.status(201).send('success');
     } catch (error) {
       res.status(400).send({error});
     }
@@ -50,7 +50,7 @@ module.exports = {
   deleteBoardTasks: async (req, res) => {
     try {
       await Task.deleteMany({"boardId": req.query.boardId});
-      res.status(201).send('ok');
+      res.status(201).send('success');
     } catch (error) {
       res.status(400).send({error})
     }
