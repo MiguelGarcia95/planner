@@ -10,7 +10,6 @@ export const createTask = (taskData, column) => {
       const results = await axios.post('/tasks', taskData, {
         headers: {'Authorization': "bearer " + token},
       });
-      // Add Task to column order
       dispatch(updateColumnTasks(results.data.task, column));
       dispatch({
         type: CREATE_TASK,
@@ -26,16 +25,18 @@ export const createTask = (taskData, column) => {
 
 export const updateTask = updatedTask => {
   return async dispatch => {
-    const token = getCookie('token');
-    const results = await axios.patch('/tasks/updateTask', updatedTask, {
-      headers: {'Authorization': "bearer " + token},
-    });
-    dispatch({
-      type: UPDATE_TASK,
-      payload: {
-        updatedTask: results.data.task
-      },
-    })
+    try {
+      const token = getCookie('token');
+      await axios.patch('/tasks/updateTask', updatedTask, {
+        headers: {'Authorization': "bearer " + token},
+      });
+      dispatch({
+        type: UPDATE_TASK,
+        payload: {updatedTask},
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 

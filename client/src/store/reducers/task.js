@@ -1,4 +1,4 @@
-import {CREATE_TASK, GET_TASKS, UPDATE_TASK, DELETE_TASK} from '../actions/types';
+import {CREATE_TASK, GET_TASKS, UPDATE_TASK, DELETE_TASK, DELETE_ALL_COLUMN_TASKS} from '../actions/types';
 
 const initialState = {
   tasks: [],
@@ -30,6 +30,11 @@ const task = (state = initialState, action) => {
         ...state,
         tasks: replaceTask(state.tasks, action.payload.updatedTask),
         toggled: !state.toggled,
+      }
+    case DELETE_ALL_COLUMN_TASKS:
+      return {
+        ...state,
+        tasks: state.tasks.filter(task => task.columnId !== action.payload.taskId)
       }
     case DELETE_TASK:
       return {

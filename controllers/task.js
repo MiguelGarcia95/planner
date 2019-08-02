@@ -22,8 +22,8 @@ module.exports = {
 
   updateTask: async (req, res) => {
     try {
-      const task = await Task.findByIdAndUpdate(req.body._id, {$set:req.body});
-      res.status(201).send({task});
+      await Task.findByIdAndUpdate(req.body._id, {$set:req.body});
+      res.status(201).send('Success');
     } catch (error) {
       res.status(400).send({error});    
     }
@@ -32,7 +32,7 @@ module.exports = {
   delete: async (req, res) => {
     try {
       await Task.findByIdAndRemove(req.query.taskId);
-      res.status(201).send('success');
+      res.status(201).send('Success');
     } catch (error) {
       res.status(400).send({error});    
     }
@@ -41,7 +41,7 @@ module.exports = {
   deleteColumnTasks: async (req, res) => {
     try {
       await Task.deleteMany({"columnId": req.query.columnId});
-      res.status(201).send('success');
+      res.status(201).send('Success');
     } catch (error) {
       res.status(400).send({error});
     }
