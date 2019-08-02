@@ -23,8 +23,8 @@ module.exports = {
   
   updateColumn: async (req, res) => {
     try {
-      const column = await Column.findByIdAndUpdate(req.body._id, {$set:req.body});
-      res.status(201).send({column});
+      await Column.findByIdAndUpdate(req.body._id, {$set:req.body});
+      res.status(201).send('Success');
     } catch (error) {
       res.status(400).send({error});
     }

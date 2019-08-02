@@ -25,38 +25,46 @@ export const createColumn = (columnData, board) => {
 }
 
 export const deleteColumn = (columnId, board) => {
-  return async dispatch => {
-    const token = getCookie('token');
+  return dispatch => {
+    try {
+      const token = getCookie('token');
 
-    await axios.delete(`/columns/delete?columnId=${columnId}`, {
-      headers: {'Authorization': "bearer " + token},
-    });
+      axios.delete(`/columns/delete?columnId=${columnId}`, {
+        headers: {'Authorization': "bearer " + token},
+      });
 
-    dispatch(removeColumnFromBoard(columnId, board));
-    dispatch(deleteAllColumnTasks(columnId));
+      dispatch(removeColumnFromBoard(columnId, board));
+      dispatch(deleteAllColumnTasks(columnId));
 
-    dispatch({
-      type: DELETE_COLUMN,
-      payload: {
-        columnId: columnId
-      }
-    })
+      dispatch({
+        type: DELETE_COLUMN,
+        payload: {
+          columnId: columnId
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
 export const updateColumn = updatedColumn => {
-  return async dispatch => {
-    const token = getCookie('token');
-    const results = await axios.patch('/columns/updateColumn', updatedColumn, {
-      headers: {'Authorization': "bearer " + token},
-    });
-
-    dispatch({
-      type: UPDATE_COLUMN,
-      payload: {
-        updatedColumn: results.data.column
-      },
-    });
+  return dispatch => {
+    try {
+      const token = getCookie('token');
+      axios.patch('/columns/updateColumn', updatedColumn, {
+        headers: {'Authorization': "bearer " + token},
+      });
+  
+      dispatch({
+        type: UPDATE_COLUMN,
+        payload: {
+          updatedColumn
+        },
+      });
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -119,29 +127,32 @@ export const updateColumnTasks = (newTask, column) => {
 }
 
 export const removeTaskFromColumn = (taskId, column) => {
-  return async dispatch => {
-    const token = getCookie('token');
-
-    const updatedColumn = {
-      ...column,
-      taskOrder: column.taskOrder.filter(task => task !== taskId),
-    }
-
-    await axios.patch('/columns/updateColumnTasks', updatedColumn, {
-      headers: {'Authorization': "bearer " + token},
-    });
-
-    dispatch({
-      type: UPDATE_COLUMN_TASK,
-      payload: {
-        updatedColumn: updatedColumn
+  return dispatch => {
+    try {
+      const token = getCookie('token');
+      const updatedColumn = {
+        ...column,
+        taskOrder: column.taskOrder.filter(task => task !== taskId),
       }
-    })
+  
+      axios.patch('/columns/updateColumnTasks', updatedColumn, {
+        headers: {'Authorization': "bearer " + token},
+      });
+  
+      dispatch({
+        type: UPDATE_COLUMN_TASK,
+        payload: {
+          updatedColumn: updatedColumn
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
 export const rearrangeColumnTasks = (column, taskOrder) => {
-  return async dispatch => {
+  return dispatch => {
     try {
       const token = getCookie('token');
       const rearrangedColumn = {
@@ -149,7 +160,7 @@ export const rearrangeColumnTasks = (column, taskOrder) => {
         taskOrder: taskOrder,
       };
 
-      await axios.patch('/columns/rearrangeColumnTasks', rearrangedColumn, {
+      axios.patch('/columns/rearrangeColumnTasks', rearrangedColumn, {
         headers: {'Authorization': "bearer " + token},
       })
 
