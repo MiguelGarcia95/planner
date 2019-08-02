@@ -24,39 +24,35 @@ export const createBoard =  boardData => {
 }
 
 export const removeColumnFromBoard = (columnId, board) => {
-  return async dispatch => {
+  return dispatch => {
     const token = getCookie('token');
-    const updatedBoard = {
+    const currentBoard = {
       ...board,
       columnOrder: board.columnOrder.filter(column => column !== columnId)
     }
 
-    await axios.patch('/boards/updateBoardColumns', updatedBoard, {
+    axios.patch('/boards/updateBoardColumns', currentBoard, {
       headers: {'Authorization': "bearer " + token},
     });
     
     dispatch({
       type: UPDATE_BOARD_COLUMNS,
-      payload: {
-        currentBoard: updatedBoard
-      }
+      payload: {currentBoard}
     })
   }
 }
 
 export const updateBoard = updatedBoard => {
-  return async dispatch => {
+  return dispatch => {
     try {
       const token = getCookie('token');
-      const results = await axios.patch('/boards/updatedBoard', updatedBoard, {
+      axios.patch('/boards/updatedBoard', updatedBoard, {
         headers: {'Authorization': "bearer " + token},
       });
-      console.log(results.data.task);
+
       dispatch({
         type: UPDATE_BOARD,
-        payload: {
-          updatedBoard: updatedBoard
-        }
+        payload: {updatedBoard}
       })
     } catch (error) {
       console.log(error)
@@ -92,13 +88,14 @@ export const getBoard = (boardId, userId) => {
     dispatch({
       type: GET_BOARD,
       payload: {
-        currentBoard: results.data
+        currentBoard: results.data.board
       }
     })
   }
 }
+
 export const rearrangeBoardColumns = (board, columnOrder) => {
-  return async dispatch => {
+  return dispatch => {
     try {
       const token = getCookie('token');
       const updatedBoard = {
@@ -106,7 +103,7 @@ export const rearrangeBoardColumns = (board, columnOrder) => {
         columnOrder: columnOrder
       };
 
-      await axios.patch('/boards/rearrangeBoardColumns', updatedBoard, {
+      axios.patch('/boards/rearrangeBoardColumns', updatedBoard, {
         headers: {'Authorization': "bearer " + token},
       });
 
@@ -123,7 +120,7 @@ export const rearrangeBoardColumns = (board, columnOrder) => {
 }
 
 export const updateBoardColumns = (newColumn, board) => {
-  return async dispatch => {
+  return dispatch => {
     try {
       const token = getCookie('token');
       const updatedBoard = {
@@ -131,7 +128,7 @@ export const updateBoardColumns = (newColumn, board) => {
         columnOrder: [...board.columnOrder, newColumn._id]
       }
 
-      await axios.patch('/boards/updateBoardColumns', updatedBoard, {
+      axios.patch('/boards/updateBoardColumns', updatedBoard, {
         headers: {'Authorization': "bearer " + token},
       });
 
@@ -148,10 +145,10 @@ export const updateBoardColumns = (newColumn, board) => {
 }
 
 export const deleteBoard = boardId => {
-  return async dispatch => {
+  return dispatch => {
     try {
       const token = getCookie('token');
-      await axios.delete(`/boards/delete?boardId=${boardId}`, {
+      axios.delete(`/boards/delete?boardId=${boardId}`, {
         headers: {'Authorization': "bearer " + token},
       });
 
@@ -159,9 +156,7 @@ export const deleteBoard = boardId => {
       dispatch(deleteBoardColumns(boardId));
       dispatch({
         type: DELETE_BOARD,
-        payload: {
-          boardId: boardId
-        }
+        payload: {boardId}
       })
     } catch (error) {
       console.log(error);

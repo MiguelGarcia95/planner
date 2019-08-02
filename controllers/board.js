@@ -24,7 +24,7 @@ module.exports = {
   show: async (req, res) => {
     try {
       const board = await Board.findOne({"_id": req.query.id, 'userId': req.query.userId});
-      res.status(201).send(board);
+      res.status(201).send({board});
     } catch (error) {
       res.status(400).send({error});
     }
@@ -32,17 +32,17 @@ module.exports = {
 
   updatedBoard: async (req, res) => {
     try {
-      const board = await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
-      res.status(201).send({board});
+      await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
+      res.status(201).send('Success');
     } catch (error) {
       res.status(400).send({error});
     }
   },
-  
+
   updateBoardColumns: async (req, res) => {
     try {
-      const board = await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
-      res.status(201).send(board);
+      await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
+      res.status(201).send('Success');
     } catch (error) {
       res.status(400).send({error});    
     }
@@ -50,8 +50,8 @@ module.exports = {
   
   rearrangeBoardColumns: async (req, res) => {
     try {
-      const board = await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
-      res.status(201).send(board);
+      await Board.findByIdAndUpdate(req.body._id, {$set:req.body});
+      res.status(201).send('Success');
     } catch (error) {
       res.status(400).send({error});    
     }
@@ -59,8 +59,8 @@ module.exports = {
   
   delete: async (req, res) => {
     try {
-      await Board.deleteOne({"boardId": req.query.boardId})
-      res.status(200).send('Ok');
+      await Board.deleteOne({"_id": req.query.boardId})
+      res.status(200).send('Success');
     } catch (error) {
       res.status(400).send({error});    
     }
