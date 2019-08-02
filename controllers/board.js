@@ -59,8 +59,8 @@ module.exports = {
   
   delete: async (req, res) => {
     try {
-      const board = await Board.findByIdAndRemove(req.query.boardId);
-      res.status(200).send({board});
+      await Board.deleteOne({"boardId": req.query.boardId})
+      res.status(200).send('Ok');
     } catch (error) {
       res.status(400).send({error});    
     }

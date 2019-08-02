@@ -1,4 +1,4 @@
-import {CREATE_BOARD, GET_BOARDS, GET_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS} from '../actions/types';
+import {CREATE_BOARD, GET_BOARDS, GET_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS, DELETE_BOARD} from '../actions/types';
 
 const initialState = {
   currentBoard: null,
@@ -33,6 +33,11 @@ const board = (state = initialState, action) => {
       return {
         ...state,
         currentBoard: action.payload.currentBoard
+      }
+    case DELETE_BOARD:
+      return {
+        ...state,
+        boards: state.boards.filter(board => board._id !== action.payload.boardId),
       }
     default:
       return state;
