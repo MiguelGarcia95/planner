@@ -18,7 +18,6 @@ const task = (state = initialState, action) => {
       return {
         ...state,
         tasks: [...state.tasks, action.payload.task],
-        toggled: !state.toggled,
       }
     case GET_TASKS:
       return {
@@ -40,7 +39,7 @@ const task = (state = initialState, action) => {
       return {
         ...state,
         tasks: state.tasks.filter(task => task._id !== action.payload.taskId),
-        toggled: !state.toggled,
+        // toggled: !state.toggled,
       }
     default:
       return state;

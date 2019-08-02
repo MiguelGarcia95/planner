@@ -78,17 +78,21 @@ export const deleteBoardTasks = boardId => {
 
 export const deleteAllColumnTasks = columnId => {
   return async dispatch => {
-    const token = getCookie('token');
-    await axios.delete(`/tasks/deleteColumnTasks?columnId=${columnId}`, {
-      headers: {'Authorization': "bearer " + token},
-    });
-
-    dispatch({
-      type: DELETE_ALL_COLUMN_TASKS,
-      payload: {
-        columnId: columnId
-      }
-    })
+    try {
+      const token = getCookie('token');
+      await axios.delete(`/tasks/deleteColumnTasks?columnId=${columnId}`, {
+        headers: {'Authorization': "bearer " + token},
+      });
+  
+      dispatch({
+        type: DELETE_ALL_COLUMN_TASKS,
+        payload: {
+          columnId: columnId
+        }
+      })
+    } catch (error) {
+      console.log(error)      
+    }
   }
 }
 
@@ -99,10 +103,8 @@ export const deleteTask = (taskId, column) => {
       await axios.delete(`/tasks/delete?taskId=${taskId}`, {
         headers: {'Authorization': "bearer " + token},
       });
-
       // change column taskOrder
       dispatch(removeTaskFromColumn(taskId, column));
-
       dispatch({
         type: DELETE_TASK,
         payload: {
@@ -114,9 +116,3 @@ export const deleteTask = (taskId, column) => {
     }
   }
 }
-
-// export const rearrangeTasks = tasks => {
-//   return dispatch => {
-    
-//   }
-// }
