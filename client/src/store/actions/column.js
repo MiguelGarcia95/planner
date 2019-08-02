@@ -11,11 +11,11 @@ export const createColumn = (columnData, board) => {
       const results = await axios.post('/columns', columnData, {
         headers: {'Authorization': "bearer " + token},
       });
-      dispatch(updateBoardColumns(results.data, board));
+      dispatch(updateBoardColumns(results.data.column, board));
       dispatch({
         type: CREATE_COLUMN,
         payload: {
-          column: results.data
+          column: results.data.column
         }
       })
     } catch (error) {
@@ -86,7 +86,7 @@ export const getColumns = boardId => {
     dispatch({
       type: GET_COLUMNS,
       payload: {
-        columns: results.data,
+        columns: results.data.columns,
       }
     })
   }

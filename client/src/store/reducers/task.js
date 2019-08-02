@@ -38,8 +38,7 @@ const task = (state = initialState, action) => {
     case DELETE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter(task => task._id !== action.payload.taskId),
-        // toggled: !state.toggled,
+        tasks: state.tasks.filter(task => task._id !== action.payload.taskId)
       }
     default:
       return state;
