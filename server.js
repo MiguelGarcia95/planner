@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 app.use(csp({
   directives: {
-    defaultSrc: ["'self'", "'unsafe-inline'"],
+    defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "'unsafe-inline'", 'https://kit.fontawesome.com/5f7fe36d22.js'],
     styleSrc: ["'self'", "'unsafe-inline'"],
     // styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
