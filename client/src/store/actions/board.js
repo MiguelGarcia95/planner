@@ -67,6 +67,7 @@ export const getBoards = userId => {
       const results = await axios.get(`/boards?userId=${userId}`, {
         headers: {'Authorization': "bearer " + token},
       });
+      console.log(results.data);
       dispatch({
         type: GET_BOARDS,
         payload: {

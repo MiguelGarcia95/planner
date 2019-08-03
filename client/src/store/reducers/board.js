@@ -9,7 +9,6 @@ const initialState = {
 const board = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_BOARD:
-      console.log(state.boards)
       return {
         ...state,
         boards: [...state.boards, action.payload.board]
