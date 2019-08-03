@@ -4,7 +4,6 @@ import {BrowserRouter, Switch, Route, withRouter} from 'react-router-dom';
 import {Provider, connect} from 'react-redux';
 import '@atlaskit/css-reset';
 import './index.css';
-// import App from './components/App';
 import App from './components';
 import Board from './components/Board';
 import Signin from './components/Signin';
@@ -16,7 +15,8 @@ const Root = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={App} />
-        <Route path='/:boardId/:boardName' component={Board} />
+        <Route path='/:boardId' component={Board} />
+        {/* <Route path='/:boardId/:boardName' component={Board} /> */}
         <Route exact path='/login' component={Signin} />
         <Route exact path='/signup' component={Signup} />
       </Switch>
