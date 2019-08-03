@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Switch, Route, withRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Switch, Route, withRouter} from 'react-router-dom';
 import {Provider, connect} from 'react-redux';
 import '@atlaskit/css-reset';
 import './index.css';
@@ -12,15 +12,15 @@ import store from './store';
 
 const Root = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route exact path='/' component={App} />
-        <Route path='/:boardId' component={Board} />
-        {/* <Route path='/:boardId/:boardName' component={Board} /> */}
+        {/* <Route path='/:boardId' component={Board} /> */}
+        <Route path='/:boardId/:boardName' component={Board} />
         <Route exact path='/login' component={Signin} />
         <Route exact path='/signup' component={Signup} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   )
 };
 
@@ -29,9 +29,9 @@ const RootWithAuth = withRouter(connect()(Root));
 const RootWithRouter = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <RootWithAuth />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   );
 }
