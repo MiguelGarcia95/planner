@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors());
 app.use(function(req, res, next) {
   // res.header("Content-Security-Policy", "default-src *;");
-  res.header("Content-Security-Policy", "default-src 'self' 'unsafe-inline';script-src 'self';object-src 'none';img-src 'self';media-src 'self';frame-src 'none';font-src 'self' data:;connect-src 'self';style-src 'self'");
+  res.header("Content-Security-Policy", "default-src 'self' 'unsafe-inline';script-src 'self' https://kit.fontawesome.com;object-src 'none';img-src 'self';media-src 'self';frame-src 'none';font-src 'self' data:;connect-src 'self';style-src 'self'");
   return next();
 })
 
