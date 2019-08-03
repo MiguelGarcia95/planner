@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 app.use(csp({
   directives: {
-    defaultSrc: ["'self'"],
+    defaultSrc: ["'self'", 'https://react-draggable-planner.herokuapp.com/favicon.ico'],
     scriptSrc: ["'self'", "'unsafe-inline'", 'https://kit.fontawesome.com/5f7fe36d22.js'],
     styleSrc: ["'self'", "'unsafe-inline'", 'https://kit-free.fontawesome.com'],
     fontSrc: ['https://kit-free.fontawesome.com'],
