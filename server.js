@@ -11,6 +11,10 @@ const port = process.env.PORT || 5000;
 require('./db/mongoose');
 app.use(express.json());
 app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src '*'");
+  return next();
+})
 
 // Serve static assets 
 if (process.env.NODE_ENV === 'production') {
