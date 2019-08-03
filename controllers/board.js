@@ -4,8 +4,7 @@ module.exports = {
   index: async (req, res) => {
     try {
       const boards = await Board.find({'userId': req.query.userId});
-      console.log(boards)
-      res.status(201).json({boards});
+      res.status(201).send(JSON.stringify({boards}));
     } catch (error) {
       res.status(400).send({error});
     }
