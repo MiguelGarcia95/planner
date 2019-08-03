@@ -18,15 +18,10 @@ app.use(csp({
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "'unsafe-inline'", 'https://kit.fontawesome.com/5f7fe36d22.js'],
     styleSrc: ["'self'", "'unsafe-inline'", 'https://kit-free.fontawesome.com'],
+    fontSrc: ["'self", 'https://kit-free.fontawesome.com'],
     // styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
   }
 }))
-
-// app.use(function(req, res, next) {
-//   // res.header("Content-Security-Policy", "default-src *;");
-//   res.header("Content-Security-Policy", "default-src 'self' 'unsafe-inline' https://kit.fontawesome.com https://kit-free.fontawesome.com;script-src 'self';object-src 'none';img-src 'self';media-src 'self';frame-src 'none';font-src 'self' data:;connect-src 'self';style-src 'self'");
-//   return next();
-// })
 
 // Serve static assets 
 if (process.env.NODE_ENV === 'production') {
