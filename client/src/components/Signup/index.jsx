@@ -110,8 +110,6 @@ class Signup extends React.Component {
   }
 
   componentDidMount() {
-    const token  = document.cookie.replace('token=', '');
-    console.log(token)
     this.redirectIfAuth(this.props);
   }
 
@@ -121,8 +119,7 @@ class Signup extends React.Component {
 
   redirectIfAuth = props => {
     if (props.user) {
-      console.log('redirect')
-      console.log(props);
+      props.history.push('/');
     }
   }
 
@@ -195,7 +192,6 @@ class Signup extends React.Component {
 
   render() {
     const {username, email, password, password_confirmation, errors} = this.state;
-    console.log(errors)
     return (
       <Container>
         <Form onSubmit={this.onSubmit}>

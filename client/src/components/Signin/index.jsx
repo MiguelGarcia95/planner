@@ -117,7 +117,6 @@ class Signin extends React.Component {
 
   redirectIfAuth = props => {
     if (props.user) {
-      console.log('redirect')
       props.history.push('/');
     }
   }
@@ -192,7 +191,6 @@ class Signin extends React.Component {
 
   render() {
     const {email, password, errors} = this.state;
-    console.log(errors);
     return (
       <Container>
         <Form onSubmit={this.onSubmit}>

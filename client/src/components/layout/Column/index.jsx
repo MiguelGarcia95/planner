@@ -21,15 +21,14 @@ import ColumnEditForm from '../ColumnEditForm';
 const Container = styled.section`
   width: 250px;
   min-width: 250px;
-  ${props => `
-    height: ${130 + props.tasks * 50}px;
-  `}
+  height: auto;
   max-height: 100%;
   background: rgb(240,240,240);
   border-radius: 10px;
   margin: 50px 20px;
   margin-bottom: 0px;
   padding: 10px;
+  overflow-y: scroll;
   box-sizing: border-box;
   position: relative;
   h1 {
@@ -136,7 +135,6 @@ class Column extends React.PureComponent {
               {...provided.draggableProps}
               ref={provided.innerRef}
               {...provided.dragHandleProps} 
-              tasks={this.props.taskOrder.length}
             >
               <p className='title'>{this.props.column.name}</p>
               <i className="fas fa-ellipsis-h settings" onClick={this.toggleColumnModal} style={{position: 'absolute', right: 0, top: 0,}}></i>
