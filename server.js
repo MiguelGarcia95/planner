@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+
 const board = require('./routes/board');
 const column = require('./routes/column');
 const task = require('./routes/task');
@@ -11,6 +12,12 @@ require('./db/mongoose');
 app.use(express.json());
 app.use(cors());
 
+// Serve static assets 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.Router.static("client/build"));
+}
+
+// Routes
 app.use('/boards', board);
 app.use('/columns', column);
 app.use('/tasks', task);
