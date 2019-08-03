@@ -19,7 +19,7 @@ app.use(csp({
     scriptSrc: ["'self'", "'unsafe-inline'", 'https://kit.fontawesome.com/5f7fe36d22.js'],
     styleSrc: ["'self'", "'unsafe-inline'", 'https://kit-free.fontawesome.com'],
     fontSrc: ['https://kit-free.fontawesome.com'],
-    imgSrc: ["'self'", 'https://react-draggable-planner.herokuapp.com/favicon.ico'],
+    imgSrc: ["'self'", 'https://react-draggable-planner.herokuapp.com/favicon.ico', 'https:'],
   }
 }))
 
