@@ -15,7 +15,9 @@ app.use(express.json());
 app.use(cors());
 app.use(csp({
   directives: {
-    defaultSrc: ["*"],
+    defaultSrc: ["'self'", "'unsafe'"],
+    scriptSrc: ["'self'", "'unsafe-inline'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
     // styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
   }
 }))
