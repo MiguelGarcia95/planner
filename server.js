@@ -13,7 +13,7 @@ require('./db/mongoose');
 app.use(express.json());
 app.use(cors());
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src '*'");
+  res.setHeader("Content-Security-Policy", "default-src *");
   return next();
 })
 
