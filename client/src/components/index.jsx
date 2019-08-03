@@ -49,6 +49,7 @@ class App extends React.Component {
   }
 
   displayBoards = () => {
+    if (!this.props.boards) return '';
     return this.props.boards.map(board => <Board key={board._id} board={board} deleteBoard={this.props.deleteBoard} updateBoard={this.props.updateBoard} />)
   }
 

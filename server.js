@@ -18,8 +18,7 @@ app.use(csp({
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "'unsafe-inline'", 'https://kit.fontawesome.com/5f7fe36d22.js'],
     styleSrc: ["'self'", "'unsafe-inline'", 'https://kit-free.fontawesome.com'],
-    fontSrc: ["'self", 'https://kit-free.fontawesome.com'],
-    // styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
+    fontSrc: ['https://kit-free.fontawesome.com'],
   }
 }))
 
