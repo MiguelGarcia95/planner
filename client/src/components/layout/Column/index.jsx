@@ -40,6 +40,7 @@ const Container = styled.section`
     font-size: 1.1em;
     line-height: 20px;
     font-weight: 500;
+    word-wrap: break-word;
   }
   .settings {
     margin: 5px;
