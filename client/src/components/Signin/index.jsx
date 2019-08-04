@@ -5,52 +5,7 @@ import {connect} from 'react-redux';
 
 import {validateForm} from '../../utils/validation';
 import {signin} from '../../store/actions/auth';
-import {Container, Message, Form, FormHeader, BottomLink} from './styles';
-
-const FormBody = styled.section`
-  width: 100%;
-  height: 310px;
-  box-sizing: border-box;
-  padding: 25px;
-  flex: 4;
-  position: relative;
-  input {
-    width: 100%;
-    border: none;
-    height: 40px;
-    margin: 15px 0;
-    box-sizing: border-box;
-    padding: 10px;
-    background-color: transparent;
-    border-bottom: 1px solid black;
-    font-size: 1.2em;
-  }
-  input.error {
-    background: rgba(255,50,50,0.5);
-    outline: 1px solid red;
-    margin: 5px 0;
-  }
-  .input_error {
-    margin: 0;
-  }
-  input::placeholder {color: black; opacity: 1;}
-  input:-ms-input-placeholder {color: black;}
-  input::-ms-input-placeholder {color: black;}
-  button {
-    border: none;
-    height: 50px;
-    cursor: pointer;
-    color: white;
-    font-size: 1.4em;
-    background: linear-gradient(to bottom, #FF4B2B, #FF416C);    
-    border-radius: 25px;
-    position: absolute;
-    margin: auto;
-    left: 0; right: 0;
-    bottom: 20px;
-    width: 90%;
-  }
-`;
+import {Container, Message, Form, FormHeader, BottomLink, Button, FormBody, Error} from './styles';
 
 class Signin extends React.Component {
   state = {
@@ -108,13 +63,9 @@ class Signin extends React.Component {
           <p><strong>password:</strong> password123</p>
         </Message>
         <Form onSubmit={this.onSubmit}>
-          <FormHeader>
-            Login
-          </FormHeader>
+          <FormHeader>Login</FormHeader>
           <FormBody>
-            {errors.email && (
-              <p className='input_error'>{errors.email.error}</p>
-            )}
+            {errors.email && <Error>{errors.email.error}</Error>}
             <input 
               className={`${errors.email ? 'error' : ''}`}
               type='email' 
@@ -123,9 +74,7 @@ class Signin extends React.Component {
               value={email} 
               onChange={this.onChange} 
             />
-            {errors.password && (
-              <p className='input_error'>{errors.password.error}</p>
-            )}
+            {errors.password && <Error>{errors.password.error}</Error>}
             <input 
               className={`${errors.password ? 'error' : ''}`}
               type='password' 
@@ -134,7 +83,7 @@ class Signin extends React.Component {
               value={password} 
               onChange={this.onChange} 
             />
-            <button>Login</button>
+            <Button>Login</Button>
           </FormBody>
         </Form>
         
