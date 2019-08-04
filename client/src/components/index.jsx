@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Page, Container, Boards} from './styles';
 import {connect} from 'react-redux';
 import {getBoards, deleteBoard, updateBoard} from '../store/actions/board';
 import Board from './layout/Board';
@@ -13,50 +14,21 @@ import Navbar from './layout/Navbar';
   From Here: Board link, signout/signin page, settings 
 */ 
 
-const Page = styled.section`
-  width: 100%;
-  min-height: 100vh;
-  background-color: ${props => (props.bgColor ? props.bgColor : '#f9f9f9')};
-`;
-
-const Container = styled.section`
-  width: 70%;
-  min-height: 100vh;
-  margin: auto;
-`;
-
-const Boards = styled.section`
-  width: 100%;
-  padding-top: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
-
 class App extends React.Component {
   state = {
     toggle: false,
   }
   componentDidMount() {
-    if (this.props.user && !this.props.started) {
+    if (this.props.user && !this.props.started) 
       this.props.getBoards(this.props.user._id);
-    }
   }
 
   componentWillUpdate(nextProps) {
-    if (!this.props.user && nextProps.user) {
+    if (!this.props.user && nextProps.user) 
       this.props.getBoards(nextProps.user._id);
-    }
 
-    console.log('updated')
-    
-    if (this.props.boardToggle !== nextProps.boardToggle) {
-      console.log('updated board')
-      // this.props.getBoards(nextProps.user._id);
+    if (this.props.boardToggle !== nextProps.boardToggle) 
       this.setState({toggle: !this.state.toggle})
-    }
   }
 
   displayBoards = () => {
@@ -69,9 +41,7 @@ class App extends React.Component {
       <Page>
         <Navbar history={this.props.history} />
         <Container>
-          <Boards>
-            {this.displayBoards()}
-          </Boards>
+          <Boards>{this.displayBoards()}</Boards>
         </Container>
       </Page>
     )
