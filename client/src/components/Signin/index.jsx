@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -87,9 +86,7 @@ class Signin extends React.Component {
           </FormBody>
         </Form>
         
-        <BottomLink>
-          <p>Don't have an account? <Link to='/signup'>Sign Up</Link> </p>
-        </BottomLink>
+        <BottomLink>Don't have an account? <Link to='/signup'>Sign Up</Link></BottomLink>
       </Container>
     )
   }

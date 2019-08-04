@@ -50,17 +50,15 @@ export const FormHeader = styled.section`
   line-height: 80px;
 `;
 
-export const BottomLink = styled.section`
-  position: absolute;
-  bottom: 0px;
-  height: 50px;
-  p {
+export const BottomLink = styled.p`
+    position: absolute;
+    bottom: 0px;
+    height: 50px;
     line-height: 50px;
     a {
       color: black;
       font-weight: 500;
     }
-  }
 `;
 
 export const Button = styled.button`
