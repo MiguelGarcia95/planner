@@ -1,21 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createBoard} from '../../../store/actions/board';
 import {signinWithToken, logout} from '../../../store/actions/auth';
 
-import {Container, Logo, Nav} from './styles';
+import {Container, Logo, Nav, NavItem} from './styles';
 import BoardModal from '../BoardModal';
 import {getCookie} from '../../../utils/cookies';
-
-const NavItem = styled.section`
-  flex-basis: 20%;
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-`;
 
 class Navbar extends React.Component {
   state = {

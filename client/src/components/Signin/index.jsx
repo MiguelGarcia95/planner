@@ -5,12 +5,6 @@ import {connect} from 'react-redux';
 
 import {signin} from '../../store/actions/auth';
 
-/* 
-  Location: /Signin
-  Purpose: Login
-  Access: Can't be Authenticated *Ignore for now*
-*/ 
-
 const Container = styled.section`
   width: 100%;
   height: 100vh;

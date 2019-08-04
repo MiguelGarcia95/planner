@@ -44,3 +44,11 @@ export const Nav = styled.section`
     }
   }
 `;
+
+export const NavItem = styled.section`
+  flex-basis: 20%;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+`;
