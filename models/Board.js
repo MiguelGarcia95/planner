@@ -13,6 +13,10 @@ const boardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  textColor: {
+    type: String,
+    required: true,
+  },
   columnOrder: {
     type: Array,
     required: false,
