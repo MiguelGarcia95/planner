@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import {Container, Icon} from './styles';
 import {Link} from 'react-router-dom';
 import BoardEditModal from '../BoardEditModal';
 
@@ -9,50 +9,6 @@ import BoardEditModal from '../BoardEditModal';
   Access: Need to be Authenticated & creator of board *Ignore for now*
   Features: Click to Go to Board
 */ 
-
-const Container = styled.section`
-  flex-basis: 30%;
-  height: 100px;
-  background: ${props => props.bgColor ? props.bgColor : 'rgba(0,0,0,0.5)'};
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
-  text-align: center;
-  margin-top: 50px;
-  overflow: hidden;
-  box-sizing: border-box;
-  padding: 0 5px;
-  position: relative;
-  z-index: 1;
-  .settings {
-    color: ${props => props.textColor ? props.textColor : 'white'};
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
-    cursor: pointer;
-    box-sizing: border-box;
-  }
-  i {
-    padding-top: 8px;
-  }
-  a {
-    text-decoration: none;
-    h1 {
-      line-height: 100px;
-      font-size: 1.7em;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
-      color: ${props => props.textColor ? props.textColor : 'white'};
-    }
-  }
-
-  @media(max-width: 900px) {flex-basis: 45%;}
-  @media(max-width: 600px) {flex-basis: 100%;}
-`;
-
 
 class Board extends React.Component {
   state = {
@@ -71,12 +27,12 @@ class Board extends React.Component {
 
   onBoardUpdate = e => {
     e.preventDefault();
-    if (this.state.newColumnValue) {
-      const updatedColumn = {
-        ...this.props.column,
-        name: this.state.newColumnValue
+    if (this.state.newBoardName) {
+      const updatedBoard = {
+        ...this.props.board,
+        name: this.state.newBoardName
       }
-      this.props.updateColumn(updatedColumn);
+      this.props.updateBoard(updatedBoard);
       this.setState({modal: false})
     }
   }
@@ -85,7 +41,7 @@ class Board extends React.Component {
     return (
       <React.Fragment>
         <Container bgColor={this.props.board.bgColor} textColor={this.props.board.textColor} >
-          <i className="fas fa-ellipsis-h settings" onClick={this.toggleModal}></i>
+          <Icon className="fas fa-ellipsis-h settings" onClick={this.toggleModal} textColor={this.props.board.textColor} />
           <Link to={`/${this.props.board._id}/${this.props.board.name}`}>
             <h1>{this.props.board.name}</h1>
           </Link>

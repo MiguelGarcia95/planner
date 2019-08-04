@@ -36,6 +36,9 @@ const Boards = styled.section`
 `;
 
 class App extends React.Component {
+  state = {
+    toggle: false,
+  }
   componentDidMount() {
     if (this.props.user && !this.props.started) {
       this.props.getBoards(this.props.user._id);
@@ -45,6 +48,14 @@ class App extends React.Component {
   componentWillUpdate(nextProps) {
     if (!this.props.user && nextProps.user) {
       this.props.getBoards(nextProps.user._id);
+    }
+
+    console.log('updated')
+    
+    if (this.props.boardToggle !== nextProps.boardToggle) {
+      console.log('updated board')
+      // this.props.getBoards(nextProps.user._id);
+      this.setState({toggle: !this.state.toggle})
     }
   }
 
@@ -72,6 +83,7 @@ const mapStateToProps = state => {
     boards: state.board.boards,
     user: state.auth.user,
     started: state.board.started,
+    boardToggle: state.board.boardToggle
   }
 }
 

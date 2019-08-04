@@ -1,10 +1,18 @@
-import {CREATE_BOARD, GET_BOARDS, GET_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS, DELETE_BOARD} from '../actions/types';
+import {CREATE_BOARD, GET_BOARDS, GET_BOARD, REARRANGE_BOARD_COLUMNS, UPDATE_BOARD_COLUMNS, DELETE_BOARD, UPDATE_BOARD} from '../actions/types';
 
 const initialState = {
   currentBoard: null,
   boards: [],
   started: false,
+  boardToggle: false
 };
+
+const replaceBoard = (boards, newBoard) => {
+  const index = boards.findIndex(column => column._id === newBoard._id);
+  let sortedBoards = boards;
+  sortedBoards[index] = newBoard;
+  return sortedBoards;
+}
 
 const board = (state = initialState, action) => {
   switch (action.type) {
@@ -33,6 +41,12 @@ const board = (state = initialState, action) => {
       return {
         ...state,
         currentBoard: action.payload.currentBoard
+      }
+    case UPDATE_BOARD:
+      return {
+        ...state,
+        boards: replaceBoard(state.boards, action.payload.updatedBoard),
+        boardToggle: !state.boardToggle
       }
     case DELETE_BOARD:
       return {
