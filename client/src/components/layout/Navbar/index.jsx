@@ -40,9 +40,7 @@ class Navbar extends React.Component {
   }
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal});
-
   onChange = e => this.setState({[e.target.name]: e.target.value});
-  
   onColorPick = (color, type) => this.setState({[type]: color});
 
   onBoardSubmit = e => {
@@ -53,9 +51,8 @@ class Navbar extends React.Component {
       userId: this.props.user._id,
       textColor: this.state.text_color,
     }
-
     this.props.createBoard(board);
-    this.setState({boardModal: false, board_name: '', board_color: ''});
+    this.setState({boardModal: false, board_name: '', board_color: '#ffffff', text_color: '#000000',});
   };
 
   render() {

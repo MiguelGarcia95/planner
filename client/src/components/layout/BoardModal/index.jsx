@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { SliderPicker  } from 'react-color';
 import {Container, ModalBackground, Modal, Form, Title, Label, Button} from './styles';
 
