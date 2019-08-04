@@ -22,13 +22,19 @@ const Container = styled.section`
   padding: 0 5px;
   position: relative;
   z-index: 1;
-  i {
-    color: white;
+  .settings {
+    color: ${props => props.textColor ? props.textColor : 'white'};
     position: absolute;
     right: 0;
     top: 0;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
     cursor: pointer;
+    box-sizing: border-box;
+  }
+  i {
+    padding-top: 8px;
   }
   a {
     text-decoration: none;
