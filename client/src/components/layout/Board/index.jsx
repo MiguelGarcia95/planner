@@ -38,8 +38,8 @@ const Container = styled.section`
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      color: white;
       text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+      color: ${props => props.textColor ? props.textColor : 'white'};
     }
   }
 
@@ -78,7 +78,7 @@ class Board extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Container bgColor={this.props.board.bgColor}>
+        <Container bgColor={this.props.board.bgColor} textColor={this.props.board.textColor} >
           <i className="fas fa-ellipsis-h settings" onClick={this.toggleModal}></i>
           <Link to={`/${this.props.board._id}/${this.props.board.name}`}>
             <h1>{this.props.board.name}</h1>

@@ -57,7 +57,8 @@ class Navbar extends React.Component {
   state = {
     boardModal: false,
     board_name: '',
-    board_color: '#ffffff'
+    board_color: '#ffffff',
+    text_color: '#000000',
   }
 
   componentDidMount() {
@@ -76,7 +77,7 @@ class Navbar extends React.Component {
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
   onChange = e => this.setState({[e.target.name]: e.target.value});
-  onColorPick = color => this.setState({board_color: color});
+  onColorPick = (color, type) => this.setState({[type]: color});
 
   onBoardSubmit = e => {
     e.preventDefault();
@@ -84,14 +85,11 @@ class Navbar extends React.Component {
       name: this.state.board_name,
       bgColor: this.state.board_color,
       userId: this.props.user._id,
+      textColor: this.state.text_color,
     }
 
     this.props.createBoard(board);
     this.setState({boardModal: false, board_name: '', board_color: ''});
-  };
-
-  onSettingsSubmit = e => {
-    e.preventDefault();
   };
 
   render() {
@@ -107,12 +105,10 @@ class Navbar extends React.Component {
         </Nav>
 
         <BoardModal 
-          isOpen={this.state.boardModal} 
           toggle={this.toggleBoardModal}
           onFormChange={this.onChange}
           onSubmit={this.onBoardSubmit}
-          name={this.state.board_name}
-          color={this.state.board_color}
+          state={this.state}
           onColorChange={this.onColorPick}
         />
       </Container>
