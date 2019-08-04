@@ -71,6 +71,10 @@ const FormBody = styled.section`
     border-bottom: 1px solid black;
     font-size: 1.2em;
   }
+  input.error {
+    background: rgba(255,50,50,0.5);
+    outline: 1px solid red;
+  }
   input::placeholder {color: black; opacity: 1;}
   input:-ms-input-placeholder {color: black;}
   input::-ms-input-placeholder {color: black;}
@@ -199,10 +203,38 @@ class Signup extends React.Component {
             <h1>Sign Up</h1>
           </FormHeader>
           <FormBody>
-            <input type='text' name='username' placeholder='Username' value={username} onChange={this.onChange} />
-            <input type='text' name='email' placeholder='Email' value={email} onChange={this.onChange} />
-            <input type='password' name='password' placeholder='Enter Password' value={password} onChange={this.onChange} />
-            <input type='password' name='password_confirmation' placeholder='Confirm Password' value={password_confirmation} onChange={this.onChange} />
+            <input 
+              className={`${errors.username ? 'error' : ''}`}
+              type='text' 
+              name='username' 
+              placeholder='Username' 
+              value={username} 
+              onChange={this.onChange} 
+            />
+            <input 
+              className={`${errors.email ? 'error' : ''}`}
+              type='email' 
+              name='email' 
+              placeholder='Email' 
+              value={email} 
+              onChange={this.onChange} 
+            />
+            <input 
+              className={`${errors.password ? 'error' : ''}`}
+              type='password' 
+              name='password' 
+              placeholder='Enter Password' 
+              value={password} 
+              onChange={this.onChange} 
+            />
+            <input 
+              className={`${errors.password_confirmation ? 'error' : ''}`}
+              type='password' 
+              name='password_confirmation' 
+              placeholder='Confirm Password' 
+              value={password_confirmation} 
+              onChange={this.onChange} 
+            />
             <button>Sign Up</button>
           </FormBody>
         </Form>

@@ -21,6 +21,15 @@ const Container = styled.section`
   background: #f9f9f9;
   background: -webkit-linear-gradient(to bottom, #ddd, #fff);
   background: linear-gradient(to bottom, #ddd, #fff);
+
+  .message {
+    width: 200px;
+    height: 60px;
+    position: absolute;
+    top: 20px;
+    text-align: center;
+    p {line-height: 30px; margin: 0;}
+  }
 `;
 
 const Form = styled.form`
@@ -70,6 +79,10 @@ const FormBody = styled.section`
     background-color: transparent;
     border-bottom: 1px solid black;
     font-size: 1.2em;
+  }
+  input.error {
+    background: rgba(255,50,50,0.5);
+    outline: 1px solid red;
   }
   input::placeholder {color: black; opacity: 1;}
   input:-ms-input-placeholder {color: black;}
@@ -193,13 +206,31 @@ class Signin extends React.Component {
     const {email, password, errors} = this.state;
     return (
       <Container>
+        <section className='message'>
+          <p><strong>email:</strong> admin@admin.com</p>
+          <p><strong>password:</strong> password123</p>
+        </section>
         <Form onSubmit={this.onSubmit}>
           <FormHeader>
             <h1>Login</h1>
           </FormHeader>
           <FormBody>
-            <input type='email' name='email' placeholder='Email' value={email} onChange={this.onChange} />
-            <input type='password' name='password' placeholder='Enter Password' value={password} onChange={this.onChange} />
+            <input 
+              className={`${errors.email ? 'error' : ''}`}
+              type='email' 
+              name='email' 
+              placeholder='Email' 
+              value={email} 
+              onChange={this.onChange} 
+            />
+            <input 
+              className={`${errors.password ? 'error' : ''}`}
+              type='password' 
+              name='password' 
+              placeholder='Enter Password' 
+              value={password} 
+              onChange={this.onChange} 
+            />
             <button>Login</button>
           </FormBody>
         </Form>
