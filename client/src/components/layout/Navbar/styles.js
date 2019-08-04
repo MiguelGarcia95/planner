@@ -35,7 +35,7 @@ export const Nav = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    .link, .btn {
+    .link {
       flex-basis: 20%;
       text-align: center;
       text-decoration: none;

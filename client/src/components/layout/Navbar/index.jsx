@@ -9,6 +9,14 @@ import {Container, Logo, Nav} from './styles';
 import BoardModal from '../BoardModal';
 import {getCookie} from '../../../utils/cookies';
 
+const NavItem = styled.section`
+  flex-basis: 20%;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+`;
+
 class Navbar extends React.Component {
   state = {
     boardModal: false,
@@ -56,9 +64,9 @@ class Navbar extends React.Component {
         <Logo><section className="logo">P</section></Logo>
         <Nav>
           <section className="nav">
-            <Link className='link' to='/'>Boards</Link>
-            <section className='btn' onClick={() => this.props.logout()} >Logout</section>
-            <section className='btn' onClick={this.toggleBoardModal} >+</section>
+            <Link className='link' to='/'>Home</Link>
+            <NavItem onClick={() => this.props.logout()} >Logout</NavItem>
+            <NavItem className="fas fa-plus" onClick={this.toggleBoardModal} />
           </section>
         </Nav>
 
