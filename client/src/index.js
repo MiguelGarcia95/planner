@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, HashRouter, Switch, Route, withRouter} from 'react-router-dom';
+import {HashRouter, Switch, Route, withRouter} from 'react-router-dom';
 import {Provider, connect} from 'react-redux';
 import '@atlaskit/css-reset';
 import './index.css';
