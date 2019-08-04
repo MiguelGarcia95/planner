@@ -37,7 +37,7 @@ const Form = styled.form`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 50px;
+  padding: 30px 50px;
   background: #11998e;  
   background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
   background: linear-gradient(to right, #38ef7d, #11998e);
@@ -50,8 +50,8 @@ const Form = styled.form`
   }
 
   h1 {
-    height: 100px;
-    line-height: 100px;
+    height: 80px;
+    line-height: 80px;
     font-size: 2em;
     color: black;
     font-weight: 300;
@@ -59,11 +59,20 @@ const Form = styled.form`
 
   input {
     height: 50px;
-    margin: 25px 0;
+    margin: 0;
+    margin-bottom: 10px;
     box-sizing: border-box;
     padding: 10px;
     border-bottom: 2px solid black;
     background-color: transparent;
+  }
+
+  .label {
+    text-align: left;
+    color: black;
+    line-height: 50px;
+    font-weight: bold;
+    margin: 0;
   }
 
   input::placeholder {color: black; opacity: 1;}
@@ -99,6 +108,9 @@ function BoardModal({isOpen, toggle, onFormChange, onSubmit, name, color, onColo
         <Form onSubmit={onSubmit} >
           <h1>Create New Board</h1>
           <input type='text' name='board_name' onChange={onFormChange} placeholder='Board Name' value={name} />
+          <p className='label'>Background Color</p>
+          <SliderPicker onChange={e => onColorChange(e.hex)} color={color}/>
+          <p className='label'>Text Color</p>
           <SliderPicker onChange={e => onColorChange(e.hex)} color={color}/>
           <button >Submit</button>
         </Form>
