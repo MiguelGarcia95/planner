@@ -5,53 +5,9 @@ import {connect} from 'react-redux';
 import {createBoard} from '../../../store/actions/board';
 import {signinWithToken, logout} from '../../../store/actions/auth';
 
+import {Container, Logo, Nav} from './styles';
 import BoardModal from '../BoardModal';
 import {getCookie} from '../../../utils/cookies';
-
-const Container = styled.section`
-  height: 50px;
-  display: flex;
-  width: 100%;
-  flex: 1;
-  z-index: 5;
-  position: fixed;
-  background: #11998e;  
-  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
-  background: linear-gradient(to right, #38ef7d, #11998e);
-`;
-
-const Logo = styled.section`
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-  .logo {
-    line-height: 50px;
-    height: 50px;
-    width: 50px;
-    text-align: center;
-    font-size: 2em;
-  }
-`;
-
-const Nav = styled.section`
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  .nav {
-    height: 50px;
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    .link, .btn {
-      flex-basis: 20%;
-      text-align: center;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
-  }
-`;
 
 class Navbar extends React.Component {
   state = {
@@ -75,8 +31,10 @@ class Navbar extends React.Component {
     }
   }
 
-  toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal})
+  toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal});
+
   onChange = e => this.setState({[e.target.name]: e.target.value});
+  
   onColorPick = (color, type) => this.setState({[type]: color});
 
   onBoardSubmit = e => {

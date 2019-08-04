@@ -3,13 +3,6 @@ import {Container, Icon} from './styles';
 import {Link} from 'react-router-dom';
 import BoardEditModal from '../BoardEditModal';
 
-/* 
-  Location: home/index page
-  Purpose: Show tasks
-  Access: Need to be Authenticated & creator of board *Ignore for now*
-  Features: Click to Go to Board
-*/ 
-
 class Board extends React.Component {
   state = {
     modal: false,

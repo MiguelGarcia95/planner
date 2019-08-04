@@ -1,23 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 import {Page, Container, Boards} from './styles';
 import {connect} from 'react-redux';
 import {getBoards, deleteBoard, updateBoard} from '../store/actions/board';
 import Board from './layout/Board';
 import Navbar from './layout/Navbar';
 
-/* 
-  Location: Index/home page
-  Purpose: Show current boards
-  Access: Need to be Authenticated *Ignore for now*
-  Features: Create new boards,
-  From Here: Board link, signout/signin page, settings 
-*/ 
-
 class App extends React.Component {
-  state = {
-    toggle: false,
-  }
+  state = {toggle: false,}
+
   componentDidMount() {
     if (this.props.user && !this.props.started) 
       this.props.getBoards(this.props.user._id);
