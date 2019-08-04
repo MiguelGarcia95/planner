@@ -5,58 +5,7 @@ import {connect} from 'react-redux';
 
 import {validateForm} from '../../utils/validation';
 import {signin} from '../../store/actions/auth';
-
-const Container = styled.section`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background: #f9f9f9;
-  background: -webkit-linear-gradient(to bottom, #ddd, #fff);
-  background: linear-gradient(to bottom, #ddd, #fff);
-
-  .message {
-    width: 200px;
-    height: 60px;
-    position: absolute;
-    top: 20px;
-    text-align: center;
-    p {line-height: 30px; margin: 0;}
-  }
-`;
-
-const Form = styled.form`
-  flex-direction: column;
-  text-align: center;
-  width: 350px;
-  height: 390px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
-  background: #11998e;  
-  background: -webkit-linear-gradient(to bottom, #38ef7d, #11998e);
-  background: linear-gradient(to bottom, #38ef7d, #11998e);
-
-  @media(max-width: 500px) {
-    width: 350px;
-    width: 100%;
-    height: 450px;
-    box-sizing: border-box; 
-    margin: 0 25px;
-  }
-`;
-
-const FormHeader = styled.section`
-  width: 100%;
-  height: 80px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
-  h1 {
-    font-size: 2em;
-    color: black;
-    font-weight: 300;
-    line-height: 80px;
-  }
-`;
+import {Container, Message, Form, FormHeader, BottomLink} from './styles';
 
 const FormBody = styled.section`
   width: 100%;
@@ -100,19 +49,6 @@ const FormBody = styled.section`
     left: 0; right: 0;
     bottom: 20px;
     width: 90%;
-  }
-`;
-
-const BottomLink = styled.section`
-  position: absolute;
-  bottom: 0px;
-  height: 50px;
-  p {
-    line-height: 50px;
-    a {
-      color: black;
-      font-weight: 500;
-    }
   }
 `;
 
@@ -167,13 +103,13 @@ class Signin extends React.Component {
     const {email, password, errors} = this.state;
     return (
       <Container>
-        <section className='message'>
+        <Message>
           <p><strong>email:</strong> admin@admin.com</p>
           <p><strong>password:</strong> password123</p>
-        </section>
+        </Message>
         <Form onSubmit={this.onSubmit}>
           <FormHeader>
-            <h1>Login</h1>
+            Login
           </FormHeader>
           <FormBody>
             {errors.email && (
