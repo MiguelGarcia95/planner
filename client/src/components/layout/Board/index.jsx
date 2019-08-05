@@ -5,8 +5,7 @@ import BoardEditModal from '../BoardEditModal';
 
 class Board extends React.Component {
   state = {
-    // modal: false,
-    modal: true,
+    modal: false,
     newBoardName: '',
     board_name: '',
     board_color: this.props.board.bgColor,
