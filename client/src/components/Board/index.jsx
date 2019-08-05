@@ -1,16 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-import {Container} from '../_StyledComponents/Board';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
 import Navbar from '../layout/Navbar';
 import Redirect from '../layout/Redirect';
 import BoardContent from '../layout/BoardContent';
+import {Container} from './styles';
 
 import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
 import {createColumn, getColumns, rearrangeColumnTasks} from '../../store/actions/column';
-import {getTasks} from '../../store/actions/task';
 
 class Board extends React.Component {
   state = {toggle: false}
@@ -30,7 +28,7 @@ class Board extends React.Component {
       this.props.getBoard(this.props.match.params.boardId, nextProps.user._id);
     }
 
-    if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0 && nextProps.tasks.length === 0) {
+    if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0) {
       this.props.getColumns(nextProps.board._id);
     }
 
@@ -81,7 +79,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const {board, tasks, columns, createColumn} = this.props;
+    const {board, columns, createColumn} = this.props;
 
     if (board !== null && board !== '') {
       return (
@@ -91,7 +89,6 @@ class Board extends React.Component {
               <Container {...provided.droppableProps} ref={provided.innerRef} >
                 <Navbar history={this.props.history} />
                 <BoardContent 
-                  tasks={tasks}
                   board={board}
                   columns={columns}
                   provided={provided}
@@ -117,9 +114,7 @@ const mapStateToProps = state => {
   return {
     board: state.board.currentBoard,
     columns: state.column.columns,
-    tasks: state.task.tasks,
     toggled: state.column.toggled,
-    toggledTask: state.task.toggled,
     user: state.auth.user
   }
 };
@@ -130,7 +125,6 @@ const mapDispatchToProps = dispatch => {
     createColumn: (columnData, board) => dispatch(createColumn(columnData, board)),
     getColumns: boardId => dispatch(getColumns(boardId)),
     rearrangeBoardColumns: (board, columnOrder) => dispatch(rearrangeBoardColumns(board, columnOrder)),
-    getTasks: boardId => dispatch(getTasks(boardId)),
     rearrangeColumnTasks: (column, taskOrder) => dispatch(rearrangeColumnTasks(column, taskOrder))
   }
 }

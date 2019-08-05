@@ -1,30 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import {connect} from 'react-redux';
 
 import Column from '../Column';
 import ColumnForm from '../ColumnForm';
 import {getTasks} from '../../../store/actions/task';
-
-const Container = styled.section`
-  min-width: 100vw;
-  display: flex;
-  height: 100vh;
-  max-height: 100%;
-  margin: auto;
-  overflow-x: scroll;
-  overflow-y: none;
-  flex-wrap: nowrap
-  -webkit-overflow-scrolling: touch; /* [4] */
-  -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
-`;
+import {Container} from './styles';
 
 class BoardContent extends React.Component {
   state = {toggle: false}
   componentDidMount() {
-    if (this.props.board) {
+    if (this.props.board) 
       this.props.getTasks(this.props.board._id);
-    }
   }
 
   componentWillUpdate(nextProps) {
