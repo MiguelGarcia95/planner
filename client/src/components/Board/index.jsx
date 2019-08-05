@@ -8,7 +8,7 @@ import BoardContent from '../layout/BoardContent';
 import {Container} from './styles';
 
 import {getBoard, rearrangeBoardColumns} from '../../store/actions/board';
-import {createColumn, getColumns, rearrangeColumnTasks} from '../../store/actions/column';
+import {getColumns, rearrangeColumnTasks} from '../../store/actions/column';
 
 class Board extends React.Component {
   state = {toggle: false}
@@ -79,20 +79,19 @@ class Board extends React.Component {
   }
 
   render() {
-    const {board, columns, createColumn} = this.props;
+    const {board, columns} = this.props;
 
     if (board !== null && board !== '') {
       return (
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="all-columns" direction='horizontal' type='column'>
             {provided => (
-              <Container {...provided.droppableProps} ref={provided.innerRef} >
+              <Container {...provided.droppableProps} ref={provided.innerRef} bgColor={board.bgColor}>
                 <Navbar history={this.props.history} />
                 <BoardContent 
                   board={board}
                   columns={columns}
                   provided={provided}
-                  createColumn={createColumn}
                 />
               </Container>
             )}
@@ -122,7 +121,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getBoard: (boardId, userId) => dispatch(getBoard(boardId, userId)),
-    createColumn: (columnData, board) => dispatch(createColumn(columnData, board)),
     getColumns: boardId => dispatch(getColumns(boardId)),
     rearrangeBoardColumns: (board, columnOrder) => dispatch(rearrangeBoardColumns(board, columnOrder)),
     rearrangeColumnTasks: (column, taskOrder) => dispatch(rearrangeColumnTasks(column, taskOrder))

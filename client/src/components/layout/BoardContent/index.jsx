@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import Column from '../Column';
 import ColumnForm from '../ColumnForm';
 import {getTasks} from '../../../store/actions/task';
+import {createColumn} from '../../../store/actions/column';
+
 import {Container} from './styles';
 
 class BoardContent extends React.Component {
@@ -60,6 +62,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getTasks: boardId => dispatch(getTasks(boardId)),
+    createColumn: (columnData, board) => dispatch(createColumn(columnData, board)),
   }
 }
 
