@@ -22,7 +22,6 @@ class Board extends React.Component {
 
     if (this.props.board && this.props.board.columnOrder.length !== 0 && this.props.columns.length === 0) {
       this.props.getColumns(this.props.board._id);
-      // this.props.getTasks(this.props.board._id);
     }
   }
 
@@ -33,16 +32,7 @@ class Board extends React.Component {
 
     if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0 && nextProps.tasks.length === 0) {
       this.props.getColumns(nextProps.board._id);
-      // this.props.getTasks(nextProps.board._id);
     }
-
-    // if (this.props.toggledTask !== nextProps.toggledTask) {
-    //   console.log('getTasks');
-    //   this.props.getTasks(nextProps.board._id);
-    //   // For state to work, run on component where tasks load
-    //   // this.setState({toggle: !this.state.toggle});
-    //   // console.log(nextProps.tasks)
-    // }
 
     if (this.props.toggled !== nextProps.toggled) {
       this.setState({toggle: !this.state.toggle});
