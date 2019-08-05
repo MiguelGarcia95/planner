@@ -8,7 +8,6 @@ import {deleteColumn, updateColumn} from '../../../store/actions/column';
 import Task from '../Task';
 import TaskForm from '../TaskForm';
 import TaskEditForm from '../TaskEditForm';
-import ColumnEditForm from '../ColumnEditForm';
 import {Container, Title, Icon, DroppableContainer} from './styles';
 
 class Column extends React.PureComponent {
@@ -108,19 +107,21 @@ class Column extends React.PureComponent {
         </Draggable>
         <TaskEditForm 
           open={this.state.modal} 
-          task={this.state.task} 
+          data={this.state.task} 
+          type='Task'
           toggleModal={this.toggleTaskModal} 
           onSubmit={this.onUpdateSubmit} 
-          onTaskChange={this.onTaskChange}
-          onTaskDelete={this.onTaskDelete}
+          onChange={this.onTaskChange}
+          onDelete={this.onTaskDelete}
         />
-        <ColumnEditForm
+        <TaskEditForm 
           open={this.state.columnModal}
-          column={this.props.column}
-          toggleModal={this.toggleColumnModal}
-          onSubmit={this.onColumnSubmit}
-          onColumnChange={this.onColumnChange}
-          onColumnDelete={this.onColumnDelete}
+          data={this.props.column} 
+          type='Column'
+          toggleModal={this.toggleColumnModal} 
+          onSubmit={this.onColumnSubmit} 
+          onChange={this.onColumnChange}
+          onDelete={this.onColumnDelete}
         />
       </React.Fragment>
     )
