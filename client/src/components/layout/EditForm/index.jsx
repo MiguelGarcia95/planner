@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Screen, Form, Title, Button, Delete} from './styles';
 
-function TaskEditForm({data, toggleModal, open, onChange, value, onSubmit, onDelete, type}) {
+function EditForm({data, toggleModal, open, onChange, value, onSubmit, onDelete, type}) {
   if (!data) return ''
   return (
     <Modal open={open}>
@@ -18,4 +18,4 @@ function TaskEditForm({data, toggleModal, open, onChange, value, onSubmit, onDel
   )
 }
 
-export default TaskEditForm;
+export default EditForm;

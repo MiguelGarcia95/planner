@@ -7,7 +7,7 @@ import {deleteColumn, updateColumn} from '../../../store/actions/column';
 
 import Task from '../Task';
 import TaskForm from '../TaskForm';
-import TaskEditForm from '../TaskEditForm';
+import EditForm from '../EditForm';
 import {Container, Title, Icon, DroppableContainer} from './styles';
 
 class Column extends React.PureComponent {
@@ -105,7 +105,7 @@ class Column extends React.PureComponent {
             </Container>
           )}
         </Draggable>
-        <TaskEditForm 
+        <EditForm 
           open={this.state.modal} 
           data={this.state.task} 
           type='Task'
@@ -114,7 +114,7 @@ class Column extends React.PureComponent {
           onChange={this.onTaskChange}
           onDelete={this.onTaskDelete}
         />
-        <TaskEditForm 
+        <EditForm 
           open={this.state.columnModal}
           data={this.props.column} 
           type='Column'
