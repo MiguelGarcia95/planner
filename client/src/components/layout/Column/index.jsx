@@ -36,24 +36,30 @@ const Container = styled.section`
     line-height: 40px;
     margin: 0;
   }
-  .title {
-    font-size: 1.1em;
-    line-height: 20px;
-    font-weight: 500;
-    word-wrap: break-word;
-  }
   .settings {
-    margin: 5px;
-    cursor: pointer;
+    
   }
 `;
 
-
+const Title = styled.p`
+  font-size: 1.1em;
+  line-height: 20px;
+  font-weight: 500;
+  word-wrap: break-word;
+`;
 
 const DroppableContainer = styled.section`
   ${props => props.isDraggingOver && `
     border: 1px solid rgba(10,10,10,0.1);
   `}
+`;
+
+const Icon = styled.i`
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 5px;
+  cursor: pointer;
 `;
 
 class Column extends React.PureComponent {
@@ -68,7 +74,7 @@ class Column extends React.PureComponent {
   displayTasks = tasks => {
     return tasks.map((task, index) => {
       const taskData = this.props.tasks.filter(currentTask => currentTask._id === task);
-      if (!taskData[0]) return;
+      if (!taskData[0]) return '';
       return (
         <Task 
           key={taskData[0]._id} 
@@ -137,8 +143,8 @@ class Column extends React.PureComponent {
               ref={provided.innerRef}
               {...provided.dragHandleProps} 
             >
-              <p className='title'>{this.props.column.name}</p>
-              <i className="fas fa-ellipsis-h settings" onClick={this.toggleColumnModal} style={{position: 'absolute', right: 0, top: 0,}}></i>
+              <Title>{this.props.column.name}</Title>
+              <Icon className="fas fa-ellipsis-h" onClick={this.toggleColumnModal}/>
               <Droppable droppableId={this.props.column._id} type='task' >
                 {(provided, snapshot) => (
                   <DroppableContainer
@@ -152,7 +158,6 @@ class Column extends React.PureComponent {
                   </DroppableContainer>
                 )}
               </Droppable>
-
             </Container>
           )}
         </Draggable>
