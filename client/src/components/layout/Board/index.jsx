@@ -5,13 +5,18 @@ import BoardEditModal from '../BoardEditModal';
 
 class Board extends React.Component {
   state = {
-    modal: false,
-    newBoardName: ''
+    // modal: false,
+    modal: true,
+    newBoardName: '',
+    board_name: '',
+    board_color: this.props.board.bgColor,
+    text_color: this.props.board.textColor,
   }
 
   toggleModal = () => this.setState({modal: !this.state.modal});
 
   onBoardChange = e => this.setState({newBoardName: e.target.value});
+  onColorPick = (color, type) => this.setState({[type]: color});
 
   onBoardDelete = () => {
     this.props.deleteBoard(this.props.board._id);
@@ -23,7 +28,9 @@ class Board extends React.Component {
     if (this.state.newBoardName) {
       const updatedBoard = {
         ...this.props.board,
-        name: this.state.newBoardName
+        name: this.state.newBoardName,
+        bgColor: this.state.board_color,
+        textColor: this.state.text_color
       }
       this.props.updateBoard(updatedBoard);
       this.setState({modal: false})
@@ -40,12 +47,13 @@ class Board extends React.Component {
           </Link>
         </Container>
         <BoardEditModal 
-          open={this.state.modal} 
           board={this.props.board}  
           toggleModal={this.toggleModal}
           onBoardChange={this.onBoardChange}
           onBoardDelete={this.onBoardDelete}
           onSubmit={this.onBoardUpdate}
+          onColorChange={this.onColorPick}
+          state={this.state}
         />
       </React.Fragment>
     )
