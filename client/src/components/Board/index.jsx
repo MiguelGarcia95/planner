@@ -13,7 +13,7 @@ import {createColumn, getColumns, rearrangeColumnTasks} from '../../store/action
 import {getTasks} from '../../store/actions/task';
 
 class Board extends React.Component {
-  state = {}
+  state = {toggle: false}
 
   componentDidMount() {
     if (this.props.user) {
@@ -22,7 +22,7 @@ class Board extends React.Component {
 
     if (this.props.board && this.props.board.columnOrder.length !== 0 && this.props.columns.length === 0) {
       this.props.getColumns(this.props.board._id);
-      this.props.getTasks(this.props.board._id);
+      // this.props.getTasks(this.props.board._id);
     }
   }
 
@@ -32,20 +32,20 @@ class Board extends React.Component {
     }
 
     if (nextProps.board && nextProps.board.columnOrder.length !== 0 && nextProps.columns.length === 0 && nextProps.tasks.length === 0) {
-      console.log('componentWillUpdate ran');
       this.props.getColumns(nextProps.board._id);
-      this.props.getTasks(nextProps.board._id);
+      // this.props.getTasks(nextProps.board._id);
     }
 
-    if (this.props.toggledTask !== nextProps.toggledTask) {
-      console.log('getTasks');
-      this.props.getTasks(nextProps.board._id);
-      // console.log(nextProps.tasks)
-    }
+    // if (this.props.toggledTask !== nextProps.toggledTask) {
+    //   console.log('getTasks');
+    //   this.props.getTasks(nextProps.board._id);
+    //   // For state to work, run on component where tasks load
+    //   // this.setState({toggle: !this.state.toggle});
+    //   // console.log(nextProps.tasks)
+    // }
 
     if (this.props.toggled !== nextProps.toggled) {
-      console.log('getColumns');
-      this.props.getColumns(nextProps.board._id);
+      this.setState({toggle: !this.state.toggle});
     }
   }
 
