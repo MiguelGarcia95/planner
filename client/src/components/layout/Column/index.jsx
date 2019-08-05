@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import {Droppable, Draggable} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 
@@ -10,57 +9,7 @@ import Task from '../Task';
 import TaskForm from '../TaskForm';
 import TaskEditForm from '../TaskEditForm';
 import ColumnEditForm from '../ColumnEditForm';
-
-/* 
-  Location: /boardID/boardName page
-  Purpose: Show tasks
-  Access: Need to be Authenticated & creator of board *Ignore for now*
-  Features: Create new tasks
-*/ 
-
-const Container = styled.section`
-  width: 250px;
-  min-width: 250px;
-  height: auto;
-  max-height: 100%;
-  background: rgb(240,240,240);
-  border-radius: 10px;
-  margin: 50px 20px;
-  margin-bottom: 0px;
-  padding: 10px;
-  overflow-y: scroll;
-  box-sizing: border-box;
-  position: relative;
-  h1 {
-    font-size: 1em;
-    line-height: 40px;
-    margin: 0;
-  }
-  .settings {
-    
-  }
-`;
-
-const Title = styled.p`
-  font-size: 1.1em;
-  line-height: 20px;
-  font-weight: 500;
-  word-wrap: break-word;
-`;
-
-const DroppableContainer = styled.section`
-  ${props => props.isDraggingOver && `
-    border: 1px solid rgba(10,10,10,0.1);
-  `}
-`;
-
-const Icon = styled.i`
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: 5px;
-  cursor: pointer;
-`;
+import {Container, Title, Icon, DroppableContainer} from './styles';
 
 class Column extends React.PureComponent {
   state = {
@@ -138,11 +87,7 @@ class Column extends React.PureComponent {
       <React.Fragment>
         <Draggable draggableId={this.props.column._id} index={this.props.index}>
           {(provided) => (
-            <Container
-              {...provided.draggableProps}
-              ref={provided.innerRef}
-              {...provided.dragHandleProps} 
-            >
+            <Container {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
               <Title>{this.props.column.name}</Title>
               <Icon className="fas fa-ellipsis-h" onClick={this.toggleColumnModal}/>
               <Droppable droppableId={this.props.column._id} type='task' >
