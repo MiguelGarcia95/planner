@@ -8,7 +8,7 @@ class ColumnForm extends React.Component {
     error: ''
   }
 
-  columnFormToggle = () => this.setState({columnForm: !this.state.columnForm});
+  columnFormToggle = () => this.setState({columnForm: !this.state.columnForm, error: ''});
   setColumnName = e => this.setState({columnName: e.target.value, error: ''});
   resetState = () => this.setState({columnForm: false, columnName: ''});
 

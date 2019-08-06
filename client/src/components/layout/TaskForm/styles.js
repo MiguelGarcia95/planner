@@ -6,7 +6,7 @@ export const Container = styled.section`
   height: 40px;
   overflow: hidden;
   ${props => !props.open && `
-    height: 80px;
+    height: 100px;
   `}
 `;
 
@@ -25,7 +25,8 @@ export const Title = styled.h3`
 export const Form = styled.section`
   width: 100%; 
   height: 100%;
-
+  position: relative;
+  overflow: hidden;
   textarea {
     width: 100%; 
     padding: 2px;
@@ -33,6 +34,8 @@ export const Form = styled.section`
     resize: none;
     box-sizing: border-box;
     height: 40px;
+    position: absolute;
+    bottom: 30px;
   }
   p, button {
     width: 100px;
@@ -45,14 +48,28 @@ export const Form = styled.section`
 
 export const Button = styled.button`
   background: rgb(100,180,100);
-  float: right;
   border: none;
   padding: 0;
+  position: absolute;
+  bottom: 0; right: 0;
 `;
 
 export const Cancel = styled.p`
   background: rgb(213,78,78);
   text-align: center;
   margin: 0;
-  float: left;
+  position: absolute;
+  bottom: 0; left: 0;
+`;
+
+export const Error = styled.p`
+  line-height: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0px;
+  width: 215px !important;
+  box-sizing: border-box;
+  text-align: center;
+  background: rgba(255,70,70,0.5);
+  color: black !important;
 `;
