@@ -22,12 +22,16 @@ class EditForm extends React.Component {
   }
 
   onDelete = id => {
-    this.props.onDelete(id, this.props.data);
+    if (this.props.type === 'Column') {
+      this.props.onDelete(id, this.props.board);
+    } else {
+      this.props.onDelete(id, this.props.column);
+    }
     this.props.resetState();
   }
 
   render() {
-    const {data, toggleModal, open, onSubmit, onDelete, type} = this.props;
+    const {data, toggleModal, open, type} = this.props;
 
     return (
       <Modal open={open}>

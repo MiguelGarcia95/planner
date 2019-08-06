@@ -41,16 +41,6 @@ class Column extends React.PureComponent {
     })
   }
 
-  // onTaskDelete = taskId => {
-  //   this.props.deleteTask(taskId, this.props.column);
-  //   this.setState({modal: false})
-  // }
-
-  // onColumnDelete = () => {
-  //   this.props.deleteColumn(this.props.column._id, this.props.board);
-  //   this.setState({columnModal: false})
-  // }
-
   toggleTaskModal = task => {
     this.setState({
       modal: !this.state.modal,
@@ -90,6 +80,7 @@ class Column extends React.PureComponent {
             open={this.state.modal} 
             data={this.state.task} 
             type='Task'
+            column={this.props.column}
             toggleModal={this.toggleTaskModal} 
             onSubmit={this.props.updateTask} 
             onDelete={this.props.deleteTask}
@@ -100,7 +91,8 @@ class Column extends React.PureComponent {
         {this.props.column && (
           <EditForm 
             open={this.state.columnModal}
-            data={this.props.column} 
+            data={this.props.column}
+            board={this.props.board}
             type='Column'
             toggleModal={this.toggleColumnModal} 
             onSubmit={this.props.updateColumn} 
