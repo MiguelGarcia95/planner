@@ -49,7 +49,6 @@ export const Button = styled.button`
   left: 0;
 `;
 
-
 export const Form = styled.section`
   width: 400px; height: 500px;
   position: absolute;
