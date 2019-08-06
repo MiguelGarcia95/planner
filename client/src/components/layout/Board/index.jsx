@@ -12,8 +12,7 @@ class Board extends React.Component {
     error: ''
   }
 
-  toggleModal = () => this.setState({modal: !this.state.modal});
-
+  toggleModal = () => this.setState({modal: !this.state.modal,  error: ''});
   onBoardChange = e => this.setState({newBoardName: e.target.value, error: ''});
   onColorPick = (color, type) => this.setState({[type]: color});
 

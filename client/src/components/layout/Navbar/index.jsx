@@ -31,7 +31,7 @@ class Navbar extends React.Component {
     }
   }
 
-  toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal});
+  toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal,  error: ''});
   onChange = e => this.setState({[e.target.name]: e.target.value, error: ''});
   onColorPick = (color, type) => this.setState({[type]: color});
 
