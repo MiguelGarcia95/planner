@@ -14,6 +14,7 @@ class Navbar extends React.Component {
     board_name: '',
     board_color: '#ffffff',
     text_color: '#000000',
+    error: '',
   }
 
   componentDidMount() {
@@ -31,19 +32,29 @@ class Navbar extends React.Component {
   }
 
   toggleBoardModal = () => this.setState({boardModal: !this.state.boardModal});
-  onChange = e => this.setState({[e.target.name]: e.target.value});
+  onChange = e => this.setState({[e.target.name]: e.target.value, error: ''});
   onColorPick = (color, type) => this.setState({[type]: color});
 
   onBoardSubmit = e => {
     e.preventDefault();
-    const board = {
-      name: this.state.board_name,
-      bgColor: this.state.board_color,
-      userId: this.props.user._id,
-      textColor: this.state.text_color,
+    if (this.state.name && this.state.board_color && this.state.text_color) {
+      const board = {
+        name: this.state.board_name,
+        bgColor: this.state.board_color,
+        userId: this.props.user._id,
+        textColor: this.state.text_color,
+      }
+      this.props.createBoard(board);
+      this.setState({boardModal: false, board_name: '', board_color: '#ffffff', text_color: '#000000',});
+    } else if (this.state.name && this.state.board_color) {
+      this.setState({error: ''})
+    } else if (this.state.name && this.state.text_color) {
+      this.setState({error: ''})
+    } else if (this.state.board_color && this.state.text_color) {
+      this.setState({error: ''})
+    } else {
+      this.setState({error: ''})
     }
-    this.props.createBoard(board);
-    this.setState({boardModal: false, board_name: '', board_color: '#ffffff', text_color: '#000000',});
   };
 
   render() {
