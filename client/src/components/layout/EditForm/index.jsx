@@ -22,7 +22,8 @@ class EditForm extends React.Component {
   }
 
   onDelete = id => {
-
+    this.props.onDelete(id, this.props.data);
+    this.props.resetState();
   }
 
   render() {
