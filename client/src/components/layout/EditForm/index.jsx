@@ -9,11 +9,11 @@ import {Modal, Screen, Form, Title, Button, Delete} from './styles';
 
 class EditForm extends React.Component {
   state = {
-    updatedValue: '',
+    updatedValue: this.props.data ? this.props.data.name : '',
     error: '',
   }
 
-  onChange = e => {}
+  onChange = e => this.setState({updatedValue: e.target.value})
 
   onUpdate = () => {
 
@@ -26,14 +26,13 @@ class EditForm extends React.Component {
   render() {
     const {data, toggleModal, open, onChange, value, onSubmit, onDelete, type} = this.props;
 
-    if (!data) return ''
     return (
       <Modal open={open}>
         <Screen onClick={toggleModal} />
         <Form>
           <Title>{`${type}: ${data.name}`}</Title>
           <form onSubmit={onSubmit}>
-            <input name='name' value={value} onChange={onChange} placeholder={`Edit ${type}`} />
+            <input name='name' value={this.state.updatedValue} onChange={this.onChange} placeholder={`Edit ${type}`} />
             <Button>Update</Button>
           </form>
           <Delete onClick={() => onDelete(data._id)} >Click To Delete</Delete>

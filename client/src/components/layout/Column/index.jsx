@@ -106,26 +106,33 @@ class Column extends React.PureComponent {
             </Container>
           )}
         </Draggable>
-        <EditForm 
-          open={this.state.modal} 
-          data={this.state.task} 
-          type='Task'
-          value={this.state.newTaskValue}
-          toggleModal={this.toggleTaskModal} 
-          onSubmit={this.onUpdateSubmit} 
-          onChange={this.onTaskChange}
-          onDelete={this.onTaskDelete}
-        />
-        <EditForm 
-          open={this.state.columnModal}
-          data={this.props.column} 
-          type='Column'
-          value={this.state.newColumnValue}
-          toggleModal={this.toggleColumnModal} 
-          onSubmit={this.onColumnSubmit} 
-          onChange={this.onColumnChange}
-          onDelete={this.onColumnDelete}
-        />
+
+        {this.state.task && (
+          <EditForm 
+            open={this.state.modal} 
+            data={this.state.task} 
+            type='Task'
+            value={this.state.newTaskValue}
+            toggleModal={this.toggleTaskModal} 
+            onSubmit={this.onUpdateSubmit} 
+            onChange={this.onTaskChange}
+            onDelete={this.onTaskDelete}
+          />
+        )}
+        
+        {this.props.column && (
+          <EditForm 
+            open={this.state.columnModal}
+            data={this.props.column} 
+            type='Column'
+            value={this.state.newColumnValue}
+            toggleModal={this.toggleColumnModal} 
+            onSubmit={this.onColumnSubmit} 
+            onChange={this.onColumnChange}
+            onDelete={this.onColumnDelete}
+          />
+        )}
+        
       </React.Fragment>
     )
   }
