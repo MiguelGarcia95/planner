@@ -15,7 +15,7 @@ class Column extends React.PureComponent {
     modal: false,
     task: null,
     newTaskValue: '',
-    newColumnValue: '',
+    newColumnValue: this.props.column ? this.props.column.name : '',
     columnModal: false,
   }
 
@@ -120,6 +120,7 @@ class Column extends React.PureComponent {
           open={this.state.columnModal}
           data={this.props.column} 
           type='Column'
+          value={this.state.newColumnValue}
           toggleModal={this.toggleColumnModal} 
           onSubmit={this.onColumnSubmit} 
           onChange={this.onColumnChange}
