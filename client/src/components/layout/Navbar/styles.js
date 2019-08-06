@@ -12,20 +12,6 @@ export const Container = styled.section`
   background: linear-gradient(to right, #38ef7d, #11998e);
 `;
 
-export const AddButton = styled.section`
-  width: 100px;
-  height: 50px;
-  background: #11998e;  
-  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
-  background: linear-gradient(to right, #38ef7d, #11998e);
-  position: absolute;
-  top: 60px;
-  right: 10px;
-  text-align: center;
-  cursor: pointer;
-  line-height: 50px;
-`;
-
 export const Logo = styled.section`
   flex: 1;
   display: flex;
@@ -50,7 +36,9 @@ export const Nav = styled.section`
     align-items: center;
     justify-content: space-around;
     .link {
-      flex-basis: 20%;
+      // flex-basis: 20%;
+      margin-top: 0;
+      width: 140px;
       text-align: center;
       text-decoration: none;
       color: inherit;
