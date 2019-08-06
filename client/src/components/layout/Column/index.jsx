@@ -14,9 +14,9 @@ class Column extends React.PureComponent {
   state = {
     modal: false,
     task: null,
-    newTaskValue: '',
-    newColumnValue: this.props.column ? this.props.column.name : '',
     columnModal: false,
+    // newTaskValue: '',
+    // newColumnValue: this.props.column ? this.props.column.name : '',
   }
 
   displayTasks = tasks => {
@@ -35,48 +35,56 @@ class Column extends React.PureComponent {
     })
   }
 
-  onTaskChange = e => this.setState({newTaskValue: e.target.value});
-  onColumnChange = e => this.setState({newColumnValue: e.target.value});
+  // onTaskChange = e => this.setState({newTaskValue: e.target.value});
+  // onColumnChange = e => this.setState({newColumnValue: e.target.value});
 
-  onUpdateSubmit = e => {
-    e.preventDefault();
-    if (this.state.newTaskValue) {
-      const updatedTask = {
-        ...this.state.task,
-        name: this.state.newTaskValue
-      }
-      this.props.updateTask(updatedTask);
-      this.setState({modal: false})
-    }
+  // onUpdateSubmit = e => {
+  //   e.preventDefault();
+  //   if (this.state.newTaskValue) {
+  //     const updatedTask = {
+  //       ...this.state.task,
+  //       name: this.state.newTaskValue
+  //     }
+  //     this.props.updateTask(updatedTask);
+  //     this.setState({modal: false})
+  //   }
+  // }
+
+  resetState = () => {
+    this.setState({
+      modal: false,
+      task: null,
+      columnModal: false,
+    })
   }
 
-  onColumnSubmit = e => {
-    e.preventDefault();
-    if (this.state.newColumnValue) {
-      const updatedColumn = {
-        ...this.props.column,
-        name: this.state.newColumnValue
-      }
-      this.props.updateColumn(updatedColumn);
-      this.setState({columnModal: false})
-    }
-  }
+  // onColumnSubmit = e => {
+  //   e.preventDefault();
+  //   if (this.state.newColumnValue) {
+  //     const updatedColumn = {
+  //       ...this.props.column,
+  //       name: this.state.newColumnValue
+  //     }
+  //     this.props.updateColumn(updatedColumn);
+  //     this.setState({columnModal: false})
+  //   }
+  // }
 
-  onTaskDelete = taskId => {
-    this.props.deleteTask(taskId, this.props.column);
-    this.setState({modal: false})
-  }
+  // onTaskDelete = taskId => {
+  //   this.props.deleteTask(taskId, this.props.column);
+  //   this.setState({modal: false})
+  // }
 
-  onColumnDelete = () => {
-    this.props.deleteColumn(this.props.column._id, this.props.board);
-    this.setState({columnModal: false})
-  }
+  // onColumnDelete = () => {
+  //   this.props.deleteColumn(this.props.column._id, this.props.board);
+  //   this.setState({columnModal: false})
+  // }
 
   toggleTaskModal = task => {
     this.setState({
       modal: !this.state.modal,
       task: this.state.modal ? null : task,
-      newTaskValue: this.state.modal ? '' : task.name
+      // newTaskValue: this.state.modal ? '' : task.name
     })
   };
 
@@ -112,11 +120,10 @@ class Column extends React.PureComponent {
             open={this.state.modal} 
             data={this.state.task} 
             type='Task'
-            value={this.state.newTaskValue}
             toggleModal={this.toggleTaskModal} 
-            onSubmit={this.onUpdateSubmit} 
-            onChange={this.onTaskChange}
-            onDelete={this.onTaskDelete}
+            onSubmit={this.props.updateTask} 
+            onDelete={this.props.deleteTask}
+            resetState={this.resetState}
           />
         )}
         
@@ -125,11 +132,10 @@ class Column extends React.PureComponent {
             open={this.state.columnModal}
             data={this.props.column} 
             type='Column'
-            value={this.state.newColumnValue}
             toggleModal={this.toggleColumnModal} 
-            onSubmit={this.onColumnSubmit} 
-            onChange={this.onColumnChange}
-            onDelete={this.onColumnDelete}
+            onSubmit={this.props.updateColumn} 
+            onDelete={this.props.deleteColumn}
+            resetState={this.resetState}
           />
         )}
         

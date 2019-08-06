@@ -1,12 +1,6 @@
 import React from 'react';
 import {Modal, Screen, Form, Title, Button, Delete} from './styles';
 
-// onUpdate
-
-// onDelete
-
-// 
-
 class EditForm extends React.Component {
   state = {
     updatedValue: this.props.data ? this.props.data.name : '',
@@ -15,27 +9,35 @@ class EditForm extends React.Component {
 
   onChange = e => this.setState({updatedValue: e.target.value})
 
-  onUpdate = () => {
-
+  onUpdate = e => {
+    e.preventDefault();
+    if(this.state.updatedValue) {
+      const updatedData = {
+        ...this.props.data,
+        name: this.state.updatedValue
+      };
+      this.props.onUpdate(updatedData);
+      this.props.resetState();
+    }
   }
 
-  onDelete = () => {
+  onDelete = id => {
 
   }
 
   render() {
-    const {data, toggleModal, open, onChange, value, onSubmit, onDelete, type} = this.props;
+    const {data, toggleModal, open, onSubmit, onDelete, type} = this.props;
 
     return (
       <Modal open={open}>
         <Screen onClick={toggleModal} />
         <Form>
           <Title>{`${type}: ${data.name}`}</Title>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={this.onSubmit}>
             <input name='name' value={this.state.updatedValue} onChange={this.onChange} placeholder={`Edit ${type}`} />
             <Button>Update</Button>
           </form>
-          <Delete onClick={() => onDelete(data._id)} >Click To Delete</Delete>
+          <Delete onClick={() => this.onDelete(data._id)} >Click To Delete</Delete>
         </Form>
       </Modal>
     )
