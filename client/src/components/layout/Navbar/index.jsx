@@ -62,7 +62,6 @@ class Navbar extends React.Component {
             <NavItem className="fas fa-plus" onClick={this.toggleBoardModal} />
           </section>
           <AddButton onClick={this.toggleBoardModal}>Add Board</AddButton>
-          {/* <AddButton onClick={this.toggleBoardModal}><i className='fas fa-plus'></i></AddButton> */}
         </Nav>
 
         <BoardModal 

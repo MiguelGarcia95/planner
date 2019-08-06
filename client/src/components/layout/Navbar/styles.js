@@ -13,9 +13,8 @@ export const Container = styled.section`
 `;
 
 export const AddButton = styled.section`
-  width: 50px;
+  width: 100px;
   height: 50px;
-  border-radius: 50%;
   background: #11998e;  
   background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
   background: linear-gradient(to right, #38ef7d, #11998e);
@@ -24,11 +23,7 @@ export const AddButton = styled.section`
   right: 10px;
   text-align: center;
   cursor: pointer;
-  line-height: 20px;
-  // box-sizing: border-box;
-  padding-top: 5px;
-  // color: white;
-  // i {margin-top: 18px; }
+  line-height: 50px;
 `;
 
 export const Logo = styled.section`
