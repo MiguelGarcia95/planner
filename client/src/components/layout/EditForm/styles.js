@@ -71,3 +71,17 @@ export const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
+
+export const Error = styled.p`
+  line-height: 30px;
+  height: 30px;
+  position: absolute;
+  top: 180px;
+  left: 0; right: 0;
+  margin: auto;
+  width: 100% !important;
+  // box-sizing: border-box;
+  text-align: center;
+  background: rgba(255,70,70,0.5);
+  color: black !important;
+`;

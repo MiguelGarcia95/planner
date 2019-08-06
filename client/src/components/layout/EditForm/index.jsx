@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Screen, Form, Title, Button, Delete} from './styles';
+import {Modal, Screen, Form, Title, Button, Delete, Error} from './styles';
 
 class EditForm extends React.Component {
   state = {
@@ -7,17 +7,21 @@ class EditForm extends React.Component {
     error: '',
   }
 
-  onChange = e => this.setState({updatedValue: e.target.value})
+  onChange = e => this.setState({updatedValue: e.target.value, error: ''})
 
   onUpdate = e => {
     e.preventDefault();
-    if(this.state.updatedValue) {
+    if(this.state.updatedValue && this.state.updatedValue !== this.props.data.name) {
       const updatedData = {
         ...this.props.data,
         name: this.state.updatedValue
       };
       this.props.onSubmit(updatedData);
       this.props.resetState();
+    } else if (this.state.updatedValue) {
+      this.setState({error: `${this.props.type} field can\'t be the same`});
+    } else {
+      this.setState({error: `${this.props.type} field can\'t be empty`});
     }
   }
 
@@ -38,6 +42,7 @@ class EditForm extends React.Component {
         <Screen onClick={toggleModal} />
         <Form>
           <Title>{`${type}: ${data.name}`}</Title>
+          {this.state.error && <Error>{this.state.error}</Error>}
           <form onSubmit={this.onUpdate}>
             <input name='name' value={this.state.updatedValue} onChange={this.onChange} placeholder={`Edit ${type}`} />
             <Button>Update</Button>
