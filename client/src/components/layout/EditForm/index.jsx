@@ -19,9 +19,9 @@ class EditForm extends React.Component {
       this.props.onSubmit(updatedData);
       this.props.resetState();
     } else if (this.state.updatedValue) {
-      this.setState({error: `${this.props.type} field can\'t be the same`});
+      this.setState({error: `${this.props.type} field can't be the same`});
     } else {
-      this.setState({error: `${this.props.type} field can\'t be empty`});
+      this.setState({error: `${this.props.type} field can't be empty`});
     }
   }
 
