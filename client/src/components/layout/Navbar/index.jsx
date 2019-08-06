@@ -37,7 +37,7 @@ class Navbar extends React.Component {
 
   onBoardSubmit = e => {
     e.preventDefault();
-    if (this.state.name && this.state.board_color && this.state.text_color) {
+    if (this.state.board_name && this.state.board_color && this.state.text_color) {
       const board = {
         name: this.state.board_name,
         bgColor: this.state.board_color,
