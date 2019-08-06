@@ -75,7 +75,8 @@ class Column extends React.PureComponent {
   toggleTaskModal = task => {
     this.setState({
       modal: !this.state.modal,
-      task: this.state.modal ? null : task
+      task: this.state.modal ? null : task,
+      newTaskValue: this.state.modal ? '' : task.name
     })
   };
 
@@ -109,6 +110,7 @@ class Column extends React.PureComponent {
           open={this.state.modal} 
           data={this.state.task} 
           type='Task'
+          value={this.state.newTaskValue}
           toggleModal={this.toggleTaskModal} 
           onSubmit={this.onUpdateSubmit} 
           onChange={this.onTaskChange}
