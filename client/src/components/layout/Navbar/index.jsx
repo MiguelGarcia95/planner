@@ -45,7 +45,8 @@ class Navbar extends React.Component {
         textColor: this.state.text_color,
       }
       this.props.createBoard(board);
-      this.setState({boardModal: false, board_name: '', board_color: '#ffffff', text_color: '#000000',});
+      this.setState({boardModal: false, board_name: '', board_color: '#ffffff', text_color: '#000000'});
+      this.props.history.push('/');      
     } else {
       this.setState({error: 'Board name can\'t be empty.'});
     }
