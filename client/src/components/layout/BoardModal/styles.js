@@ -100,7 +100,6 @@ export const Error = styled.p`
   left: 0; right: 0;
   margin: auto;
   width: 100% !important;
-  // box-sizing: border-box;
   text-align: center;
   background: rgba(255,70,70,0.5);
   color: black !important;

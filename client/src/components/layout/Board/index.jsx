@@ -6,15 +6,15 @@ import BoardEditModal from '../BoardEditModal';
 class Board extends React.Component {
   state = {
     modal: false,
-    newBoardName: '',
-    board_name: '',
+    newBoardName: this.props.board.name,
     board_color: this.props.board.bgColor,
     text_color: this.props.board.textColor,
+    error: ''
   }
 
   toggleModal = () => this.setState({modal: !this.state.modal});
 
-  onBoardChange = e => this.setState({newBoardName: e.target.value});
+  onBoardChange = e => this.setState({newBoardName: e.target.value, error: ''});
   onColorPick = (color, type) => this.setState({[type]: color});
 
   onBoardDelete = () => {
@@ -33,6 +33,8 @@ class Board extends React.Component {
       }
       this.props.updateBoard(updatedBoard);
       this.setState({modal: false})
+    } else {
+      this.setState({error: 'Board name can\'t be empty.'})
     }
   }
 

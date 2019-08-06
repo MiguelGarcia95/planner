@@ -1,6 +1,6 @@
 import React from 'react';
 import {SliderPicker} from 'react-color';
-import {Label, Screen, Modal, Delete, Button, Form} from './styles';
+import {Label, Screen, Modal, Delete, Button, Form, Error} from './styles';
 
 function BoardEditModal({board, toggleModal, onBoardChange, onSubmit, onBoardDelete, onColorChange, state}) {
   return (
@@ -10,7 +10,7 @@ function BoardEditModal({board, toggleModal, onBoardChange, onSubmit, onBoardDel
         <Form>
           <h1>Board: {board.name}</h1>
           <form onSubmit={onSubmit}>
-            <input name='name' onChange={onBoardChange} placeholder='New Board Name' />
+            <input name='name' value={state.newBoardName} onChange={onBoardChange} placeholder='New Board Name' />
             <Button>Update</Button>
             <Label>Background Color</Label>
             <SliderPicker onChange={e => onColorChange(e.hex, 'board_color')} color={state.board_color} />

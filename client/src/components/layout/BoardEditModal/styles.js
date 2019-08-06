@@ -83,3 +83,16 @@ export const Form = styled.section`
     }
   }
 `;
+
+export const Error = styled.p`
+  line-height: 30px;
+  height: 30px;
+  position: absolute;
+  top: 90px;
+  left: 0; right: 0;
+  margin: auto;
+  width: 100% !important;
+  text-align: center;
+  background: rgba(255,70,70,0.5);
+  color: black !important;
+`;
