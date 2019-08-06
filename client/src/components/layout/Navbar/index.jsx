@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {createBoard} from '../../../store/actions/board';
 import {signinWithToken, logout} from '../../../store/actions/auth';
 
-import {Container, Logo, Nav, NavItem} from './styles';
+import {Container, Logo, Nav, NavItem, AddButton} from './styles';
 import BoardModal from '../BoardModal';
 import {getCookie} from '../../../utils/cookies';
 
@@ -61,6 +61,8 @@ class Navbar extends React.Component {
             <NavItem onClick={() => this.props.logout()} >Logout</NavItem>
             <NavItem className="fas fa-plus" onClick={this.toggleBoardModal} />
           </section>
+          <AddButton onClick={this.toggleBoardModal}>Add Board</AddButton>
+          {/* <AddButton onClick={this.toggleBoardModal}><i className='fas fa-plus'></i></AddButton> */}
         </Nav>
 
         <BoardModal 
