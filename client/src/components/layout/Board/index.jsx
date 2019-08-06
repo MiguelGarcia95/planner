@@ -24,7 +24,7 @@ class Board extends React.Component {
 
   onBoardUpdate = e => {
     e.preventDefault();
-    if (this.state.newBoardName) {
+    if (this.state.newBoardName && this.state.newBoardName !== this.props.board.name) {
       const updatedBoard = {
         ...this.props.board,
         name: this.state.newBoardName,
@@ -33,8 +33,10 @@ class Board extends React.Component {
       }
       this.props.updateBoard(updatedBoard);
       this.setState({modal: false})
+    } else if (this.state.newBoardName) {
+      this.setState({error: 'Board name can\'t be the same.'});
     } else {
-      this.setState({error: 'Board name can\'t be empty.'})
+      this.setState({error: 'Board name can\'t be empty.'});
     }
   }
 

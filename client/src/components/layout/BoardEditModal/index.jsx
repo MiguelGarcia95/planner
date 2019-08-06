@@ -9,6 +9,7 @@ function BoardEditModal({board, toggleModal, onBoardChange, onSubmit, onBoardDel
       {board && 
         <Form>
           <h1>Board: {board.name}</h1>
+          {state.error && <Error>{state.error}</Error>}
           <form onSubmit={onSubmit}>
             <input name='name' value={state.newBoardName} onChange={onBoardChange} placeholder='New Board Name' />
             <Button>Update</Button>

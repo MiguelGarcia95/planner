@@ -88,7 +88,7 @@ export const Error = styled.p`
   line-height: 30px;
   height: 30px;
   position: absolute;
-  top: 90px;
+  top: 60px;
   left: 0; right: 0;
   margin: auto;
   width: 100% !important;
