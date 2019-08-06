@@ -46,14 +46,8 @@ class Navbar extends React.Component {
       }
       this.props.createBoard(board);
       this.setState({boardModal: false, board_name: '', board_color: '#ffffff', text_color: '#000000',});
-    } else if (this.state.name && this.state.board_color) {
-      this.setState({error: ''})
-    } else if (this.state.name && this.state.text_color) {
-      this.setState({error: ''})
-    } else if (this.state.board_color && this.state.text_color) {
-      this.setState({error: ''})
     } else {
-      this.setState({error: ''})
+      this.setState({error: 'Board name can\'t be empty.'});
     }
   };
 
@@ -75,6 +69,7 @@ class Navbar extends React.Component {
           onSubmit={this.onBoardSubmit}
           state={this.state}
           onColorChange={this.onColorPick}
+          error={this.state.error}
         />
       </Container>
     )
