@@ -12,4 +12,20 @@ export const Container = styled.section`
   flex-wrap: nowrap
   -webkit-overflow-scrolling: touch; /* [4] */
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
+
+  scrollbar-width: 10px;
+  ::-webkit-scrollbar {
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #11998e;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #11a98e;
+  }
 `;
