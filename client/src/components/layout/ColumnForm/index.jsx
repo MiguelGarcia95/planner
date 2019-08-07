@@ -34,7 +34,7 @@ class ColumnForm extends React.Component {
         <Form open={this.state.columnForm}>
           <form onSubmit={this.onSubmit}>
             {this.state.error && <Error>{this.state.error}</Error>}
-            <input name='column_name' onChange={this.setColumnName} value={this.state.columnName} />
+            <input name='column_name' placeholder='List Name' onChange={this.setColumnName} value={this.state.columnName} />
             <Cancel onClick={() => this.columnFormToggle()}>Cancel</Cancel>
             <Button>Add</Button>
           </form>

@@ -83,10 +83,10 @@ class Board extends React.Component {
 
     if (board !== null && board !== '') {
       return (
-        <DragDropContext onDragEnd={this.onDragEnd}>
+        <DragDropContext onDragEnd={this.onDragEnd} >
           <Droppable droppableId="all-columns" direction='horizontal' type='column'>
             {provided => (
-              <Container {...provided.droppableProps} ref={provided.innerRef} bgColor={board.bgColor}>
+              <Container {...provided.droppableProps} ref={provided.innerRef} bgColor={board.bgColor} >
                 <Navbar history={this.props.history} />
                 <BoardContent 
                   board={board}

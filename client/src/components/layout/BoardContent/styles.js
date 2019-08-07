@@ -8,6 +8,7 @@ export const Container = styled.section`
   margin: auto;
   overflow-x: scroll;
   overflow-y: none;
+  cursor: handle;
   flex-wrap: nowrap
   -webkit-overflow-scrolling: touch; /* [4] */
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
