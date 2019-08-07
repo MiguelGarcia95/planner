@@ -36,13 +36,21 @@ export const Nav = styled.section`
     align-items: center;
     justify-content: space-around;
     .link {
-      // flex-basis: 20%;
       margin-top: 0;
       width: 140px;
       text-align: center;
       text-decoration: none;
       color: inherit;
       cursor: pointer;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .nav {
+      width: 240px;
+      .link {
+        width: 80px;
+      }
     }
   }
 `;

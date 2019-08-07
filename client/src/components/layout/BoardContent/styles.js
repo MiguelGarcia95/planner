@@ -13,9 +13,9 @@ export const Container = styled.section`
   -webkit-overflow-scrolling: touch; /* [4] */
   -ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */ }
 
-  scrollbar-width: 10px;
+  scrollbar-width: 15px;
   ::-webkit-scrollbar {
-    height: 10px;
+    height: 15px;
   }
   ::-webkit-scrollbar-track {
     border-radius: 10px;
@@ -23,6 +23,7 @@ export const Container = styled.section`
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
+    cursor: grab;
     background-color: #11998e;
   }
   ::-webkit-scrollbar-thumb:hover {
