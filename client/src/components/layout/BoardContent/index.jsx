@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import Column from '../Column';
 import ColumnForm from '../ColumnForm';
@@ -28,26 +29,29 @@ class BoardContent extends React.Component {
   render() {
     const {board, provided, tasks, columns, createColumn} = this.props;
     return (
-      <Container>
-        {board.columnOrder.map((columnId, index) => {
-          const column = columns.filter(column => column._id === columnId);
-          if (column.length === 0) return '';
+      <Scrollbars style={{ width: '100%', height: '100%' }}>
+        <Container>
+          {board.columnOrder.map((columnId, index) => {
+            const column = columns.filter(column => column._id === columnId);
+            if (column.length === 0) return '';
 
-          return (
-            <Column 
-              column={column[0]} 
-              tasks={tasks} 
-              taskOrder={column[0].taskOrder}
-              key={column[0]._id}
-              index={index} 
-              board={board}
-              toggle={this.state.toggle}
-            />
-          )
-        })}
-        <ColumnForm createColumn={createColumn} board={board} />
-      {provided.placeholder}
-      </Container>
+            return (
+              <Column 
+                column={column[0]} 
+                tasks={tasks} 
+                taskOrder={column[0].taskOrder}
+                key={column[0]._id}
+                index={index} 
+                board={board}
+                toggle={this.state.toggle}
+              />
+            )
+          })}
+          <ColumnForm createColumn={createColumn} board={board} />
+        {provided.placeholder}
+        </Container>
+
+      </Scrollbars>
     )
   }
 }
