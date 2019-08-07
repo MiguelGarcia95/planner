@@ -18,8 +18,25 @@ h1 {
   line-height: 40px;
   margin: 0;
 }
-.settings {
-  
+
+scrollbar-width: 10px;
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  // box-shadow: inset 0 0 2px rgba(0,0,0,0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #11998e;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #11a98e;
 }
 `;
 

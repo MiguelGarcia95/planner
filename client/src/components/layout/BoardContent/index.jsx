@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PerfectScrollbar from 'react-perfect-scrollbar'
 
 import Column from '../Column';
 import ColumnForm from '../ColumnForm';
@@ -29,7 +28,6 @@ class BoardContent extends React.Component {
   render() {
     const {board, provided, tasks, columns, createColumn} = this.props;
     return (
-      <PerfectScrollbar>
       <Container>
         {board.columnOrder.map((columnId, index) => {
           const column = columns.filter(column => column._id === columnId);
@@ -48,9 +46,8 @@ class BoardContent extends React.Component {
           )
         })}
         <ColumnForm createColumn={createColumn} board={board} />
-      {provided.placeholder}
+        {provided.placeholder}
       </Container>
-      </PerfectScrollbar>
     )
   }
 }
